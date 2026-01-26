@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>KALIPSO — бассейны и домашние SPA под ключ</title>
+  <meta name="description" content="Проектирование и строительство бассейнов и домашних SPA. Расчет за 2 минуты через квиз." />
+  <style>
+    :root{
+      --bg:#EAF2F0;
+      --panel:#FFFFFF;
+      --text:#0B1220;
+      --muted:#556070;
+      --primary:#0E4DB2;
+      --accent:#249CDF;
+      --gold:#F1A725;
+      --ring:rgba(14,77,178,.25);
+      --shadow:0 12px 30px rgba(11,18,32,.10);
+      --radius:20px;
+      --radius-sm:14px;
+      --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
+      color:var(--text);
+      background:linear-gradient(180deg, #ffffff 0%, var(--bg) 60%, #ffffff 120%);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{
+      display:grid;
+      grid-template-columns: 280px 1fr;
+      gap:28px;
+      max-width: calc(var(--max) + 280px + 28px);
+      margin:0 auto;
+      padding:24px 20px 64px;
+    }
+    /* Sidebar */
+    .sidebar{
+      position:sticky;
+      top:18px;
+      align-self:start;
+      background:rgba(255,255,255,.86);
+      border:1px solid rgba(14,77,178,.10);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+      padding:16px;
+      height: fit-content;
+    }
+    .brand{
+      display:flex; gap:10px; align-items:center;
+      padding:8px 6px 14px;
+      border-bottom:1px solid rgba(11,18,32,.08);
+      margin-bottom:12px;
+    }
+    .logoMark{
+      width:44px;height:44px;border-radius:14px;
+      background: radial-gradient(circle at 30% 20%, rgba(36,156,223,.9), rgba(14,77,178,.95));
+      position:relative;
+      overflow:hidden;
+    }
+    .logoMark:before{
+      content:"";
+      position:absolute; inset:-40% -30%;
+      background: conic-gradient(from 180deg, rgba(241,167,37,.9), rgba(36,156,223,.0), rgba(36,156,223,.0), rgba(14,77,178,.8));
+      transform: rotate(20deg);
+      opacity:.55;
+    }
+    .brandTitle{line-height:1.1}
+    .brandTitle b{display:block; letter-spacing:.06em}
+    .brandTitle span{font-size:12px;color:var(--muted)}
+    .nav{
+      display:flex; flex-direction:column; gap:6px;
+      margin:10px 0 14px;
+    }
+    .nav a{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:10px 12px;
+      border-radius:14px;
+      color:var(--text);
+      border:1px solid transparent;
+      transition:.15s ease;
+      font-weight:600;
+      font-size:14px;
+    }
+    .nav a:hover{background:rgba(14,77,178,.06); border-color:rgba(14,77,178,.14)}
+    .pill{
+      font-size:12px;
+      padding:3px 8px;
+      border-radius:999px;
+      background:rgba(36,156,223,.10);
+      color:var(--primary);
+      font-weight:700;
+    }
+    .ctaCol{display:grid; gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border-radius:14px;border:1px solid rgba(11,18,32,.14);background:transparent;font-weight:800;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease,filter .15s ease;text-align:center;user-select:none;}
+    .btn:hover{border-color:rgba(14,77,178,.35);background:rgba(14,77,178,.04)}
+    .btn:active{filter:brightness(.96)}
+    .btnPrimary{background:var(--primary);color:#fff;border-color:transparent;box-shadow:none;}
+    .btnPrimary:hover{filter:brightness(.95)}
+    .btnGhost{background:transparent}
+    .mini{
+      margin-top:12px;
+      font-size:12px; color:var(--muted);
+      line-height:1.35;
+    }
+    .mini b{color:var(--text)}
+    /* Mobile topbar */
+    .topbar{
+      display:none;
+      position:sticky;
+      top:0;
+      z-index:50;
+      padding:12px 14px;
+      background:rgba(255,255,255,.88);
+      border-bottom:1px solid rgba(11,18,32,.08);
+      backdrop-filter: blur(10px);
+    }
+    .topbarRow{display:flex; align-items:center; justify-content:space-between; gap:10px}
+    .burger{
+      width:44px; height:44px;
+      border-radius:14px;
+      border:1px solid rgba(11,18,32,.10);
+      background: #fff;
+      display:grid; place-items:center;
+      cursor:pointer;
+    }
+    .burger i{display:block;width:18px;height:2px;background:var(--text);position:relative}
+    .burger i:before,.burger i:after{
+      content:""; position:absolute; left:0; width:18px; height:2px; background:var(--text)
+    }
+    .burger i:before{top:-6px}
+    .burger i:after{top:6px}
+    .topCtas{display:flex; gap:10px}
+    .topCtas .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border-radius:14px;border:1px solid rgba(11,18,32,.14);background:transparent;font-weight:800;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease,filter .15s ease;text-align:center;user-select:none;}
+    /* Overlay menu */
+    .overlay{
+      position:fixed; inset:0;
+      background:rgba(11,18,32,.48);
+      display:none;
+      z-index:60;
+    }
+    .drawer{
+      position:absolute; top:10px; left:10px; right:10px;
+      background:#fff;
+      border-radius:22px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .drawerHead{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 14px;
+      border-bottom:1px solid rgba(11,18,32,.08);
+    }
+    .closeBtn{
+      width:44px;height:44px;border-radius:14px;
+      border:1px solid rgba(11,18,32,.10);
+      background:#fff;
+      cursor:pointer;
+      display:grid; place-items:center;
+      font-weight:900;
+    }
+    .drawerBody{padding:12px}
+    /* Main content */
+    main{min-width:0}
+    section{
+      background: rgba(255,255,255,.78);
+      border:1px solid rgba(14,77,178,.10);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:28px;
+      margin-bottom:18px;
+    }
+    .hero{
+      background:
+        radial-gradient(1200px 600px at 20% 20%, rgba(36,156,223,.35), rgba(255,255,255,0) 60%),
+        radial-gradient(900px 500px at 70% 10%, rgba(241,167,37,.18), rgba(255,255,255,0) 55%),
+        linear-gradient(135deg, rgba(14,77,178,.10), rgba(36,156,223,.06));
+      overflow:hidden;
+      position:relative;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:26px;
+      align-items:center;
+    }
+    h1{font-size:42px; line-height:1.05; margin:0 0 12px}
+    h2{font-size:28px; margin:0 0 12px}
+    p{margin:0 0 10px; color:var(--muted); line-height:1.55}
+    .hero .lead{font-size:16px; max-width: 54ch}
+    .heroCtas{display:flex; gap:12px; flex-wrap:wrap; margin-top:16px}
+    .trustRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:16px;
+    }
+    .chip{
+      border:1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.7);
+      border-radius:999px;
+      padding:8px 10px;
+      font-size:12px;
+      font-weight:700;
+      color:var(--text);
+    }
+    .mock{
+      border-radius:22px;
+      background:
+        linear-gradient(135deg, rgba(14,77,178,.22), rgba(36,156,223,.16)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='800'%3E%3Cdefs%3E%3CradialGradient id='g' cx='35%25' cy='20%25'%3E%3Cstop offset='0%25' stop-color='%23249CDF' stop-opacity='.35'/%3E%3Cstop offset='70%25' stop-color='%230E4DB2' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='1200' height='800' fill='%23ffffff'/%3E%3Crect width='1200' height='800' fill='url(%23g)'/%3E%3Cpath d='M0 520 C 160 470, 260 600, 420 550 C 620 485, 730 620, 920 560 C 1080 510, 1140 590, 1200 560 L1200 800 L0 800 Z' fill='%230E4DB2' fill-opacity='.18'/%3E%3Cpath d='M0 560 C 180 520, 260 620, 450 580 C 650 540, 760 640, 980 590 C 1110 560, 1160 620, 1200 600 L1200 800 L0 800 Z' fill='%23249CDF' fill-opacity='.20'/%3E%3C/svg%3E");
+      background-size: cover;
+      border:1px solid rgba(14,77,178,.14);
+      box-shadow: 0 18px 44px rgba(11,18,32,.14);
+      padding:18px;
+      min-height: 280px;
+      position:relative;
+    }
+    .badge{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 10px;
+      border-radius:999px;
+      background: rgba(241,167,37,.14);
+      border:1px solid rgba(241,167,37,.35);
+      font-weight:900;
+      font-size:12px;
+    }
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:14px;
+      margin-top:12px;
+    }
+    .card{
+      background: rgba(255,255,255,.9);
+      border:1px solid rgba(11,18,32,.10);
+      border-radius: var(--radius);
+      padding:16px;
+      transition:.15s ease;
+      display:flex; flex-direction:column; gap:10px;
+      min-height: 150px;
+    }
+    .card:hover{transform: translateY(-1px); box-shadow: 0 16px 34px rgba(11,18,32,.12)}
+    .card h3{margin:0; font-size:18px}
+    .card p{margin:0; font-size:14px}
+    .card .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border-radius:14px;border:1px solid rgba(11,18,32,.14);background:transparent;font-weight:800;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease,filter .15s ease;text-align:center;user-select:none;}
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    .step{
+      border:1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.85);
+      border-radius: var(--radius);
+      padding:14px;
+    }
+    .step b{display:block; font-size:14px; margin-bottom:4px}
+    .step span{font-size:12px; color:var(--muted)}
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    .ph{
+      border-radius: var(--radius);
+      border:1px solid rgba(14,77,178,.12);
+      min-height:120px;
+      background: linear-gradient(135deg, rgba(14,77,178,.12), rgba(36,156,223,.08));
+      position:relative;
+      overflow:hidden;
+    }
+    .ph:after{
+      content:"";
+      position:absolute; inset:-40% -20%;
+      background: radial-gradient(circle at 20% 20%, rgba(36,156,223,.35), rgba(36,156,223,0) 55%);
+      transform: rotate(10deg);
+    }
+    .cases{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    .case{
+      border-radius: var(--radius);
+      border:1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.85);
+      padding:14px;
+    }
+    .case b{display:block;margin-bottom:6px}
+    .case ul{margin:0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.45}
+    .reviews{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    .review{
+      border-radius: var(--radius);
+      border:1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.85);
+      padding:14px;
+    }
+    .review .name{font-weight:900}
+    .review .txt{font-size:13px; color:var(--muted); margin-top:6px; line-height:1.45}
+    .faq{
+      display:grid; gap:10px; margin-top:12px;
+    }
+    details{
+      border:1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.85);
+      border-radius: var(--radius);
+      padding:12px 14px;
+    }
+    summary{cursor:pointer; font-weight:900}
+    /* Quiz */
+    .quizWrap{
+      display:grid;
+      grid-template-columns: 1fr .9fr;
+      gap:16px;
+      margin-top:12px;
+      align-items:start;
+    }
+    .quizCard{
+      border-radius: var(--radius);
+      border:1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.92);
+      padding:18px;
+    }
+    .quizTop{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:12px;
+    }
+    .progress{
+      height:10px; border-radius:999px;
+      background: rgba(11,18,32,.08);
+      overflow:hidden; flex:1;
+    }
+    .bar{height:100%; width:0%; background: linear-gradient(90deg, var(--primary), var(--accent))}
+    .qTitle{font-weight:900; font-size:16px; margin:8px 0 8px}
+    .opts{display:flex; flex-wrap:wrap; gap:10px}
+    .opt{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(11,18,32,.12);
+      background:#fff;
+      cursor:pointer;
+      font-weight:800;
+      font-size:13px;
+      transition:.12s ease;
+    }
+    .opt:hover{border-color:rgba(14,77,178,.35); box-shadow:0 0 0 4px var(--ring)}
+    .fields{
+      display:grid; gap:10px; margin-top:10px;
+    }
+    .in{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(11,18,32,.12);
+      background:#fff;
+      outline:none;
+      font-size:14px;
+    }
+    .in:focus{border-color:rgba(14,77,178,.55); box-shadow:0 0 0 4px var(--ring)}
+    .row{display:grid; grid-template-columns: 1fr 1fr; gap:10px}
+    .quizNav{display:flex; gap:10px; margin-top:12px}
+    .quizSide{
+      border-radius: var(--radius);
+      border:1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.7);
+      padding:16px;
+    }
+    .quizSide b{display:block; margin-bottom:8px}
+    .miniList{margin:0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.5}
+    .success{
+      display:none;
+      padding:18px;
+      border-radius: var(--radius);
+      border:1px solid rgba(14,77,178,.16);
+      background: rgba(36,156,223,.08);
+      margin-top:12px;
+    }
+    .success b{display:block; font-size:18px; margin-bottom:6px}
+    /* Footer contacts */
+    .contacts{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      align-items:center;
+    }
+    .contactBox{
+      border-radius: var(--radius);
+      border:1px solid rgba(11,18,32,.10);
+      background: rgba(255,255,255,.85);
+      padding:16px;
+    }
+    .muted{color:var(--muted)}
+    /* Responsive */
+    @media (max-width: 1020px){
+      .wrap{grid-template-columns: 1fr}
+      .sidebar{display:none}
+      .topbar{display:block}
+      .heroGrid{grid-template-columns: 1fr}
+      h1{font-size:36px}
+      .steps{grid-template-columns: 1fr 1fr}
+      .gallery{grid-template-columns: 1fr 1fr}
+      .cases{grid-template-columns: 1fr}
+      .reviews{grid-template-columns: 1fr}
+      .quizWrap{grid-template-columns: 1fr}
+      .contacts{grid-template-columns: 1fr}
+    }
+    @media (max-width: 520px){
+      section{padding:18px}
+      h1{font-size:30px}
+      .row{grid-template-columns: 1fr}
+      .gallery{grid-template-columns: 1fr}
+      .steps{grid-template-columns: 1fr}
+      .topCtas .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 14px;border-radius:14px;border:1px solid rgba(11,18,32,.14);background:transparent;font-weight:800;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,color .15s ease,filter .15s ease;text-align:center;user-select:none;}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile top bar -->
+  <div class="topbar">
+    <div class="topbarRow">
+      <button class="burger" id="openMenu" aria-label="Открыть меню"><i></i></button>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div class="logoMark" aria-hidden="true"></div>
+        <div style="line-height:1.1">
+          <div style="font-weight:900;letter-spacing:.06em">KALIPSO</div>
+          <div style="font-size:12px;color:var(--muted)">Pool &amp; Spa</div>
+        </div>
+      </div>
+      <div class="topCtas">
+        <a class="btn btnPrimary" href="#quiz">Рассчитать</a>
+        <a class="btn btnGhost" id="tgTop" href="https://t.me/{TG_USERNAME}">Telegram</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div class="overlay" id="overlay">
+    <div class="drawer" role="dialog" aria-modal="true" aria-label="Меню">
+      <div class="drawerHead">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div class="logoMark" aria-hidden="true"></div>
+          <div class="brandTitle">
+            <b>KALIPSO</b>
+            <span>Бассейны и домашние SPA</span>
+          </div>
+        </div>
+        <button class="closeBtn" id="closeMenu" aria-label="Закрыть">×</button>
+      </div>
+      <div class="drawerBody">
+        <div class="nav" style="margin:0">
+          <a href="#solutions" class="mLink">Решения <span class="pill">2</span></a>
+          <a href="#process" class="mLink">Процесс</a>
+          <a href="#portfolio" class="mLink">Кейсы</a>
+          <a href="#reviews" class="mLink">Отзывы</a>
+          <a href="#quiz" class="mLink">Квиз-расчёт <span class="pill">2 мин</span></a>
+          <a href="#faq" class="mLink">FAQ</a>
+          <a href="#contacts" class="mLink">Контакты</a>
+        </div>
+        <div class="ctaCol" style="margin-top:12px">
+          <a class="btn btnPrimary mLink" href="#quiz">Рассчитать за 2 минуты</a>
+          <a class="btn btnGhost" id="tgMenu" href="https://t.me/{TG_USERNAME}">Написать в Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- Desktop sidebar -->
+    <aside class="sidebar" aria-label="Навигация">
+      <div class="brand">
+        <div class="logoMark" aria-hidden="true"></div>
+        <div class="brandTitle">
+          <b>KALIPSO</b>
+          <span>Бассейны и домашние SPA</span>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#solutions">Решения <span class="pill">2</span></a>
+        <a href="#process">Процесс</a>
+        <a href="#portfolio">Кейсы</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#quiz">Квиз-расчёт <span class="pill">2 мин</span></a>
+        <a href="#faq">FAQ</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <div class="ctaCol">
+        <a class="btn btnPrimary" href="#quiz">Рассчитать за 2 минуты</a>
+        <a class="btn btnGhost" id="tgSide" href="https://t.me/{TG_USERNAME}">Написать в Telegram</a>
+      </div>
+
+      <div class="mini">
+        <b>Договор</b> • <b>гарантия</b> • сроки • запуск • сервис<br/>
+        {CITY} • {PHONE}
+      </div>
+    </aside>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="heroGrid">
+          <div>
+            <div class="badge">● Смета и подбор решения за 2 минуты</div>
+            <h1>Бассейны и домашние SPA<br/>под ключ в <span id="cityInline">{CITY}</span></h1>
+            <p class="lead">Проектирование, строительство, оборудование и сервис.
+              Ответьте на несколько вопросов — и получите расчет, сроки и варианты решений.</p>
+
+            <div class="heroCtas">
+              <a class="btn btnPrimary" href="#quiz">Рассчитать стоимость</a>
+              <a class="btn btnGhost" id="tgHero" href="https://t.me/{TG_USERNAME}">Написать в Telegram</a>
+            </div>
+
+            <div class="trustRow">
+              <div class="chip">Договор</div>
+              <div class="chip">Гарантия</div>
+              <div class="chip">Сроки в графике</div>
+              <div class="chip">Сервис</div>
+            </div>
+          </div>
+
+          <div class="mock" aria-label="Визуальный референс">
+            <div class="badge" style="position:absolute;bottom:14px;left:14px;">
+              Премиальный стиль • чистый UX
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Solutions -->
+      <section id="solutions">
+        <h2>Выберите направление — и получите точный расчет</h2>
+        <p>Один квиз, две ветки вопросов: для бассейна и для SPA.</p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Бассейн под ключ</h3>
+            <p>Внутренний или уличный. Подберем конструкцию, оборудование и сроки.</p>
+            <button class="btn btnPrimary" data-prefill="pool">Подобрать бассейн</button>
+          </div>
+          <div class="card">
+            <h3>Домашнее SPA</h3>
+            <p>Купель/джакузи/гидромассаж. Подбор по вместимости, месту и опциям.</p>
+            <button class="btn btnPrimary" data-prefill="spa">Подобрать SPA</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Process -->
+      <section id="process">
+        <h2>Как мы работаем</h2>
+        <p>Прозрачный процесс и понятный результат на каждом шаге.</p>
+
+        <div class="steps">
+          <div class="step"><b>1) Заявка</b><span>Квиз/звонок/Telegram</span></div>
+          <div class="step"><b>2) Замер</b><span>Выезд или онлайн</span></div>
+          <div class="step"><b>3) Проект</b><span>Смета 24–48 часов</span></div>
+          <div class="step"><b>4) Монтаж</b><span>Строительство под ключ</span></div>
+          <div class="step"><b>5) Запуск</b><span>Сервис и поддержка</span></div>
+        </div>
+      </section>
+
+      <!-- Portfolio -->
+      <section id="portfolio">
+        <h2>Кейсы и портфолио</h2>
+        <p>Здесь — плейсхолдеры. Подставьте реальные фото/видео проектов.</p>
+
+        <div class="gallery" aria-label="Галерея">
+          <div class="ph"></div><div class="ph"></div><div class="ph"></div>
+          <div class="ph"></div><div class="ph"></div><div class="ph"></div>
+        </div>
+
+        <div class="cases">
+          <div class="case">
+            <b>Уличный бассейн</b>
+            <ul>
+              <li>Размер: 7×3</li>
+              <li>Срок: 6–8 недель</li>
+              <li>Бюджет: от …</li>
+            </ul>
+          </div>
+          <div class="case">
+            <b>Внутренний бассейн</b>
+            <ul>
+              <li>Автоматика: да</li>
+              <li>Подогрев: да</li>
+              <li>Бюджет: от …</li>
+            </ul>
+          </div>
+          <div class="case">
+            <b>Домашнее SPA</b>
+            <ul>
+              <li>Вместимость: 4–6</li>
+              <li>Опции: джеты/подсветка</li>
+              <li>Бюджет: от …</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reviews -->
+      <section id="reviews">
+        <h2>Отзывы</h2>
+        <p>Короткие, по делу: сроки, качество, аккуратность, гарантия.</p>
+
+        <div class="reviews">
+          <div class="review">
+            <div class="name">Алексей, {CITY}</div>
+            <div class="txt">Смету дали быстро, по срокам уложились. Запуск и обучение — супер.</div>
+          </div>
+          <div class="review">
+            <div class="name">Марина, {CITY}</div>
+            <div class="txt">Подобрали SPA по месту и бюджету. Установка аккуратная, всё работает.</div>
+          </div>
+          <div class="review">
+            <div class="name">Иван, {CITY}</div>
+            <div class="txt">Понравилась прозрачность этапов и договор. Есть сервис после сдачи.</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quiz -->
+      <section id="quiz">
+        <h2>Квиз-расчёт: 2 минуты</h2>
+        <p>Ответьте на вопросы — и перейдите в Telegram, чтобы получить расчет и варианты.</p>
+
+        <div class="quizWrap">
+          <div class="quizCard">
+            <div class="quizTop">
+              <div class="progress" aria-label="Прогресс"><div class="bar" id="bar"></div></div>
+              <div style="min-width:84px;text-align:right;font-weight:900" id="stepInfo">0/0</div>
+            </div>
+
+            <div id="quizBody"></div>
+
+            <div class="quizNav" id="quizNav">
+              <button class="btn btnGhost" id="backBtn" type="button">Назад</button>
+              <button class="btn btnPrimary" id="nextBtn" type="button">Далее</button>
+            </div>
+
+            <div class="success" id="success">
+              <b>Готово ✅</b>
+              <div class="muted">Мы подготовим расчет и уточним детали. Чтобы ускорить — перейдите в Telegram.</div>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+                <a class="btn btnPrimary" id="tgDeep" href="https://t.me/{TG_USERNAME}?start=quiz">Открыть Telegram</a>
+                <a class="btn btnGhost" href="thanks.html">Открыть страницу “Спасибо”</a>
+              </div>
+            </div>
+          </div>
+
+          <aside class="quizSide">
+            <b>Что вы получите</b>
+            <ul class="miniList">
+              <li>Подбор решения (бассейн/SPA) под ваши параметры</li>
+              <li>Оценку бюджета и сроков</li>
+              <li>Список опций и рекомендаций</li>
+              <li>Дальше — общение в Telegram</li>
+            </ul>
+            <div style="margin-top:12px" class="muted">
+              Лиды можно отправлять в Telegram через @TildaFormsBot (в Tilda).
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <h2>FAQ</h2>
+        <div class="faq">
+          <details><summary>От чего зависит цена?</summary><p>От места установки, размеров/вместимости, опций, подготовки основания и сложности инженерии.</p></details>
+          <details><summary>Сроки какие?</summary><p>Зависят от проекта и сезона. Обычно смета — 24–48 часов, реализация — от нескольких недель.</p></details>
+          <details><summary>Работаете по договору?</summary><p>Да: договор, этапность, гарантия, прозрачный график.</p></details>
+          <details><summary>Есть обслуживание?</summary><p>Да: сервис и сопровождение после запуска.</p></details>
+        </div>
+      </section>
+
+      <!-- Contacts -->
+      <section id="contacts">
+        <h2>Контакты</h2>
+        <div class="contacts">
+          <div class="contactBox">
+            <div style="font-weight:900">KALIPSO</div>
+            <div class="muted" style="margin-top:6px">Проектирование и строительство бассейнов и домашних SPA</div>
+            <div style="margin-top:10px"><b>Телефон:</b> <span id="phoneInline">{PHONE}</span></div>
+            <div><b>Город:</b> <span id="cityInline2">{CITY}</span></div>
+          </div>
+          <div class="contactBox">
+            <div style="font-weight:900">Быстрые действия</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+              <a class="btn btnPrimary" href="#quiz">Рассчитать за 2 минуты</a>
+              <a class="btn btnGhost" id="tgBottom" href="https://t.me/{TG_USERNAME}">Написать в Telegram</a>
+            </div>
+            <div class="muted" style="margin-top:10px">Демо-страница. Тексты/фото заменяются на реальные материалы.</div>
+          </div>
+        </div>
+      </section>
+
+      <div style="text-align:center;color:var(--muted);font-size:12px;margin-top:8px">
+        © KALIPSO • demo prototype
+      </div>
+    </main>
+  </div>
+
+<script>
+(function(){
+  // Replace placeholders for demo (optional)
+  const params = new URLSearchParams(location.search);
+  const CITY = params.get('city') || 'вашем городе';
+  const PHONE = params.get('phone') || '+7 (___) ___-__-__';
+  const TG_USERNAME = params.get('tg') || 'kalipso_demo';
+
+  const repl = (s)=>s.replaceAll('{CITY}', CITY).replaceAll('{PHONE}', PHONE).replaceAll('{TG_USERNAME}', TG_USERNAME);
+
+  document.documentElement.innerHTML = repl(document.documentElement.innerHTML);
+
+  // Mobile menu
+  const overlay = document.getElementById('overlay');
+  const openMenu = document.getElementById('openMenu');
+  const closeMenu = document.getElementById('closeMenu');
+  const closeAll = ()=>{ overlay.style.display = 'none'; document.body.style.overflow=''; };
+  openMenu?.addEventListener('click', ()=>{ overlay.style.display = 'block'; document.body.style.overflow='hidden'; });
+  closeMenu?.addEventListener('click', closeAll);
+  overlay?.addEventListener('click', (e)=>{ if(e.target === overlay) closeAll(); });
+  document.querySelectorAll('.mLink').forEach(el=>el.addEventListener('click', closeAll));
+
+  // Smooth prefill buttons
+  document.querySelectorAll('[data-prefill]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const v = btn.getAttribute('data-prefill');
+      startQuizWithProduct(v);
+      location.hash = '#quiz';
+    });
+  });
+
+  // Quiz data
+  const qCommonFinal = [
+    { key:'name', type:'text', label:'Ваше имя', placeholder:'Например, Тимур' },
+    { key:'phone', type:'tel', label:'Телефон', placeholder:'+7 …' },
+    { key:'contact', type:'choice', label:'Как связаться?', options:['Telegram','WhatsApp','Звонок'] }
+  ];
+
+  const qPool = [
+    { key:'product_type', type:'choice', label:'Что нужно?', options:['Бассейн','SPA'] },
+    { key:'pool_where', type:'choice', label:'Где будет бассейн?', options:['Внутри','На улице','Не знаю'] },
+    { key:'pool_size', type:'choice', label:'Примерный размер?', options:['до 15 м²','15–30 м²','30+ м²','Не знаю'] },
+    { key:'pool_kind', type:'choice', label:'Формат?', options:['Семейный','Спортивный','Мини/Plunge','Не знаю'] },
+    { key:'pool_access', type:'choice', label:'Есть доступ для техники?', options:['Да','Нет','Не знаю'] },
+    { key:'timeline', type:'choice', label:'Сроки?', options:['В этом сезоне','1–3 месяца','3–6 месяцев','Планирую'] },
+    { key:'budget', type:'choice', label:'Бюджет?', options:['До X','X–Y','Y+','Нужна консультация'] },
+    { key:'pool_opts', type:'multi', label:'Опции (можно несколько)', options:['Подогрев','Подсветка','Автоматика','Противоток'] },
+    ...qCommonFinal
+  ];
+
+  const qSpa = [
+    { key:'product_type', type:'choice', label:'Что нужно?', options:['Бассейн','SPA'] },
+    { key:'spa_capacity', type:'choice', label:'Вместимость?', options:['2 человека','4 человека','6+','Не знаю'] },
+    { key:'spa_where', type:'choice', label:'Где будет SPA?', options:['Внутри','На улице','Не знаю'] },
+    { key:'spa_install', type:'choice', label:'Тип установки?', options:['Переносной','Встраиваемый','Не знаю'] },
+    { key:'spa_goal', type:'choice', label:'Основная цель?', options:['Релакс','Терапия','Восстановление','Не знаю'] },
+    { key:'spa_opts', type:'multi', label:'Опции (можно несколько)', options:['Джеты/гидромассаж','Подогрев','Подсветка','Автоматика'] },
+    { key:'timeline', type:'choice', label:'Сроки?', options:['В этом сезоне','1–3 месяца','3–6 месяцев','Планирую'] },
+    { key:'budget', type:'choice', label:'Бюджет?', options:['До X','X–Y','Y+','Нужна консультация'] },
+    ...qCommonFinal
+  ];
+
+  let flow = [];
+  let step = 0;
+  let answers = {};
+  let productLocked = null; // "pool"/"spa" if preselected
+
+  const quizBody = document.getElementById('quizBody');
+  const bar = document.getElementById('bar');
+  const stepInfo = document.getElementById('stepInfo');
+  const backBtn = document.getElementById('backBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const nav = document.getElementById('quizNav');
+  const success = document.getElementById('success');
+
+  function startQuizWithProduct(pref){
+    productLocked = pref; // pool/spa
+    // choose flow with fixed first answer
+    if(pref === 'pool'){
+      flow = qPool;
+      answers = { product_type: 'Бассейн' };
+      step = 1; // skip the first question visually
+    } else if(pref === 'spa'){
+      flow = qSpa;
+      answers = { product_type: 'SPA' };
+      step = 1;
+    } else {
+      productLocked = null;
+      flow = qPool; // default until user selects
+      answers = {};
+      step = 0;
+    }
+    render();
+  }
+
+  function init(){
+    startQuizWithProduct(null);
+  }
+
+  function progress(){
+    const total = flow.length;
+    const current = Math.min(step+1, total);
+    stepInfo.textContent = current + '/' + total;
+    bar.style.width = (Math.max(0, Math.min(1, current/total))*100).toFixed(0)+'%';
+  }
+
+  function render(){
+    success.style.display = 'none';
+    nav.style.display = 'flex';
+
+    // If user selected in step 0 "SPA", switch flow
+    if(step === 0){
+      // show first question always (product_type)
+    }
+
+    progress();
+
+    const q = flow[step];
+    if(!q){
+      // finish
+      nav.style.display = 'none';
+      success.style.display = 'block';
+      // update TG deep-link to include product for demo
+      const tgDeep = document.getElementById('tgDeep');
+      const tg = 'https://t.me/'+TG_USERNAME+'?start=quiz_'+encodeURIComponent((answers.product_type||'').toLowerCase());
+      if(tgDeep) tgDeep.href = tg;
+      return;
+    }
+
+    quizBody.innerHTML = '';
+    const title = document.createElement('div');
+    title.className = 'qTitle';
+    title.textContent = q.label;
+    quizBody.appendChild(title);
+
+    if(q.type === 'choice'){
+      const wrap = document.createElement('div');
+      wrap.className = 'opts';
+      q.options.forEach(opt=>{
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'opt';
+        b.textContent = opt;
+        if(answers[q.key] === opt) b.style.borderColor = 'rgba(14,77,178,.55)';
+        b.addEventListener('click', ()=>{
+          answers[q.key] = opt;
+
+          // branching: if product_type picked at step 0, swap flow
+          if(q.key === 'product_type' && !productLocked){
+            if(opt === 'SPA'){
+              flow = qSpa;
+            } else {
+              flow = qPool;
+            }
+            // keep product_type
+            answers = { product_type: opt };
+            step = 1;
+          } else {
+            // normal next
+            step = Math.min(step+1, flow.length);
+          }
+          render();
+        });
+        wrap.appendChild(b);
+      });
+      quizBody.appendChild(wrap);
+
+      // Disable back on first step or when locked and step==1
+      backBtn.disabled = (step === 0 || (productLocked && step === 1));
+    }
+
+    if(q.type === 'multi'){
+      const wrap = document.createElement('div');
+      wrap.className = 'opts';
+      const cur = new Set((answers[q.key] || []));
+      q.options.forEach(opt=>{
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'opt';
+        b.textContent = cur.has(opt) ? ('✓ ' + opt) : opt;
+        if(cur.has(opt)){
+          b.style.borderColor = 'rgba(14,77,178,.55)';
+          b.style.boxShadow = '0 0 0 4px var(--ring)';
+        }
+        b.addEventListener('click', ()=>{
+          if(cur.has(opt)) cur.delete(opt); else cur.add(opt);
+          answers[q.key] = Array.from(cur);
+          render(); // keep on same step
+        });
+        wrap.appendChild(b);
+      });
+      quizBody.appendChild(wrap);
+
+      const hint = document.createElement('div');
+      hint.className = 'muted';
+      hint.style.marginTop = '10px';
+      hint.textContent = 'Выберите опции и нажмите “Далее”.';
+      quizBody.appendChild(hint);
+      backBtn.disabled = (step === 0 || (productLocked && step === 1));
+    }
+
+    if(q.type === 'text' || q.type === 'tel'){
+      const fields = document.createElement('div');
+      fields.className = 'fields';
+
+      const label = document.createElement('div');
+      label.className = 'muted';
+      label.textContent = q.label;
+      fields.appendChild(label);
+
+      const input = document.createElement('input');
+      input.className = 'in';
+      input.type = q.type === 'tel' ? 'tel' : 'text';
+      input.placeholder = q.placeholder || '';
+      input.value = answers[q.key] || '';
+      input.addEventListener('input', ()=>{ answers[q.key] = input.value; });
+      fields.appendChild(input);
+
+      quizBody.appendChild(fields);
+      backBtn.disabled = (step === 0 || (productLocked && step === 1));
+    }
+
+    // Next/back buttons behavior
+    backBtn.onclick = ()=>{
+      if(step > 0){
+        step -= 1;
+        // If step becomes 0 while product was locked, keep it hidden
+        render();
+      }
+    };
+
+    nextBtn.onclick = ()=>{
+      // Validate minimal for text/tel steps
+      if(q.type === 'text' || q.type === 'tel'){
+        const v = (answers[q.key] || '').trim();
+        if(!v){
+          alert('Заполните поле: ' + q.label);
+          return;
+        }
+      }
+      if(q.type === 'choice' && !answers[q.key]){
+        alert('Выберите вариант.');
+        return;
+      }
+      // If we are at product_type and not locked, clicking next does nothing because options advance immediately
+      step = Math.min(step+1, flow.length);
+      render();
+    };
+
+    // If this is product_type step, hide next until selection
+    if(q.key === 'product_type'){
+      // options already auto-advance; keep next visible but harmless
+    }
+  }
+
+  // Also allow query param preselect: ?prefill=pool|spa
+  const pre = params.get('prefill');
+  if(pre === 'pool' || pre === 'spa') startQuizWithProduct(pre); else init();
+
+})();
+</script>
+</body>
+</html>
