@@ -22,6 +22,31 @@
     });
   }
 
+  // Hero-форма: при отправке скроллим к форме контактов и подставляем данные в комментарий
+  var heroForm = document.querySelector('.hero__form');
+  if (heroForm) {
+    heroForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var poolType = (heroForm.querySelector('input[name="pool_type"]:checked') || {}).value;
+      var len = (document.getElementById('hero-length') || {}).value;
+      var w = (document.getElementById('hero-width') || {}).value;
+      var dMin = (document.getElementById('hero-depth-min') || {}).value;
+      var dMax = (document.getElementById('hero-depth-max') || {}).value;
+      var parts = [];
+      if (poolType) parts.push(poolType === 'overflow' ? 'переливной' : 'скиммерный');
+      if (len || w) parts.push((len || '?') + '×' + (w || '?') + ' м');
+      if (dMin || dMax) parts.push('глубина ' + (dMin || '?') + '–' + (dMax || '?') + ' м');
+      var comment = document.getElementById('form-comment');
+      if (comment && parts.length) {
+        comment.value = (comment.value ? comment.value + '\n\n' : '') + 'Заявка с hero: ' + parts.join(', ');
+      }
+      var contact = document.getElementById('contact');
+      if (contact) {
+        contact.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
   // Форма: базовая валидация и сохранение в sessionStorage для thanks
   var form = document.getElementById('lead-form');
   if (form) {
