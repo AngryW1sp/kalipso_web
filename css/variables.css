@@ -1,15 +1,17 @@
-/* KALIPSO — цвета по логотипу: тёмно-синий, голубой, золотисто-оранжевый */
+/* KALIPSO — единая палитра: тёмно-синий и голубой, без контрастного акцента */
 :root {
-  --color-bg: #f8fafb;
+  --color-bg: #f5f8fa;
   --color-panel: #ffffff;
   --color-text: #0d1520;
   --color-text-muted: #4a5568;
   --color-primary: #0e4a8a;
   --color-primary-dark: #0a3566;
   --color-water: #1e6fa8;
-  --color-water-light: #e8f4fc;
-  --color-accent: #d4a024;
-  --color-accent-light: #fef6e6;
+  --color-water-light: #e3eef5;
+  --color-water-muted: #5a8fb4;
+  /* Мягкий акцент только для мелких выделений, не для кнопок */
+  --color-accent: #2d6a96;
+  --color-accent-light: #e8f1f7;
   --color-line: rgba(13, 21, 32, 0.08);
   --color-line-strong: rgba(13, 21, 32, 0.12);
   --shadow-sm: 0 2px 8px rgba(13, 21, 32, 0.06);
