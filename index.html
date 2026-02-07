@@ -1,1175 +1,485 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>KALIPSO — интернет‑витрина бассейнов и домашнего SPA</title>
-  <meta name="description" content="Каталог решений для бассейнов и домашнего SPA. Быстрый подбор через квиз и переход в Telegram." />
-  <style>
-    :root{
-      --bg:#F6F7FA;
-      --panel:#FFFFFF;
-      --text:#0B1220;
-      --muted:#556070;
-      --primary:#0E4DB2;
-      --accent:#249CDF;
-      --gold:#F1A725;
-      --line:rgba(11,18,32,.10);
-      --line2:rgba(14,77,178,.12);
-      --ring:rgba(14,77,178,.18);
-      --shadow:0 14px 34px rgba(11,18,32,.08);
-      --radius:18px;
-      --radius-sm:14px;
-      --max:1180px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
-      color:var(--text);
-      background: var(--bg);
-    }
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--max);margin:0 auto;padding:0 16px}
-    .mono{font-variant-numeric: tabular-nums}
-
-    /* Top utility bar */
-    .topbar{
-      background:#fff;
-      border-bottom:1px solid rgba(11,18,32,.08);
-      font-size:12px;
-      color:var(--muted);
-    }
-    .topbar .row{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      padding:10px 0;
-    }
-    .topbar b{color:var(--text)}
-    .topbar a{color:var(--text); font-weight:800}
-    .topLeft{display:flex; align-items:center; gap:16px; flex-wrap:wrap}
-    .topRight{display:flex; align-items:center; gap:10px; flex-wrap:wrap}
-    .cityBtn{
-      border:1px solid rgba(11,18,32,.10);
-      background:transparent;
-      padding:6px 10px;
-      border-radius:999px;
-      cursor:pointer;
-      font-weight:900;
-      color:var(--text);
-    }
-
-    /* Header */
-    header{
-      position:sticky;
-      top:0;
-      z-index:50;
-      background:rgba(255,255,255,.90);
-      backdrop-filter: blur(12px);
-      border-bottom:1px solid rgba(11,18,32,.08);
-    }
-    .headRow{
-      display:grid;
-      grid-template-columns: 220px 1fr 260px;
-      gap:16px;
-      align-items:center;
-      padding:14px 0;
-    }
-    .brand{
-      display:flex; gap:10px; align-items:center;
-      min-width:0;
-    }
-    .logoMark{
-      width:42px;height:42px;border-radius:14px;
-      background: radial-gradient(circle at 30% 20%, rgba(36,156,223,.9), rgba(14,77,178,.95));
-      position:relative;
-      overflow:hidden;
-      flex:0 0 auto;
-    }
-    .logoMark:before{
-      content:"";
-      position:absolute; inset:-40% -30%;
-      background: conic-gradient(from 180deg, rgba(241,167,37,.9), rgba(36,156,223,.0), rgba(14,77,178,.8));
-      transform: rotate(20deg);
-      opacity:.45;
-    }
-    .brandTxt{min-width:0; line-height:1.1}
-    .brandTxt b{display:block; letter-spacing:.06em}
-    .brandTxt span{display:block; font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-
-    /* Mega menu */
-    .nav{
-      display:flex; gap:12px; align-items:center; flex-wrap:wrap;
-    }
-    .navItem{
-      position:relative;
-      font-weight:900;
-      font-size:14px;
-      padding:10px 10px;
-      border-radius:12px;
-      border:1px solid transparent;
-      cursor:pointer;
-      user-select:none;
-    }
-    .navItem:hover{background:rgba(14,77,178,.05); border-color:rgba(14,77,178,.12)}
-    .drop{
-      position:absolute;
-      left:0;
-      top:44px;
-      width:340px;
-      background:#fff;
-      border:1px solid rgba(11,18,32,.10);
-      border-radius:18px;
-      box-shadow: var(--shadow);
-      padding:10px;
-      display:none;
-    }
-    .navItem:hover .drop{display:block}
-    .drop a{
-      display:flex;
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid transparent;
-      font-weight:800;
-      color:var(--text);
-    }
-    .drop a:hover{background:rgba(14,77,178,.05); border-color:rgba(14,77,178,.12)}
-    .drop .hint{font-size:12px;color:var(--muted); padding:8px 12px 4px}
-
-    /* Search + icons */
-    .actions{
-      display:flex; gap:10px; align-items:center; justify-content:flex-end;
-    }
-    .search{
-      display:flex; align-items:center; gap:10px;
-      border:1px solid rgba(11,18,32,.12);
-      border-radius:999px;
-      padding:10px 12px;
-      background:transparent;
-      min-width:0;
-      flex:1;
-    }
-    .search input{
-      border:0; outline:0; background:transparent;
-      width:100%;
-      font-size:14px;
-    }
-    .iconBtn{
-      width:44px;height:44px;
-      border-radius:14px;
-      border:1px solid rgba(11,18,32,.12);
-      background:transparent;
-      cursor:pointer;
-      position:relative;
-      display:grid;
-      place-items:center;
-      font-weight:1000;
-    }
-    .badge{
-      position:absolute;
-      top:6px; right:6px;
-      min-width:18px; height:18px;
-      padding:0 5px;
-      border-radius:999px;
-      background:var(--primary);
-      color:#fff;
-      font-size:11px;
-      display:grid; place-items:center;
-    }
-
-    /* Minimal buttons */
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      gap:10px;padding:12px 14px;border-radius:14px;
-      border:1px solid rgba(11,18,32,.14);
-      background:transparent;
-      font-weight:900;cursor:pointer;
-      transition:background-color .15s ease,border-color .15s ease,color .15s ease,filter .15s ease;
-      text-align:center;user-select:none;
-      white-space:nowrap;
-    }
-    .btn:hover{border-color:rgba(14,77,178,.35);background:rgba(14,77,178,.04)}
-    .btn:active{filter:brightness(.96)}
-    .btnPrimary{background:var(--primary);color:#fff;border-color:transparent;}
-    .btnPrimary:hover{filter:brightness(.95)}
-    .btnSm{padding:10px 12px;border-radius:12px;font-size:13px}
-
-    /* Layout */
-    .main{padding:18px 0 52px}
-    .crumbs{font-size:12px;color:var(--muted); margin:10px 0}
-    .pageTitle{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:14px; flex-wrap:wrap;
-      margin:10px 0 14px;
-    }
-    h1{margin:0; font-size:28px; letter-spacing:-.01em}
-    .subtitle{margin:0; color:var(--muted); max-width:70ch; line-height:1.5}
-    .grid{
-      display:grid;
-      grid-template-columns: 280px 1fr;
-      gap:16px;
-      align-items:start;
-      margin-top:16px;
-    }
-    .panel{
-      background:#fff;
-      border:1px solid rgba(11,18,32,.10);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-    }
-
-    /* Filters (left) */
-    .filters{padding:14px}
-    .filters h3{margin:0 0 10px; font-size:16px}
-    .fGroup{padding:12px 0; border-top:1px solid rgba(11,18,32,.08)}
-    .fGroup:first-of-type{border-top:0;padding-top:0}
-    .fGroup b{display:block; margin-bottom:8px}
-    .check{display:flex; align-items:center; gap:10px; margin:8px 0; color:var(--muted); font-size:13px}
-    .check input{width:16px;height:16px}
-    .rangeRow{display:flex; gap:10px}
-    .in{
-      width:100%;
-      padding:10px 10px;
-      border-radius:12px;
-      border:1px solid rgba(11,18,32,.12);
-      background:transparent;
-      outline:none;
-      font-size:13px;
-    }
-    .in:focus{border-color:rgba(14,77,178,.55); box-shadow:0 0 0 4px var(--ring)}
-    .filters .cta{
-      display:grid; gap:10px;
-      margin-top:10px;
-    }
-
-    /* Catalog */
-    .catalog{padding:14px}
-    .toolbar{
-      display:flex; gap:10px; flex-wrap:wrap;
-      align-items:center; justify-content:space-between;
-      margin-bottom:12px;
-    }
-    .sort{
-      display:flex; gap:8px; align-items:center;
-      color:var(--muted); font-size:13px;
-    }
-    .sort select{
-      padding:10px 10px;
-      border-radius:12px;
-      border:1px solid rgba(11,18,32,.12);
-      background:transparent;
-      font-weight:800;
-      outline:none;
-    }
-    .count{color:var(--muted); font-size:13px}
-    .cards{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap:12px;
-    }
-    .card{
-      border:1px solid rgba(11,18,32,.10);
-      border-radius: 18px;
-      overflow:hidden;
-      background:#fff;
-      display:flex;
-      flex-direction:column;
-      min-height: 360px;
-    }
-    .img{
-      height:150px;
-      background: linear-gradient(135deg, rgba(14,77,178,.12), rgba(36,156,223,.08));
-      position:relative;
-      overflow:hidden;
-    }
-    .img:after{
-      content:"";
-      position:absolute; inset:-40% -25%;
-      background: radial-gradient(circle at 25% 25%, rgba(36,156,223,.30), rgba(36,156,223,0) 55%);
-      transform: rotate(10deg);
-    }
-    .labels{
-      position:absolute; left:10px; top:10px;
-      display:flex; gap:8px; flex-wrap:wrap;
-    }
-    .lab{
-      font-size:11px;
-      font-weight:1000;
-      padding:5px 8px;
-      border-radius:999px;
-      background:rgba(255,255,255,.86);
-      border:1px solid rgba(11,18,32,.10);
-    }
-    .lab.gold{background:rgba(241,167,37,.16); border-color:rgba(241,167,37,.35)}
-    .body{padding:12px 12px 14px; display:flex; flex-direction:column; gap:8px; flex:1}
-    .name{font-weight:1000; font-size:14px; line-height:1.25}
-    .desc{color:var(--muted); font-size:12.5px; line-height:1.45}
-    .priceRow{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-top:auto}
-    .price{font-weight:1000}
-    .old{font-size:12px; color:rgba(85,96,112,.9); text-decoration: line-through}
-    .benefit{font-size:12px; color:var(--muted)}
-    .cardBtns{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .cardBtns .btn{flex:1}
-
-    /* Quiz */
-    .quizShell{margin-top:16px}
-    .quizHead{
-      padding:16px;
-      border-bottom:1px solid rgba(11,18,32,.08);
-    }
-    .quizHead h2{margin:0; font-size:20px}
-    .quizHead p{margin:8px 0 0; color:var(--muted); line-height:1.5}
-    .quizGrid{
-      display:grid;
-      grid-template-columns: 1fr 320px;
-      gap:14px;
-      padding:14px;
-    }
-    .quizCard{
-      border:1px solid rgba(11,18,32,.10);
-      border-radius: 18px;
-      padding:16px;
-      background:rgba(255,255,255,.92);
-    }
-    .quizTop{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      margin-bottom:12px;
-    }
-    .progress{
-      height:10px; border-radius:999px;
-      background: rgba(11,18,32,.08);
-      overflow:hidden; flex:1;
-    }
-    .bar{height:100%; width:0%; background: linear-gradient(90deg, var(--primary), var(--accent))}
-    .qTitle{font-weight:1000; font-size:15px; margin:8px 0 10px}
-    .opts{display:flex; flex-wrap:wrap; gap:10px}
-    .opt{
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(11,18,32,.12);
-      background:transparent;
-      cursor:pointer;
-      font-weight:900;
-      font-size:13px;
-      transition:.12s ease;
-    }
-    .opt:hover{border-color:rgba(14,77,178,.35); box-shadow:0 0 0 4px var(--ring)}
-    .fields{display:grid; gap:10px; margin-top:10px}
-    .quizNav{display:flex; gap:10px; margin-top:12px}
-    .aside{
-      border:1px solid rgba(11,18,32,.10);
-      border-radius: 18px;
-      background: rgba(255,255,255,.78);
-      padding:14px;
-      height: fit-content;
-    }
-    .aside b{display:block; margin-bottom:8px}
-    .miniList{margin:0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.5}
-    .success{
-      display:none;
-      padding:16px;
-      border-radius: 18px;
-      border:1px solid rgba(14,77,178,.16);
-      background: rgba(36,156,223,.07);
-      margin-top:12px;
-    }
-    .success b{display:block; font-size:16px; margin-bottom:6px}
-
-    /* Cart drawer */
-    .overlay{
-      position:fixed; inset:0;
-      background:rgba(11,18,32,.45);
-      display:none;
-      z-index:80;
-    }
-    .drawer{
-      position:absolute; top:10px; right:10px;
-      width:min(420px, calc(100% - 20px));
-      background:#fff;
-      border-radius:22px;
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .drawerHead{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 14px;
-      border-bottom:1px solid rgba(11,18,32,.08);
-      font-weight:1000;
-    }
-    .closeBtn{
-      width:44px;height:44px;border-radius:14px;
-      border:1px solid rgba(11,18,32,.12);
-      background: transparent;
-      cursor:pointer;
-      display:grid; place-items:center;
-      font-weight:1000;
-    }
-    .drawerBody{padding:12px}
-    .cartItem{
-      display:flex; gap:10px; align-items:flex-start;
-      padding:10px 0;
-      border-top:1px solid rgba(11,18,32,.08);
-    }
-    .cartItem:first-child{border-top:0;padding-top:0}
-    .thumb{width:56px;height:56px;border-radius:14px;border:1px solid rgba(11,18,32,.10);
-      background: linear-gradient(135deg, rgba(14,77,178,.10), rgba(36,156,223,.06));
-      flex:0 0 auto;
-    }
-    .cartItem b{display:block; font-size:13px}
-    .cartItem span{display:block; font-size:12px; color:var(--muted); margin-top:2px}
-    .drawerFoot{padding:12px;border-top:1px solid rgba(11,18,32,.08); display:grid; gap:10px}
-
-    /* Footer */
-    footer{
-      margin-top:28px;
-      padding:28px 0;
-      color:var(--muted);
-      font-size:12px;
-    }
-    .foot{
-      display:grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
-      gap:14px;
-    }
-    .foot b{color:var(--text)}
-    .foot a{color:var(--text); font-weight:800}
-    .small{margin-top:12px; color:var(--muted)}
-    .hr{height:1px;background:rgba(11,18,32,.08);margin:14px 0}
-
-    /* Mobile */
-    .burger{
-      display:none;
-      width:44px;height:44px;border-radius:14px;
-      border:1px solid rgba(11,18,32,.12);
-      background:transparent;
-      cursor:pointer;
-      place-items:center;
-    }
-    .burger i{display:block;width:18px;height:2px;background:var(--text);position:relative}
-    .burger i:before,.burger i:after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--text)}
-    .burger i:before{top:-6px}
-    .burger i:after{top:6px}
-    .mobileNav{
-      display:none;
-      padding:10px 0 14px;
-      border-top:1px solid rgba(11,18,32,.08);
-    }
-    .mobileNav .navItem{display:block}
-    .mobileNav a{display:block;padding:12px 10px;border-radius:14px;font-weight:900}
-    .mobileNav a:hover{background:rgba(14,77,178,.05)}
-    @media (max-width: 1060px){
-      .headRow{grid-template-columns: 1fr}
-      .nav{display:none}
-      .burger{display:grid}
-      .actions{justify-content:stretch}
-      .search{flex:1}
-      .grid{grid-template-columns: 1fr}
-      .cards{grid-template-columns: 1fr 1fr}
-      .quizGrid{grid-template-columns: 1fr}
-      .foot{grid-template-columns: 1fr}
-    }
-    @media (max-width: 560px){
-      .cards{grid-template-columns: 1fr}
-      h1{font-size:24px}
-      .topLeft{gap:10px}
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KALIPSO — Проектирование и строительство бассейнов под ключ</title>
+  <meta name="description" content="Проектирование и строительство бассейнов и спа под ключ. Расчёт за 24 часа. Гарантия на работы. Москва и область." />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <a class="skip-link" href="#top">Перейти к основному содержимому</a>
 
-<div class="topbar">
-  <div class="container">
-    <div class="row">
-      <div class="topLeft">
-        <div><b>Физ. лицам:</b> <a class="mono" href="tel:{PHONE}">{PHONE}</a></div>
-        <div><a href="mailto:{EMAIL}">{EMAIL}</a></div>
-        <div style="opacity:.55">|</div>
-        <div><b>Организациям:</b> <span class="mono">{B2B_PHONE}</span></div>
-      </div>
-      <div class="topRight">
-        <button class="cityBtn" id="cityBtn">Город: <span id="cityInline">{CITY}</span></button>
-        <a href="#contacts">Контакты</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<header>
-  <div class="container">
-    <div class="headRow">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <button class="burger" id="burger" aria-label="Меню"><i></i></button>
-        <a class="brand" href="#top" aria-label="KALIPSO">
-          <div class="logoMark" aria-hidden="true"></div>
-          <div class="brandTxt">
-            <b>KALIPSO</b>
-            <span>Бассейны • Домашнее SPA • Подбор оборудования</span>
-          </div>
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header__inner">
+        <a class="brand" href="#top" aria-label="KALIPSO — на главную">
+          <img class="brand__logo-img" src="assets/images/logo.png" alt="KALIPSO — проектирование и строительство бассейнов" />
         </a>
-      </div>
 
-      <nav class="nav" aria-label="Разделы">
-        <div class="navItem">СПА дома
-          <div class="drop">
-            <div class="hint">Категории</div>
-            <a href="#catalog" data-tag="spa_ir">Инфракрасные кабины</a>
-            <a href="#catalog" data-tag="spa_hot">Гидромассажные спа‑ванны</a>
-            <a href="#quiz">Заказать подбор</a>
-          </div>
-        </div>
-        <div class="navItem">Бассейн дома
-          <div class="drop">
-            <div class="hint">Категории</div>
-            <a href="#catalog" data-tag="pool_chem">Химия для бассейна</a>
-            <a href="#catalog" data-tag="pool_robot">Роботы‑пылесосы</a>
-            <a href="#catalog" data-tag="pool_wood">Бассейны (под ключ)</a>
-            <a href="#quiz">Заказать подбор</a>
-          </div>
-        </div>
-        <a class="navItem" href="#catalog">Акции</a>
-        <a class="navItem" href="#service">Сервис</a>
-        <a class="navItem" href="#contacts">Контакты</a>
-      </nav>
+        <nav class="nav" id="nav" aria-label="Основное меню">
+          <a class="nav__link" href="#services">Услуги</a>
+          <a class="nav__link" href="#stages">Как мы работаем</a>
+          <a class="nav__link" href="#portfolio">Портфолио</a>
+          <a class="nav__link" href="#guarantees">Гарантии</a>
+          <a class="nav__link" href="#schema">Схема бассейна</a>
+          <a class="nav__link" href="#contact">Контакты</a>
+        </nav>
 
-      <div class="actions">
-        <div class="search" role="search" aria-label="Поиск">
-          <span style="font-weight:1000;color:rgba(85,96,112,.8)">🔎</span>
-          <input id="searchInput" placeholder="Я ищу" />
+        <div class="header__actions">
+          <a class="header__phone mono" href="tel:+74951234567">+7 (495) 123-45-67</a>
         </div>
-        <button class="iconBtn" id="favBtn" aria-label="Избранное">♥
-          <span class="badge" id="favCount">0</span>
-        </button>
-        <button class="iconBtn" id="cartBtn" aria-label="Корзина">🛒
-          <span class="badge" id="cartCount">0</span>
+
+        <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
         </button>
       </div>
-
-      <div class="mobileNav" id="mobileNav">
-        <a href="#catalog">Акции</a>
-        <a href="#quiz">Заказать подбор</a>
-        <a href="#service">Сервис</a>
-        <a href="#contacts">Контакты</a>
-      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<div class="main" id="top">
-  <div class="container">
-    <div class="crumbs">Главная / SHOP</div>
-
-    <div class="pageTitle">
-      <div>
-        <h1>Интернет‑витрина бассейнов и домашнего SPA</h1>
-        <p class="subtitle">
-          Формат как у интернет‑магазина: категории, поиск, фильтры, карточки и “в корзину”.
-          Но главная цель — быстро собрать параметры и перейти в Telegram для расчёта и консультации.
-        </p>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <a class="btn btnPrimary" href="#quiz">Заказать подбор</a>
-        <a class="btn" id="tgTop" href="https://t.me/{TG_USERNAME}">Telegram</a>
-      </div>
-    </div>
-
-    <div class="grid">
-      <!-- Filters -->
-      <aside class="panel filters" aria-label="Фильтры">
-        <h3>Фильтры</h3>
-
-        <div class="fGroup">
-          <b>Тип</b>
-          <label class="check"><input type="checkbox" class="fType" value="pool" checked> Бассейны</label>
-          <label class="check"><input type="checkbox" class="fType" value="spa" checked> SPA</label>
-        </div>
-
-        <div class="fGroup">
-          <b>Локация</b>
-          <label class="check"><input type="checkbox" class="fLoc" value="indoor" checked> Внутри</label>
-          <label class="check"><input type="checkbox" class="fLoc" value="outdoor" checked> На улице</label>
-        </div>
-
-        <div class="fGroup">
-          <b>Цена (демо)</b>
-          <div class="rangeRow">
-            <input class="in" id="minPrice" placeholder="от, ₽" inputmode="numeric" />
-            <input class="in" id="maxPrice" placeholder="до, ₽" inputmode="numeric" />
+  <main id="top">
+    <!-- Hero: фон, слева — текст и акцент, справа — форма заявки на расчёт -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero__bg"></div>
+      <img class="hero__bg-image" src="assets/images/hero.png" alt="" width="1920" height="1080" />
+      <div class="hero__inner">
+        <div class="hero__content">
+          <h1 class="hero__title" id="hero-title">
+            Проектирование<br />
+            и строительство бетонных<br />
+            бассейнов под ключ
+          </h1>
+          <p class="hero__subtitle">Сочетаем 30-летний опыт, соответствие стандартам и инновации.</p>
+          <p class="hero__tagline">Бассейны сегмента premium</p>
+          <p class="hero__accent">Выгодная стоимость</p>
+          <div class="hero__social">
+            <span class="hero__social-label">О нас в социальных сетях:</span>
+            <a class="hero__social-link" href="#" aria-label="Telegram">Telegram</a>
+            <a class="hero__social-link" href="#" aria-label="Rutube">Rutube</a>
           </div>
         </div>
-
-        <div class="fGroup">
-          <b>Быстрые действия</b>
-          <div class="cta">
-            <a class="btn btnPrimary" href="#quiz">Рассчитать стоимость</a>
-            <a class="btn" id="tgSide" href="https://t.me/{TG_USERNAME}">Написать в Telegram</a>
-          </div>
-        </div>
-
-        <div style="font-size:12px;color:var(--muted);line-height:1.45">
-          Демо‑фильтры. В реальном проекте можно подключить API/CRM, а “корзину” заменить на “получить предложение”.
-        </div>
-      </aside>
-
-      <!-- Catalog -->
-      <section class="panel catalog" id="catalog" aria-label="Каталог">
-        <div class="toolbar">
-          <div class="sort">
-            Сортировка:
-            <select id="sort">
-              <option value="popular">по популярности</option>
-              <option value="price_asc">цена ↑</option>
-              <option value="price_desc">цена ↓</option>
-              <option value="discount">по скидке</option>
-            </select>
-          </div>
-          <div class="count"><span id="count">0</span> товаров</div>
-        </div>
-
-        <div class="cards" id="cards"></div>
-
-        <div class="quizShell panel" id="quiz">
-          <div class="quizHead">
-            <h2>Заказать подбор (квиз)</h2>
-            <p>Один квиз с ветвлением: “Бассейн” или “SPA”. Финал — кнопка перехода в Telegram.</p>
-          </div>
-          <div class="quizGrid">
-            <div class="quizCard">
-              <div class="quizTop">
-                <div class="progress" aria-label="Прогресс"><div class="bar" id="bar"></div></div>
-                <div style="min-width:84px;text-align:right;font-weight:1000" id="stepInfo">0/0</div>
-              </div>
-              <div id="quizBody"></div>
-              <div class="quizNav" id="quizNav">
-                <button class="btn" id="backBtn" type="button">Назад</button>
-                <button class="btn btnPrimary" id="nextBtn" type="button">Далее</button>
-              </div>
-              <div class="success" id="success">
-                <b>Готово ✅</b>
-                <div style="color:var(--muted);line-height:1.5">
-                  Дальше удобнее в Telegram: отправим ориентир по бюджету/срокам и уточним детали.
-                </div>
-                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-                  <a class="btn btnPrimary" id="tgDeep" href="https://t.me/{TG_USERNAME}?start=quiz">Открыть Telegram</a>
-                  <a class="btn" href="thanks.html">Страница “Спасибо”</a>
-                </div>
+        <div class="hero__form-panel">
+          <h2 class="hero__form-title">
+            <span class="hero__form-icon" aria-hidden="true">📋</span>
+            Заявка на расчёт
+          </h2>
+          <form class="hero__form" action="#contact" method="get">
+            <div class="hero__field">
+              <label class="hero__label">Тип бассейна: <span class="hero__help" title="Переливной — вода переливается через край; скиммерный — забор через скиммер">?</span></label>
+              <div class="hero__toggle" role="group" aria-label="Тип бассейна">
+                <input type="radio" name="pool_type" id="pool-overflow" value="overflow" checked />
+                <label for="pool-overflow">Переливной</label>
+                <input type="radio" name="pool_type" id="pool-skimmer" value="skimmer" />
+                <label for="pool-skimmer">Скиммерный</label>
               </div>
             </div>
-
-            <aside class="aside">
-              <b>Как это работает</b>
-              <ul class="miniList">
-                <li>Вы выбираете тип: бассейн или SPA</li>
-                <li>Отвечаете на 6–9 вопросов</li>
-                <li>Получаете быстрый сценарий дальнейших шагов</li>
-                <li>Переходите в Telegram для расчёта</li>
-              </ul>
-            </aside>
-          </div>
-        </div>
-
-      </section>
-    </div>
-
-    <section class="panel" id="service" style="margin-top:16px;padding:16px">
-      <h2 style="margin:0;font-size:20px">Сервис и обслуживание</h2>
-      <p class="subtitle" style="margin-top:8px">
-        Подготовка к сезону, химия и расходники, обслуживание оборудования, консультации по эксплуатации.
-      </p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-        <a class="btn btnPrimary" href="#quiz">Заказать подбор</a>
-        <a class="btn" id="tgService" href="https://t.me/{TG_USERNAME}">Написать в Telegram</a>
-      </div>
-    </section>
-
-    <section class="panel" id="contacts" style="margin-top:16px;padding:16px">
-      <h2 style="margin:0;font-size:20px">Контакты</h2>
-      <div class="hr"></div>
-      <div style="display:grid;grid-template-columns: 1fr 1fr;gap:14px" class="foot">
-        <div>
-          <b>KALIPSO</b>
-          <div class="small">Бассейны и домашнее SPA</div>
-          <div style="margin-top:10px"><b>Телефон:</b> <span class="mono">{PHONE}</span></div>
-          <div><b>Email:</b> <a href="mailto:{EMAIL}">{EMAIL}</a></div>
-          <div><b>Город:</b> {CITY}</div>
-        </div>
-        <div>
-          <b>Разделы</b>
-          <div class="small"><a href="#catalog">SHOP</a></div>
-          <div class="small"><a href="#quiz">Заказать подбор</a></div>
-          <div class="small"><a href="#service">Сервис</a></div>
-        </div>
-        <div>
-          <b>Быстрый переход</b>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
-            <a class="btn btnPrimary btnSm" href="#quiz">Квиз</a>
-            <a class="btn btnSm" id="tgBottom" href="https://t.me/{TG_USERNAME}">Telegram</a>
-          </div>
-          <div class="small">© 2026 • demo prototype</div>
+            <div class="hero__field">
+              <label class="hero__label">Размеры (в метрах):</label>
+              <div class="hero__inputs">
+                <input type="text" class="hero__input" placeholder="Длина" inputmode="decimal" />
+                <input type="text" class="hero__input" placeholder="Ширина" inputmode="decimal" />
+                <input type="text" class="hero__input" placeholder="Глубина мин." inputmode="decimal" />
+                <input type="text" class="hero__input" placeholder="Глубина макс." inputmode="decimal" />
+              </div>
+            </div>
+            <button type="submit" class="btn btn--primary hero__submit">Узнать стоимость</button>
+          </form>
         </div>
       </div>
     </section>
 
-    <footer>
+    <!-- Блок статистики: 4 карточки с цифрами и иконками -->
+    <section class="stats" aria-label="Цифры и факты">
       <div class="container">
-        <div class="small">Демо‑страница: стили и поведение максимально приближены к интернет‑витрине. Можно расширить до полноценного e‑commerce или оставить как лид‑ген с квизом.</div>
-      </div>
-    </footer>
-
-  </div>
-</div>
-
-<!-- Cart drawer -->
-<div class="overlay" id="overlay">
-  <div class="drawer" role="dialog" aria-modal="true" aria-label="Корзина">
-    <div class="drawerHead">
-      Корзина (демо)
-      <button class="closeBtn" id="closeDrawer" aria-label="Закрыть">×</button>
-    </div>
-    <div class="drawerBody" id="cartList"></div>
-    <div class="drawerFoot">
-      <a class="btn btnPrimary" href="#quiz" id="toQuiz">Заказать подбор вместо корзины</a>
-      <a class="btn" id="tgCart" href="https://t.me/{TG_USERNAME}">Перейти в Telegram</a>
-    </div>
-  </div>
-</div>
-
-<script>
-(function(){
-  const params = new URLSearchParams(location.search);
-  const CITY = params.get('city') || 'Москва';
-  const PHONE = params.get('phone') || '+7 (999) 000-00-00';
-  const EMAIL = params.get('email') || 'sales@example.com';
-  const B2B_PHONE = params.get('b2b') || '+7 (495) 000-00-00';
-  const TG_USERNAME = params.get('tg') || 'kalipso_demo';
-
-  const repl = (s)=>s
-    .replaceAll('{CITY}', CITY)
-    .replaceAll('{PHONE}', PHONE)
-    .replaceAll('{EMAIL}', EMAIL)
-    .replaceAll('{B2B_PHONE}', B2B_PHONE)
-    .replaceAll('{TG_USERNAME}', TG_USERNAME);
-
-  document.documentElement.innerHTML = repl(document.documentElement.innerHTML);
-
-  // Mobile nav toggle
-  const burger = document.getElementById('burger');
-  const mobileNav = document.getElementById('mobileNav');
-  burger?.addEventListener('click', ()=>{
-    const show = mobileNav.style.display !== 'block';
-    mobileNav.style.display = show ? 'block' : 'none';
-  });
-
-  // Catalog data (demo)
-  const products = [
-    {id:'p1', type:'pool', loc:'outdoor', tag:'pool_wood', name:'Бассейн под ключ 6×3', desc:'База: чаша, фильтрация, подогрев, запуск.', price:2190000, old:2490000, promo:'Акция'},
-    {id:'p2', type:'pool', loc:'indoor', tag:'pool_wood', name:'Внутренний бассейн (проект)', desc:'Подбор под помещение и инженерные узлы.', price:0, old:0, promo:'Хит'},
-    {id:'p3', type:'spa',  loc:'indoor',  tag:'spa_hot', name:'SPA 4 места', desc:'Подбор по месту, опциям и сценарию.', price:690000, old:0, promo:'Популярно'},
-    {id:'p4', type:'spa',  loc:'outdoor', tag:'spa_hot', name:'SPA для улицы', desc:'Подогрев, джеты, автоматика. Подбор под климат.', price:0, old:0, promo:'Акция'},
-    {id:'p5', type:'pool', loc:'outdoor', tag:'pool_robot', name:'Робот‑пылесос (подбор)', desc:'Подберём под объём и тип бассейна.', price:0, old:0, promo:'Подбор'},
-    {id:'p6', type:'pool', loc:'outdoor', tag:'pool_chem', name:'Химия для бассейна (набор)', desc:'Комплект на сезон — по параметрам воды.', price:17900, old:23900, promo:'Выгодно'},
-    {id:'p7', type:'spa',  loc:'indoor',  tag:'spa_ir', name:'Инфракрасная кабина', desc:'Компактные модели для дома, подбор по месту.', price:159000, old:0, promo:'Новинка'},
-    {id:'p8', type:'pool', loc:'outdoor', tag:'pool_wood', name:'Бассейн 8×4 (семейный)', desc:'Комплектации под бюджет и срок.', price:3190000, old:0, promo:'Проект'},
-    {id:'p9', type:'spa',  loc:'indoor',  tag:'spa_hot', name:'SPA 2 места (компакт)', desc:'Быстрый монтаж, минимальная площадь.', price:490000, old:0, promo:'Быстрый старт'},
-  ];
-
-  const fmtRub = (n)=> n.toLocaleString('ru-RU') + ' ₽';
-
-  // State
-  let cart = [];
-  let fav = new Set();
-
-  // Elements
-  const cardsEl = document.getElementById('cards');
-  const countEl = document.getElementById('count');
-  const sortEl = document.getElementById('sort');
-  const searchInput = document.getElementById('searchInput');
-
-  const cartCount = document.getElementById('cartCount');
-  const favCount = document.getElementById('favCount');
-  const cartBtn = document.getElementById('cartBtn');
-  const favBtn = document.getElementById('favBtn');
-  const overlay = document.getElementById('overlay');
-  const closeDrawer = document.getElementById('closeDrawer');
-  const cartList = document.getElementById('cartList');
-  const toQuiz = document.getElementById('toQuiz');
-
-  // Filters
-  const typeChecks = Array.from(document.querySelectorAll('.fType'));
-  const locChecks  = Array.from(document.querySelectorAll('.fLoc'));
-  const minPriceEl = document.getElementById('minPrice');
-  const maxPriceEl = document.getElementById('maxPrice');
-
-  // Tag quick links in dropdown
-  document.querySelectorAll('[data-tag]').forEach(a=>{
-    a.addEventListener('click', (e)=>{
-      const tag = a.getAttribute('data-tag');
-      if(tag){
-        e.preventDefault();
-        location.hash = '#catalog';
-        activeTag = tag;
-        render();
-      }
-    });
-  });
-
-  let activeTag = null;
-
-  function openDrawer(){
-    overlay.style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    renderDrawer();
-  }
-  function closeAll(){
-    overlay.style.display = 'none';
-    document.body.style.overflow = '';
-  }
-  cartBtn?.addEventListener('click', openDrawer);
-  closeDrawer?.addEventListener('click', closeAll);
-  overlay?.addEventListener('click', (e)=>{ if(e.target === overlay) closeAll(); });
-  toQuiz?.addEventListener('click', ()=>closeAll());
-
-  favBtn?.addEventListener('click', ()=>{
-    alert('Избранное (демо): ' + (fav.size ? Array.from(fav).join(', ') : 'пусто'));
-  });
-
-  function parseNum(s){
-    if(!s) return null;
-    const x = String(s).replace(/[^\d]/g,'');
-    return x ? Number(x) : null;
-  }
-
-  function currentFilters(){
-    const types = new Set(typeChecks.filter(c=>c.checked).map(c=>c.value));
-    const locs = new Set(locChecks.filter(c=>c.checked).map(c=>c.value));
-    const q = (searchInput?.value || '').trim().toLowerCase();
-    const minP = parseNum(minPriceEl?.value);
-    const maxP = parseNum(maxPriceEl?.value);
-    return {types, locs, q, minP, maxP};
-  }
-
-  function sortItems(items){
-    const mode = sortEl?.value || 'popular';
-    const withPrice = (p)=> (p.price && p.price>0) ? p.price : Infinity;
-    const discount = (p)=> (p.old && p.price && p.old>p.price) ? (p.old - p.price) : 0;
-
-    if(mode === 'price_asc') return items.slice().sort((a,b)=>withPrice(a)-withPrice(b));
-    if(mode === 'price_desc') return items.slice().sort((a,b)=>withPrice(b)-withPrice(a));
-    if(mode === 'discount') return items.slice().sort((a,b)=>discount(b)-discount(a));
-    return items; // popular: as-is
-  }
-
-  function visibleProducts(){
-    const {types, locs, q, minP, maxP} = currentFilters();
-    return sortItems(products.filter(p=>{
-      if(activeTag && p.tag !== activeTag) return false;
-      if(!types.has(p.type)) return false;
-      if(!locs.has(p.loc)) return false;
-      if(q){
-        const hay = (p.name+' '+p.desc).toLowerCase();
-        if(!hay.includes(q)) return false;
-      }
-      if(minP !== null && p.price && p.price>0 && p.price < minP) return false;
-      if(maxP !== null && p.price && p.price>0 && p.price > maxP) return false;
-      return true;
-    }));
-  }
-
-  function renderDrawer(){
-    cartList.innerHTML = '';
-    if(cart.length === 0){
-      cartList.innerHTML = '<div style="color:var(--muted);padding:6px 2px">Корзина пустая. Это демо — лучше “заказать подбор” через квиз.</div>';
-      return;
-    }
-    cart.forEach(id=>{
-      const p = products.find(x=>x.id===id);
-      if(!p) return;
-      const div = document.createElement('div');
-      div.className = 'cartItem';
-      div.innerHTML = `
-        <div class="thumb"></div>
-        <div style="min-width:0">
-          <b>${p.name}</b>
-          <span>${p.price && p.price>0 ? fmtRub(p.price) : 'Цена по запросу'}</span>
-        </div>
-      `;
-      cartList.appendChild(div);
-    });
-  }
-
-  function render(){
-    const items = visibleProducts();
-    countEl.textContent = items.length;
-
-    cardsEl.innerHTML = '';
-    items.forEach(p=>{
-      const el = document.createElement('div');
-      el.className = 'card';
-      const hasDisc = p.old && p.price && p.old > p.price;
-      const disc = hasDisc ? (p.old - p.price) : 0;
-
-      el.innerHTML = `
-        <div class="img">
-          <div class="labels">
-            <span class="lab ${p.promo==='Акция'?'gold':''}">${p.promo}</span>
-            ${hasDisc ? `<span class="lab gold">Выгода ${fmtRub(disc)}</span>` : ``}
-          </div>
-        </div>
-        <div class="body">
-          <div class="name">${p.name}</div>
-          <div class="desc">${p.desc}</div>
-
-          <div class="priceRow">
-            <div>
-              ${hasDisc ? `<div class="old">${fmtRub(p.old)}</div>` : ``}
-              <div class="price">${p.price && p.price>0 ? fmtRub(p.price) : 'Цена по запросу'}</div>
+        <div class="stats__grid">
+          <article class="stats__card">
+            <div class="stats__icon stats__icon--pool" aria-hidden="true"></div>
+            <div class="stats__box">
+              <span class="stats__num-badge">01</span>
+              <p class="stats__value">940+</p>
+              <div class="stats__wave" aria-hidden="true"></div>
+              <p class="stats__label">проектов</p>
             </div>
-            <div class="benefit">${hasDisc ? 'Скидка' : 'Подбор'}</div>
-          </div>
+          </article>
+          <article class="stats__card">
+            <div class="stats__icon stats__icon--years" aria-hidden="true"></div>
+            <div class="stats__box">
+              <span class="stats__num-badge">02</span>
+              <p class="stats__value">30</p>
+              <div class="stats__wave" aria-hidden="true"></div>
+              <p class="stats__label">лет работы</p>
+            </div>
+          </article>
+          <article class="stats__card">
+            <div class="stats__icon stats__icon--shield" aria-hidden="true"></div>
+            <div class="stats__box">
+              <span class="stats__num-badge">03</span>
+              <p class="stats__value">5</p>
+              <div class="stats__wave" aria-hidden="true"></div>
+              <p class="stats__label">лет гарантии</p>
+            </div>
+          </article>
+          <article class="stats__card">
+            <div class="stats__icon stats__icon--team" aria-hidden="true"></div>
+            <div class="stats__box">
+              <span class="stats__num-badge">04</span>
+              <p class="stats__value">24</p>
+              <div class="stats__wave" aria-hidden="true"></div>
+              <p class="stats__label">специалиста в штате</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-          <div class="cardBtns">
-            <button class="btn btnPrimary btnSm" data-add="${p.id}" type="button">В корзину</button>
-            <button class="btn btnSm" data-fav="${p.id}" type="button">♥</button>
-          </div>
+    <!-- Кому подойдут услуги -->
+    <section class="section" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title" id="services-title">Кому подойдут наши услуги</h2>
+          <p class="section__subtitle">Если вы планируете бассейн или спа в Москве или области — мы подберём решение под вашу задачу.</p>
+        </header>
+        <div class="services__grid">
+          <article class="service-card">
+            <div class="service-card__icon" aria-hidden="true">🏠</div>
+            <h3 class="service-card__title">Бассейн в частном доме</h3>
+            <p class="service-card__text">Надёжный бетонный бассейн для семьи — без переделок и проблем в эксплуатации.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon" aria-hidden="true">🏢</div>
+            <h3 class="service-card__title">Бассейн в помещении</h3>
+            <p class="service-card__text">Правильная гидроизоляция и вентиляция — без протечек и сырости.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon" aria-hidden="true">🌳</div>
+            <h3 class="service-card__title">Уличный бассейн</h3>
+            <p class="service-card__text">С учётом климата Московской области и сезонной эксплуатации.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon" aria-hidden="true">🔧</div>
+            <h3 class="service-card__title">Ремонт и реконструкция</h3>
+            <p class="service-card__text">Восстановление, замена оборудования или перепланировка чаши.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon" aria-hidden="true">📐</div>
+            <h3 class="service-card__title">Проектирование</h3>
+            <p class="service-card__text">Индивидуальный проект под ваш участок или дом, без шаблонов.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-card__icon" aria-hidden="true">🤝</div>
+            <h3 class="service-card__title">Для архитекторов</h3>
+            <p class="service-card__text">Сотрудничество по частным и комплексным проектам.</p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-          <div class="cardBtns">
-            <button class="btn btnSm" data-prefill="${p.type}" type="button">Заказать подбор</button>
-            <a class="btn btnSm" href="#quiz">Подробнее</a>
+    <!-- Как мы работаем -->
+    <section class="section stages" id="stages" aria-labelledby="stages-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title" id="stages-title">Как мы работаем</h2>
+          <p class="section__subtitle">Получить бассейн под ключ с нами — предсказуемо и прозрачно на каждом этапе.</p>
+        </header>
+        <div class="stages__grid">
+          <article class="stage">
+            <span class="stage__num" aria-hidden="true">1</span>
+            <div>
+              <h3 class="stage__title">Расчёт и проектирование</h3>
+              <p class="stage__text">Выезд на объект, замеры и анализ. Смета и сроки фиксируются в договоре.</p>
+            </div>
+          </article>
+          <article class="stage">
+            <span class="stage__num" aria-hidden="true">2</span>
+            <div>
+              <h3 class="stage__title">Строительство чаши</h3>
+              <p class="stage__text">Земляные и бетонные работы, закладные элементы. Точная геометрия и технологии.</p>
+            </div>
+          </article>
+          <article class="stage">
+            <span class="stage__num" aria-hidden="true">3</span>
+            <div>
+              <h3 class="stage__title">Монтаж оборудования</h3>
+              <p class="stage__text">Фильтрация, подогрев, циркуляция. Надёжное оборудование с понятным обслуживанием.</p>
+            </div>
+          </article>
+          <article class="stage">
+            <span class="stage__num" aria-hidden="true">4</span>
+            <div>
+              <h3 class="stage__title">Гидроизоляция и отделка</h3>
+              <p class="stage__text">Защита от протечек, проверка на водопроницаемость. Отделка под ваш выбор.</p>
+            </div>
+          </article>
+          <article class="stage">
+            <span class="stage__num" aria-hidden="true">5</span>
+            <div>
+              <h3 class="stage__title">Финальные работы</h3>
+              <p class="stage__text">Оформление бассейна, мозаика или плёнка. Территория в порядке, уборка.</p>
+            </div>
+          </article>
+          <article class="stage">
+            <span class="stage__num" aria-hidden="true">6</span>
+            <div>
+              <h3 class="stage__title">Пуск и сдача объекта</h3>
+              <p class="stage__text">Пуско-наладочные работы, тестирование. Обучение использованию систем.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Гарантии -->
+    <section class="section" id="guarantees" aria-labelledby="guarantees-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title" id="guarantees-title">Наши гарантии</h2>
+          <p class="section__subtitle">Работаем по договору — вы защищены на каждом этапе.</p>
+        </header>
+        <div class="guarantees__grid">
+          <article class="guarantee-card">
+            <div class="guarantee-card__icon" aria-hidden="true">💰</div>
+            <h3 class="guarantee-card__title">Гарантия цены</h3>
+            <p class="guarantee-card__text">Фиксированная смета в договоре. Никаких дополнительных платежей без вашего согласия.</p>
+          </article>
+          <article class="guarantee-card">
+            <div class="guarantee-card__icon" aria-hidden="true">⏱️</div>
+            <h3 class="guarantee-card__title">Гарантия сроков</h3>
+            <p class="guarantee-card__text">Сделаем в срок, указанный в договоре, или компенсируем за каждый день просрочки.</p>
+          </article>
+          <article class="guarantee-card">
+            <div class="guarantee-card__icon" aria-hidden="true">✓</div>
+            <h3 class="guarantee-card__title">Гарантия качества</h3>
+            <p class="guarantee-card__text">Гарантия на работы по чаше, гидроизоляцию и отделку — сроки прописаны в договоре.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Интерактивная схема — разметка и логика как на референсе (pool.kit-sv.ru) -->
+    <section class="section" id="schema" aria-labelledby="schema-title">
+      <div class="container schema">
+        <div class="caption schema-caption">
+          <h2 class="schema-title" id="schema-title">Бассейн — это сложная система из множества элементов. <span>Мы разбираемся во всех нюансах!</span></h2>
+          <div class="schema-caption-text">
+            <p>Интерактивная схема, с основными элементами современного переливного бассейна</p>
           </div>
         </div>
-      `;
-      cardsEl.appendChild(el);
-    });
+        <div class="schema-info">
+          <ol class="schema-list">
+            <li><span id="item-schema-1" data-element-id="1">Фильтрация бассейна</span></li>
+            <li><span id="item-schema-2" data-element-id="2">Система циркуляции воды</span></li>
+            <li><span id="item-schema-3" data-element-id="3">Водный пылесос</span></li>
+            <li><span id="item-schema-4" data-element-id="4">Подводное освещение</span></li>
+            <li><span id="item-schema-5" data-element-id="5">Подогрев бассейна</span></li>
+            <li><span id="item-schema-6" data-element-id="6">Дезинфекция</span></li>
+            <li><span id="item-schema-7" data-element-id="7">Щит управления</span></li>
+            <li><span id="item-schema-8" data-element-id="8">Аттракционы: водопад, гейзер, противоток</span></li>
+          </ol>
+          <div class="schema-img img">
+            <p id="num-schema-1" data-element-id="1"><span>1</span></p>
+            <p id="num-schema-2" data-element-id="2"><span>2</span></p>
+            <p id="num-schema-3" data-element-id="3"><span>3</span></p>
+            <p id="num-schema-4" data-element-id="4"><span>4</span></p>
+            <p id="num-schema-5" data-element-id="5"><span>5</span></p>
+            <p id="num-schema-6" data-element-id="6"><span>6</span></p>
+            <p id="num-schema-7" data-element-id="7"><span>7</span></p>
+            <p id="num-schema-8" data-element-id="8"><span>8</span></p>
+            <img src="assets/images/photo.png" loading="lazy" alt="Схема переливного бассейна" class="schema-photo" />
+            <img src="assets/images/numbers.png" loading="lazy" alt="" class="schema-numbers" aria-hidden="true" />
+            <img id="img-schema-1" data-element-id="1" loading="lazy" src="assets/images/1.png" alt="" aria-hidden="true" />
+            <img id="img-schema-2" data-element-id="2" loading="lazy" src="assets/images/2.png" alt="" aria-hidden="true" />
+            <img id="img-schema-3" data-element-id="3" loading="lazy" src="assets/images/3.png" alt="" aria-hidden="true" />
+            <img id="img-schema-4" data-element-id="4" loading="lazy" src="assets/images/4.png" alt="" aria-hidden="true" />
+            <img id="img-schema-5" data-element-id="5" loading="lazy" src="assets/images/5.png" alt="" aria-hidden="true" />
+            <img id="img-schema-6" data-element-id="6" loading="lazy" src="assets/images/6.png" alt="" aria-hidden="true" />
+            <img id="img-schema-7" data-element-id="7" loading="lazy" src="assets/images/7.png" alt="" aria-hidden="true" />
+            <img id="img-schema-8" data-element-id="8" loading="lazy" src="assets/images/8.png" alt="" aria-hidden="true" />
+          </div>
+        </div>
+      </div>
+    </section>
 
-    // Bind buttons
-    document.querySelectorAll('[data-add]').forEach(b=>{
-      b.addEventListener('click', ()=>{
-        const id = b.getAttribute('data-add');
-        if(!id) return;
-        cart.push(id);
-        cartCount.textContent = cart.length;
-        openDrawer();
-      });
-    });
-    document.querySelectorAll('[data-fav]').forEach(b=>{
-      b.addEventListener('click', ()=>{
-        const id = b.getAttribute('data-fav');
-        if(!id) return;
-        if(fav.has(id)) fav.delete(id); else fav.add(id);
-        favCount.textContent = String(fav.size);
-      });
-    });
-    document.querySelectorAll('[data-prefill]').forEach(b=>{
-      b.addEventListener('click', ()=>{
-        const t = b.getAttribute('data-prefill');
-        startQuizWithProduct(t === 'spa' ? 'spa' : 'pool');
-        location.hash = '#quiz';
-      });
-    });
-  }
+    <!-- Таблица цен на проектирование и строительство -->
+    <section class="section price-table-section" id="prices" aria-labelledby="prices-title">
+      <div class="container">
+        <h2 class="price-table__title" id="prices-title">Цены на проектирование и строительство бассейнов</h2>
+        <div class="price-table__wrap">
+          <table class="price-table">
+            <thead>
+              <tr>
+                <th class="price-table__th-name">Наименование</th>
+                <th class="price-table__th-price">Переливной бассейн 8×3 м</th>
+                <th class="price-table__th-price">Скиммерный 8×3 м</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Работы по устройству ж/б конструкций чаши бассейна</td>
+                <td class="price-table__cell-price">1 315 254 руб.</td>
+                <td class="price-table__cell-price">941 752 руб.</td>
+              </tr>
+              <tr>
+                <td>Позиционирование закладных элементов в ж/б конструкцию чаши бассейна</td>
+                <td class="price-table__cell-price">247 346 руб.</td>
+                <td class="price-table__cell-price">209 053 руб.</td>
+              </tr>
+              <tr>
+                <td>Тампонирование швов и проведение гидроиспытаний ж/б конструкции чаши бассейна</td>
+                <td class="price-table__cell-price">241 566 руб.</td>
+                <td class="price-table__cell-price">241 566 руб.</td>
+              </tr>
+              <tr>
+                <td>Выравнивание чаши бассейна</td>
+                <td class="price-table__cell-price">383 956 руб.</td>
+                <td class="price-table__cell-price">337 793 руб.</td>
+              </tr>
+              <tr>
+                <td>Гидроизоляция плавательного бассейна</td>
+                <td class="price-table__cell-price">255 370 руб.</td>
+                <td class="price-table__cell-price">225 321 руб.</td>
+              </tr>
+              <tr>
+                <td>Облицовка плавательного бассейна</td>
+                <td class="price-table__cell-price">486 689 руб.</td>
+                <td class="price-table__cell-price">355 756 руб.</td>
+              </tr>
+              <tr class="price-table__row-total">
+                <td><strong>Итого</strong></td>
+                <td class="price-table__cell-price price-table__cell-total">2 930 180 руб.</td>
+                <td class="price-table__cell-price price-table__cell-total">2 311 242 руб.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="price-table__disclaimer">Оценка предварительная и не является офертой.</p>
+      </div>
+    </section>
 
-  [sortEl, searchInput, minPriceEl, maxPriceEl].forEach(el=>{
-    el?.addEventListener('input', ()=>{ activeTag = null; render(); });
-    el?.addEventListener('change', ()=>{ activeTag = null; render(); });
-  });
-  typeChecks.forEach(c=>c.addEventListener('change', ()=>{ activeTag=null; render(); }));
-  locChecks.forEach(c=>c.addEventListener('change', ()=>{ activeTag=null; render(); }));
+    <!-- CTA повтор -->
+    <section class="cta-block" id="cta-block" aria-labelledby="cta-title">
+      <div class="container">
+        <h2 class="cta-block__title" id="cta-title">Получите расчёт со всеми работами, сроками и оборудованием за 24 часа</h2>
+        <p class="cta-block__subtitle">Напишите нам или позвоните — подготовим персональное предложение.</p>
+        <a class="btn btn--primary" href="#contact">Получить расчёт за 24 часа</a>
+        <a class="cta-block__phone mono" href="tel:+74951234567">+7 (495) 123-45-67</a>
+      </div>
+    </section>
 
-  // ---- Quiz (lead funnel) ----
-  const qCommonFinal = [
-    { key:'name', type:'text', label:'Ваше имя', placeholder:'Например, Тимур' },
-    { key:'phone', type:'tel', label:'Телефон', placeholder:'+7 …' },
-    { key:'contact', type:'choice', label:'Как связаться?', options:['Telegram','WhatsApp','Звонок'] }
-  ];
+    <!-- Портфолио -->
+    <section class="section" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title" id="portfolio-title">Наши работы</h2>
+          <p class="section__subtitle">Реализованные проекты бассейнов и спа в Москве и области.</p>
+        </header>
+        <div class="portfolio__grid">
+          <article class="portfolio-card">
+            <div class="portfolio-card__image">
+              <img src="assets/images/Real_photograph_DSL_89edd427-3bfd-41a5-8074-958dee09e81e.png" alt="Частный бассейн с противотоком, Московская обл." width="800" height="600" loading="lazy" />
+            </div>
+            <div class="portfolio-card__body">
+              <h3 class="portfolio-card__title">Частный бассейн с противотоком</h3>
+              <p class="portfolio-card__meta">Московская обл. · 6×3 м</p>
+              <a class="portfolio-card__cta" href="#contact">Рассчитать похожий</a>
+            </div>
+          </article>
+          <article class="portfolio-card">
+            <div class="portfolio-card__image">
+              <img src="assets/images/Actual_interior_phot_0c1ebc3e-4027-493f-aa03-fdcc9157c7e7.png" alt="Закрытый бассейн в коттедже, Москва" width="800" height="600" loading="lazy" />
+            </div>
+            <div class="portfolio-card__body">
+              <h3 class="portfolio-card__title">Закрытый бассейн в коттедже</h3>
+              <p class="portfolio-card__meta">Москва · 8×4 м</p>
+              <a class="portfolio-card__cta" href="#contact">Рассчитать похожий</a>
+            </div>
+          </article>
+          <article class="portfolio-card">
+            <div class="portfolio-card__image">
+              <img src="assets/images/Real_photograph_day_870bc447-45de-47fc-a57e-45eb2912286f.png" alt="Уличный бассейн с павильоном, Подмосковье" width="800" height="600" loading="lazy" />
+            </div>
+            <div class="portfolio-card__body">
+              <h3 class="portfolio-card__title">Уличный бассейн с павильоном</h3>
+              <p class="portfolio-card__meta">Подмосковье · 10×5 м</p>
+              <a class="portfolio-card__cta" href="#contact">Рассчитать похожий</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  const qPool = [
-    { key:'product_type', type:'choice', label:'Что нужно?', options:['Бассейн','SPA'] },
-    { key:'pool_where', type:'choice', label:'Где будет бассейн?', options:['Внутри','На улице','Не знаю'] },
-    { key:'pool_size', type:'choice', label:'Примерный размер?', options:['до 15 м²','15–30 м²','30+ м²','Не знаю'] },
-    { key:'pool_kind', type:'choice', label:'Формат?', options:['Семейный','Спортивный','Мини/Plunge','Не знаю'] },
-    { key:'timeline', type:'choice', label:'Сроки?', options:['В этом сезоне','1–3 месяца','3–6 месяцев','Планирую'] },
-    { key:'budget', type:'choice', label:'Бюджет?', options:['До X','X–Y','Y+','Нужна консультация'] },
-    { key:'pool_opts', type:'multi', label:'Опции (можно несколько)', options:['Подогрев','Подсветка','Автоматика','Противоток'] },
-    ...qCommonFinal
-  ];
+    <!-- Форма -->
+    <section class="form-section" id="contact" aria-labelledby="form-title">
+      <div class="container">
+        <header class="section__header">
+          <h2 class="section__title" id="form-title">Получить консультацию</h2>
+          <p class="section__subtitle">Оставьте контакты — перезвоним в удобное время и подготовим расчёт.</p>
+        </header>
+        <div class="form-wrap">
+          <h3 class="form-wrap__title">Заполните форму</h3>
+          <form class="form" id="lead-form" action="thanks.html" method="get" novalidate>
+            <div class="form-group">
+              <label for="form-name">Ваше имя</label>
+              <input type="text" id="form-name" name="name" required placeholder="Как к вам обращаться" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="form-phone">Телефон</label>
+              <input type="tel" id="form-phone" name="phone" required placeholder="+7 (___) ___-__-__" autocomplete="tel" class="mono" />
+            </div>
+            <div class="form-group">
+              <label for="form-comment">Комментарий (необязательно)</label>
+              <textarea id="form-comment" name="comment" placeholder="Размер участка, тип бассейна, сроки…"></textarea>
+            </div>
+            <button type="submit" class="btn btn--primary">Получить расчёт</button>
+          </form>
+          <p class="form-wrap__privacy">Нажимая кнопку, вы соглашаетесь на обработку персональных данных в соответствии с политикой конфиденциальности.</p>
+          <p class="form-wrap__phone">Или позвоните: <a href="tel:+74951234567" class="mono">+7 (495) 123-45-67</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-  const qSpa = [
-    { key:'product_type', type:'choice', label:'Что нужно?', options:['Бассейн','SPA'] },
-    { key:'spa_capacity', type:'choice', label:'Вместимость?', options:['2 человека','4 человека','6+','Не знаю'] },
-    { key:'spa_where', type:'choice', label:'Где будет SPA?', options:['Внутри','На улице','Не знаю'] },
-    { key:'spa_install', type:'choice', label:'Тип установки?', options:['Переносной','Встраиваемый','Не знаю'] },
-    { key:'spa_goal', type:'choice', label:'Основная цель?', options:['Релакс','Терапия','Восстановление','Не знаю'] },
-    { key:'spa_opts', type:'multi', label:'Опции (можно несколько)', options:['Джеты/гидромассаж','Подогрев','Подсветка','Автоматика'] },
-    { key:'timeline', type:'choice', label:'Сроки?', options:['В этом сезоне','1–3 месяца','3–6 месяцев','Планирую'] },
-    { key:'budget', type:'choice', label:'Бюджет?', options:['До X','X–Y','Y+','Нужна консультация'] },
-    ...qCommonFinal
-  ];
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <span class="brand__name">KALIPSO</span>
+          <span class="brand__tagline">Проектирование и строительство бассейнов</span>
+        </div>
+        <div>
+          <h4 class="footer__title">Разделы</h4>
+          <ul class="footer__links">
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#stages">Как мы работаем</a></li>
+            <li><a href="#portfolio">Портфолио</a></li>
+            <li><a href="#guarantees">Гарантии</a></li>
+            <li><a href="#contact">Контакты</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Контакты</h4>
+          <ul class="footer__links">
+            <li><a href="tel:+74951234567" class="mono">+7 (495) 123-45-67</a></li>
+            <li><a href="mailto:info@kalipso.ru">info@kalipso.ru</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        © 2026 KALIPSO. Проектирование и строительство бассейнов. Москва и область.
+      </div>
+    </div>
+  </footer>
 
-  let flow = [];
-  let step = 0;
-  let answers = {};
-  let productLocked = null;
+  <!-- Постоянная панель CTA: всегда видна при скролле -->
+  <div class="sticky-cta" id="sticky-cta">
+    <div class="sticky-cta__inner container">
+      <a class="btn btn--primary sticky-cta__btn" href="#contact">Получить расчёт за 24 часа</a>
+      <a class="sticky-cta__phone mono" href="tel:+74951234567">+7 (495) 123-45-67</a>
+    </div>
+  </div>
 
-  const quizBody = document.getElementById('quizBody');
-  const bar = document.getElementById('bar');
-  const stepInfo = document.getElementById('stepInfo');
-  const backBtn = document.getElementById('backBtn');
-  const nextBtn = document.getElementById('nextBtn');
-  const nav = document.getElementById('quizNav');
-  const success = document.getElementById('success');
-
-  function progress(){
-    const total = flow.length;
-    const current = Math.min(step+1, total);
-    stepInfo.textContent = current + '/' + total;
-    bar.style.width = (Math.max(0, Math.min(1, current/total))*100).toFixed(0)+'%';
-  }
-
-  function renderQuiz(){
-    success.style.display = 'none';
-    nav.style.display = 'flex';
-    progress();
-
-    const q = flow[step];
-    if(!q){
-      nav.style.display = 'none';
-      success.style.display = 'block';
-      const tgDeep = document.getElementById('tgDeep');
-      const tg = 'https://t.me/'+TG_USERNAME+'?start=quiz_'+encodeURIComponent((answers.product_type||'').toLowerCase());
-      if(tgDeep) tgDeep.href = tg;
-      return;
-    }
-
-    quizBody.innerHTML = '';
-    const title = document.createElement('div');
-    title.className = 'qTitle';
-    title.textContent = q.label;
-    quizBody.appendChild(title);
-
-    if(q.type === 'choice'){
-      const wrap = document.createElement('div');
-      wrap.className = 'opts';
-      q.options.forEach(opt=>{
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'opt';
-        b.textContent = opt;
-        if(answers[q.key] === opt) b.style.borderColor = 'rgba(14,77,178,.55)';
-        b.addEventListener('click', ()=>{
-          answers[q.key] = opt;
-          if(q.key === 'product_type' && !productLocked){
-            if(opt === 'SPA'){ flow = qSpa; }
-            else { flow = qPool; }
-            answers = { product_type: opt };
-            step = 1;
-          } else {
-            step = Math.min(step+1, flow.length);
-          }
-          renderQuiz();
-        });
-        wrap.appendChild(b);
-      });
-      quizBody.appendChild(wrap);
-      backBtn.disabled = (step === 0 || (productLocked && step === 1));
-    }
-
-    if(q.type === 'multi'){
-      const wrap = document.createElement('div');
-      wrap.className = 'opts';
-      const cur = new Set((answers[q.key] || []));
-      q.options.forEach(opt=>{
-        const b = document.createElement('button');
-        b.type = 'button';
-        b.className = 'opt';
-        b.textContent = cur.has(opt) ? ('✓ ' + opt) : opt;
-        if(cur.has(opt)){
-          b.style.borderColor = 'rgba(14,77,178,.55)';
-          b.style.boxShadow = '0 0 0 4px var(--ring)';
-        }
-        b.addEventListener('click', ()=>{
-          if(cur.has(opt)) cur.delete(opt); else cur.add(opt);
-          answers[q.key] = Array.from(cur);
-          renderQuiz();
-        });
-        wrap.appendChild(b);
-      });
-      quizBody.appendChild(wrap);
-
-      const hint = document.createElement('div');
-      hint.style.marginTop = '10px';
-      hint.style.color = 'var(--muted)';
-      hint.style.fontSize = '13px';
-      hint.textContent = 'Выберите опции и нажмите “Далее”.';
-      quizBody.appendChild(hint);
-      backBtn.disabled = (step === 0 || (productLocked && step === 1));
-    }
-
-    if(q.type === 'text' || q.type === 'tel'){
-      const fields = document.createElement('div');
-      fields.className = 'fields';
-
-      const input = document.createElement('input');
-      input.className = 'in';
-      input.type = q.type === 'tel' ? 'tel' : 'text';
-      input.placeholder = q.placeholder || '';
-      input.value = answers[q.key] || '';
-      input.addEventListener('input', ()=>{ answers[q.key] = input.value; });
-      fields.appendChild(input);
-
-      quizBody.appendChild(fields);
-      backBtn.disabled = (step === 0 || (productLocked && step === 1));
-    }
-
-    backBtn.onclick = ()=>{
-      if(step > 0){
-        step -= 1;
-        renderQuiz();
-      }
-    };
-
-    nextBtn.onclick = ()=>{
-      if(q.type === 'text' || q.type === 'tel'){
-        const v = (answers[q.key] || '').trim();
-        if(!v){ alert('Заполните поле: ' + q.label); return; }
-      }
-      if(q.type === 'choice' && !answers[q.key]){
-        alert('Выберите вариант.'); return;
-      }
-      step = Math.min(step+1, flow.length);
-      renderQuiz();
-    };
-  }
-
-  function startQuizWithProduct(pref){
-    productLocked = pref;
-    if(pref === 'pool'){
-      flow = qPool; answers = { product_type: 'Бассейн' }; step = 1;
-    } else if(pref === 'spa'){
-      flow = qSpa; answers = { product_type: 'SPA' }; step = 1;
-    } else {
-      productLocked = null; flow = qPool; answers = {}; step = 0;
-    }
-    renderQuiz();
-  }
-
-  // init
-  const prefill = params.get('prefill');
-  if(prefill === 'pool' || prefill === 'spa') startQuizWithProduct(prefill);
-  else startQuizWithProduct(null);
-
-  // first render catalog
-  render();
-
-  // City dialog (simple)
-  document.getElementById('cityBtn')?.addEventListener('click', ()=>{
-    const v = prompt('Введите город', CITY);
-    if(v){
-      const url = new URL(location.href);
-      url.searchParams.set('city', v);
-      location.href = url.toString();
-    }
-  });
-})();
-</script>
-
+  <script src="js/main.js"></script>
 </body>
 </html>
