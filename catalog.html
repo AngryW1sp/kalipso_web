@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Каталог бассейнов — KALIPSO</title>
+  <meta name="description" content="Каталог бассейнов разных размеров и форм. Цены, характеристики, доставка." />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header__inner">
+        <a class="brand" href="index.html" aria-label="KALIPSO">
+          <img src="assets/images/logo.png" alt="KALIPSO — проектирование и строительство бассейнов" class="brand__logo" />
+          <span class="brand__text">KALIPSO</span>
+        </a>
+        <nav class="nav">
+          <a class="nav__link" href="services.html">Услуги</a>
+          <a class="nav__link nav__link--active" href="catalog.html">Каталог бассейнов</a>
+          <a class="nav__link" href="equipment.html">Оборудование</a>
+          <a class="nav__link" href="about.html">О компании</a>
+          <a class="nav__link" href="contacts.html">Контакты</a>
+        </nav>
+        <div class="header__cities">Москва · Московская область</div>
+        <div class="header__contact">
+          <a class="header__phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
+          <div class="header__note">Перезвоним за 15 минут</div>
+        </div>
+        <a class="header__cta header__cta--primary" href="index.html#callback">Рассчитать стоимость</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Первый экран каталога — зачем этот каталог клиенту -->
+    <section class="section-simple catalog-hero">
+      <div class="container">
+        <nav class="catalog-hero__breadcrumbs">
+          <a href="index.html">Главная</a> / Каталог бассейнов
+        </nav>
+        <h1 class="catalog-hero__title">Каталог бассейнов под ключ — готовые решения и индивидуальные проекты</h1>
+        <p class="catalog-hero__lead">Подберите оптимальный размер и формат бассейна под ваш участок, бюджет и сценарий использования — без переплаты и неожиданных работ в процессе строительства. Производим, монтируем и запускаем бассейны с гарантией.</p>
+        <ul class="catalog-hero__markers">
+          <li>Фиксированная смета в договоре</li>
+          <li>Собственное производство чаш</li>
+          <li>Работаем в Москве и Московской области</li>
+          <li>Гарантия на чашу и монтаж</li>
+        </ul>
+        <div class="catalog-hero__actions">
+          <a href="index.html#callback" class="header__cta header__cta--primary">Рассчитать стоимость бассейна</a>
+          <p class="catalog-hero__hint">Бесплатно. Фиксируем смету после консультации.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Фильтр / навигация — помочь выбрать, а не просто смотреть -->
+    <section class="section-simple catalog-filter">
+      <div class="container">
+        <h2 class="catalog-filter__title">Подберите бассейн под ваш участок</h2>
+        <form class="catalog-filter__form" action="#" method="get">
+          <div class="catalog-filter__grid">
+            <div class="catalog-filter__group">
+              <label class="catalog-filter__label" for="size">Размер</label>
+              <select id="size" name="size" class="catalog-filter__control">
+                <option>3×6 м</option>
+                <option>3×7 м</option>
+                <option>4×8 м</option>
+                <option>Индивидуальный размер</option>
+              </select>
+            </div>
+            <div class="catalog-filter__group">
+              <label class="catalog-filter__label" for="type">Тип бассейна</label>
+              <select id="type" name="type" class="catalog-filter__control">
+                <option>Скимерный</option>
+                <option>Переливной</option>
+              </select>
+            </div>
+            <div class="catalog-filter__group">
+              <label class="catalog-filter__label" for="purpose">Назначение</label>
+              <select id="purpose" name="purpose" class="catalog-filter__control">
+                <option>Частный дом</option>
+                <option>SPA</option>
+                <option>Коммерческий объект</option>
+              </select>
+            </div>
+            <div class="catalog-filter__group">
+              <label class="catalog-filter__label" for="budget">Бюджет</label>
+              <select id="budget" name="budget" class="catalog-filter__control">
+                <option>До 1,5 млн ₽</option>
+                <option>1,5–3 млн ₽</option>
+                <option>3–5 млн ₽</option>
+                <option>Обсудить индивидуально</option>
+              </select>
+            </div>
+          </div>
+          <div class="catalog-filter__footer">
+            <p class="catalog-filter__note">Если не уверены в параметрах — поможем подобрать оптимальный вариант.</p>
+            <a href="index.html#callback" class="header__cta">Получить консультацию по подбору</a>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- 3. Каталог — карточки бассейнов -->
+    <section class="section-simple">
+      <div class="container">
+        <div class="pool-grid">
+          <article class="pool-card">
+            <div class="pool-card__image">
+              <img src="assets/images/IMG_20220810_101450_262.jpg" alt="Бассейн 3×7 м для частного дома" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+            </div>
+            <div class="pool-card__body">
+              <p class="pool-card__specs">3×7 м · 1,5 м · Частный дом</p>
+              <h3 class="pool-card__title">Бассейн 3×7 м для частного дома</h3>
+              <p class="pool-card__subtitle">Оптимальный размер для комфортного плавания и отдыха на участке.</p>
+              <ul class="pool-card__list">
+                <li><strong>Размер:</strong> 3×7 м</li>
+                <li><strong>Глубина:</strong> 1,5 м</li>
+                <li><strong>Тип:</strong> скимерный</li>
+                <li><strong>Назначение:</strong> частный дом</li>
+              </ul>
+              <p class="pool-card__label">Ориентировочная стоимость</p>
+              <p class="pool-card__price">От 138 400 ₽</p>
+              <p class="pool-card__note">Стоимость зависит от комплектации и оборудования.</p>
+              <div class="pool-card__actions">
+                <a class="pool-card__btn-primary" href="index.html#callback">Запросить расчёт под этот размер</a>
+                <a class="pool-card__btn-secondary" href="product-3x7.html">Подробнее о комплектации</a>
+              </div>
+              <p class="pool-card__ticks">✔ Фиксируем смету в договоре · ✔ Производство и монтаж «под ключ» · ✔ Гарантия на чашу и работы</p>
+            </div>
+          </article>
+          <article class="pool-card">
+            <div class="pool-card__image">
+              <img src="assets/images/IMG_20230520_122717_642.jpg" alt="Бассейн 3×6 м для частного дома" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+            </div>
+            <div class="pool-card__body">
+              <p class="pool-card__specs">3×6 м · 1,5 м · Частный дом</p>
+              <h3 class="pool-card__title">Бассейн 3×6 м для частного дома</h3>
+              <p class="pool-card__subtitle">Компактное решение для участка, где важен каждый метр.</p>
+              <ul class="pool-card__list">
+                <li><strong>Размер:</strong> 3×6 м</li>
+                <li><strong>Глубина:</strong> 1,5 м</li>
+                <li><strong>Тип:</strong> скимерный</li>
+                <li><strong>Назначение:</strong> частный дом</li>
+              </ul>
+              <p class="pool-card__label">Ориентировочная стоимость</p>
+              <p class="pool-card__price">От 122 000 ₽</p>
+              <p class="pool-card__note">Стоимость зависит от комплектации и оборудования.</p>
+              <div class="pool-card__actions">
+                <a class="pool-card__btn-primary" href="index.html#callback">Запросить расчёт под этот размер</a>
+                <a class="pool-card__btn-secondary" href="product-3x6.html">Подробнее о комплектации</a>
+              </div>
+              <p class="pool-card__ticks">✔ Фиксируем смету в договоре · ✔ Производство и монтаж «под ключ» · ✔ Гарантия на чашу и работы</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Блок между карточками — снимаем главный страх -->
+    <section class="section-simple catalog-custom">
+      <div class="container">
+        <h2 class="catalog-section__title">Не нашли подходящий размер?</h2>
+        <p class="catalog-section__text">Мы проектируем бассейны под конкретный участок и задачи — подберём оптимальные размеры, глубину и оборудование без переплаты и лишних решений.</p>
+        <a href="index.html#callback" class="header__cta">Обсудить индивидуальный проект</a>
+      </div>
+    </section>
+
+    <!-- 5. Объяснение цен — чтобы не было «дорого / дёшево» -->
+    <section class="section-simple catalog-pricing">
+      <div class="container">
+        <h2 class="catalog-section__title">От чего зависит стоимость бассейна</h2>
+        <ul class="catalog-list">
+          <li>Размер и глубина чаши</li>
+          <li>Тип бассейна (скимерный или переливной)</li>
+          <li>Комплектация и оборудование</li>
+          <li>Подготовка участка и инженерия</li>
+        </ul>
+        <p class="catalog-section__note">Мы заранее фиксируем состав работ и стоимость в договоре и исключаем дополнительные расходы после начала строительства.</p>
+      </div>
+    </section>
+
+    <!-- 6. Почему каталог — это безопасный выбор -->
+    <section class="section-simple catalog-trust">
+      <div class="container">
+        <h2 class="catalog-section__title">Почему клиенты выбирают бассейны KALIPSO</h2>
+        <ul class="catalog-list">
+          <li>Собственное производство без посредников</li>
+          <li>Контроль качества на каждом этапе строительства</li>
+          <li>Опыт более 10 лет</li>
+          <li>Реальные реализованные объекты в Москве и области</li>
+          <li>Гарантия на чашу и работы</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- 7. Финальный дожим каталога -->
+  <section class="footer-cta" id="callback">
+    <div class="container">
+      <div class="footer-cta__inner">
+        <div>
+          <h2 class="footer-cta__title">Нужна помощь с выбором бассейна?</h2>
+          <p class="footer-cta__sub">Оставьте номер — мы перезвоним, уточним задачу и предложим оптимальные варианты под ваш участок и бюджет.</p>
+        </div>
+        <div class="footer-cta__form">
+          <form action="#" method="get">
+            <input type="tel" name="phone" placeholder="Телефон *" required />
+            <button type="submit">Перезвонить мне</button>
+          </form>
+          <p class="footer-cta__privacy">Бесплатно. Консультация 15 минут.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h4 class="footer__title">Каталог</h4>
+          <ul class="footer__links">
+            <li><a href="catalog.html">Бассейны</a></li>
+            <li><a href="equipment.html">Оборудование</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Компания</h4>
+          <ul class="footer__links">
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="about.html">О компании</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Контакты</h4>
+          <p style="margin:0;">+7 (495) 123-45-67</p>
+          <p style="margin:4px 0 0;">info@kalipso.ru</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        © 2025 KALIPSO. Проектирование и строительство бассейнов. Москва и область.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

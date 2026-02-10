@@ -3,466 +3,278 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>KALIPSO — Проектирование и строительство бассейнов под ключ</title>
-  <meta name="description" content="Проектирование и строительство бассейнов и спа под ключ. Расчёт за 24 часа. Гарантия на работы. Москва и область." />
+  <title>KALIPSO — Проектирование и строительство бассейнов</title>
+  <meta name="description" content="KALIPSO — проектирование и строительство бетонных бассейнов под ключ. Расчёт стоимости, проект и монтаж в Москве и области." />
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <a class="skip-link" href="#top">Перейти к основному содержимому</a>
-
-  <header class="header" id="header">
+  <header class="header">
     <div class="container">
       <div class="header__inner">
-        <a class="brand" href="#top" aria-label="KALIPSO — на главную">
-          <img class="brand__logo-img" src="assets/images/logo.png" alt="KALIPSO — проектирование и строительство бассейнов" />
+        <a class="brand" href="index.html" aria-label="KALIPSO">
+          <img src="assets/images/logo.png" alt="KALIPSO — проектирование и строительство бассейнов" class="brand__logo" />
+          <span class="brand__text">KALIPSO</span>
         </a>
-
-        <nav class="nav" id="nav" aria-label="Основное меню">
-          <a class="nav__link" href="#services">Услуги</a>
-          <a class="nav__link" href="#stages">Как мы работаем</a>
-          <a class="nav__link" href="#portfolio">Портфолио</a>
-          <a class="nav__link" href="#guarantees">Гарантии</a>
-          <a class="nav__link" href="#schema">Схема и состав бассейна</a>
-          <a class="nav__link" href="#contact">Контакты</a>
+        <nav class="nav">
+          <a class="nav__link" href="services.html">Услуги</a>
+          <a class="nav__link" href="catalog.html">Каталог бассейнов</a>
+          <a class="nav__link" href="equipment.html">Оборудование</a>
+          <a class="nav__link" href="about.html">О компании</a>
+          <a class="nav__link" href="contacts.html">Контакты</a>
         </nav>
-
-        <div class="header__actions">
-          <a class="header__phone mono" href="tel:+74951234567">+7 (495) 123-45-67</a>
+        <div class="header__cities">Москва · Московская область</div>
+        <div class="header__contact">
+          <a class="header__phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
+          <div class="header__note">Перезвоним за 15 минут</div>
         </div>
-
-        <button class="burger" id="burger" type="button" aria-label="Открыть меню" aria-expanded="false">
-          <span class="burger__line"></span>
-          <span class="burger__line"></span>
-          <span class="burger__line"></span>
-        </button>
+        <a class="header__cta header__cta--primary" href="index.html#callback">Рассчитать стоимость</a>
       </div>
     </div>
   </header>
 
-  <main id="top">
-    <!-- Hero: фон, слева — текст и акцент, справа — форма заявки на расчёт -->
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero__bg"></div>
-      <img class="hero__bg-image" src="assets/images/hero.png" alt="" width="1920" height="1080" />
-      <div class="hero__inner">
-        <div class="hero__content">
-          <h1 class="hero__title" id="hero-title">
-            Проектирование<br />
-            и строительство бетонных<br />
-            бассейнов под ключ
-          </h1>
-          <p class="hero__subtitle">Сочетаем 30-летний опыт, соответствие стандартам и инновации.</p>
-          <p class="hero__tagline">Бассейны сегмента premium</p>
-          <p class="hero__accent">Выгодная стоимость</p>
-          <div class="hero__social">
-            <span class="hero__social-label">О нас в социальных сетях:</span>
-            <a class="hero__social-link" href="#" aria-label="Telegram">Telegram</a>
-            <a class="hero__social-link" href="#" aria-label="Rutube">Rutube</a>
+  <main>
+    <section class="hero-main">
+      <div class="container hero-main__inner">
+        <div class="hero-main__content">
+          <h1 class="hero-main__title">Бассейн под ключ за 30 дней — с фиксированной ценой и гарантией</h1>
+          <p class="hero-main__lead">Проектируем, производим чашу и монтируем бассейны в Москве и области. Смета и состав работ фиксируются в договоре.</p>
+          <ul class="hero-main__bullets">
+            <li>Фиксированная цена по договору — без скрытых доплат</li>
+            <li>Полный цикл: проект, чаша, оборудование, монтаж и пусконаладка</li>
+            <li>Подбор решения под участок, бюджет и сценарий использования</li>
+          </ul>
+          <div class="hero-main__actions">
+            <a href="index.html#callback" class="header__cta hero-main__cta">Рассчитать стоимость бассейна</a>
+            <a href="catalog.html#ready" class="hero-main__secondary">Готовые чаши в наличии</a>
           </div>
-        </div>
-        <div class="hero__form-panel">
-          <h2 class="hero__form-title">
-            <span class="hero__form-icon" aria-hidden="true">📋</span>
-            Заявка на расчёт
-          </h2>
-          <form class="hero__form" action="#contact" method="get">
-            <div class="hero__field">
-              <label class="hero__label">Тип бассейна: <span class="hero__help" title="Переливной — вода переливается через край; скиммерный — забор через скиммер">?</span></label>
-              <div class="hero__toggle" role="group" aria-label="Тип бассейна">
-                <input type="radio" name="pool_type" id="pool-overflow" value="overflow" checked />
-                <label for="pool-overflow">Переливной</label>
-                <input type="radio" name="pool_type" id="pool-skimmer" value="skimmer" />
-                <label for="pool-skimmer">Скиммерный</label>
-              </div>
-            </div>
-            <div class="hero__field hero__field--grid">
-              <div class="hero__input-wrap">
-                <label class="hero__label" for="hero-length">Длина, м</label>
-                <input type="text" id="hero-length" class="hero__input" name="length" inputmode="decimal" placeholder="например 8" aria-describedby="hero-dims-hint" />
-              </div>
-              <div class="hero__input-wrap">
-                <label class="hero__label" for="hero-width">Ширина, м</label>
-                <input type="text" id="hero-width" class="hero__input" name="width" inputmode="decimal" placeholder="например 3" />
-              </div>
-              <div class="hero__input-wrap">
-                <label class="hero__label" for="hero-depth-min">Глубина мин., м</label>
-                <input type="text" id="hero-depth-min" class="hero__input" name="depth_min" inputmode="decimal" placeholder="1.2" />
-              </div>
-              <div class="hero__input-wrap">
-                <label class="hero__label" for="hero-depth-max">Глубина макс., м</label>
-                <input type="text" id="hero-depth-max" class="hero__input" name="depth_max" inputmode="decimal" placeholder="2.0" />
-              </div>
-            </div>
-            <p class="hero__hint" id="hero-dims-hint">Укажите примерные размеры — рассчитаем стоимость</p>
-            <button type="submit" class="btn btn--primary hero__submit">Получить расчёт за 24 часа</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <!-- Блок статистики: 4 карточки с цифрами и иконками -->
-    <section class="stats" aria-label="Цифры и факты">
-      <div class="container">
-        <div class="stats__grid">
-          <article class="stats__card">
-            <div class="stats__icon stats__icon--pool" aria-hidden="true"></div>
-            <div class="stats__box">
-              <span class="stats__num-badge">01</span>
-              <p class="stats__value">940+</p>
-              <div class="stats__wave" aria-hidden="true"></div>
-              <p class="stats__label">проектов</p>
-              <p class="stats__benefit">Сделали для частников и застройщиков</p>
-            </div>
-          </article>
-          <article class="stats__card">
-            <div class="stats__icon stats__icon--years" aria-hidden="true"></div>
-            <div class="stats__box">
-              <span class="stats__num-badge">02</span>
-              <p class="stats__value">30</p>
-              <div class="stats__wave" aria-hidden="true"></div>
-              <p class="stats__label">лет работы</p>
-              <p class="stats__benefit">Знаем все «подводные камни»</p>
-            </div>
-          </article>
-          <article class="stats__card">
-            <div class="stats__icon stats__icon--shield" aria-hidden="true"></div>
-            <div class="stats__box">
-              <span class="stats__num-badge">03</span>
-              <p class="stats__value">5</p>
-              <div class="stats__wave" aria-hidden="true"></div>
-              <p class="stats__label">лет гарантии</p>
-              <p class="stats__benefit">На чашу и гидроизоляцию</p>
-            </div>
-          </article>
-          <article class="stats__card">
-            <div class="stats__icon stats__icon--team" aria-hidden="true"></div>
-            <div class="stats__box">
-              <span class="stats__num-badge">04</span>
-              <p class="stats__value">24</p>
-              <div class="stats__wave" aria-hidden="true"></div>
-              <p class="stats__label">специалиста в штате</p>
-              <p class="stats__benefit">Без субподряда и задержек</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Кому подойдут услуги -->
-    <section class="section" id="services" aria-labelledby="services-title">
-      <div class="container">
-        <header class="section__header">
-          <h2 class="section__title" id="services-title">Кому подойдут наши услуги</h2>
-          <p class="section__subtitle">Бассейн или спа в Москве и области — подберём решение под ваш участок, бюджет и сроки.</p>
-        </header>
-        <div class="services__grid">
-          <article class="service-card">
-            <div class="service-card__icon" aria-hidden="true">🏠</div>
-            <h3 class="service-card__title">Бассейн в частном доме</h3>
-            <p class="service-card__text">Свой бассейн для семьи — без переделок и неожиданных трат. Проектируем и строим так, чтобы вы пользовались им годами.</p>
-          </article>
-          <article class="service-card">
-            <div class="service-card__icon" aria-hidden="true">🏢</div>
-            <h3 class="service-card__title">Бассейн в помещении</h3>
-            <p class="service-card__text">Закрытый бассейн без сырости и протечек. Правильная гидроизоляция и вентиляция — комфортный микроклимат в доме.</p>
-          </article>
-          <article class="service-card">
-            <div class="service-card__icon" aria-hidden="true">🌳</div>
-            <h3 class="service-card__title">Уличный бассейн</h3>
-            <p class="service-card__text">Конструкция под климат Подмосковья: морозостойкость, сезонная консервация. Бассейн работает десятилетиями.</p>
-          </article>
-          <article class="service-card">
-            <div class="service-card__icon" aria-hidden="true">🔧</div>
-            <h3 class="service-card__title">Ремонт и реконструкция</h3>
-            <p class="service-card__text">Восстановим старый бассейн, заменим оборудование или переделаем чашу. Продлим срок службы без демонтажа.</p>
-          </article>
-          <article class="service-card">
-            <div class="service-card__icon" aria-hidden="true">📐</div>
-            <h3 class="service-card__title">Проектирование</h3>
-            <p class="service-card__text">Индивидуальный проект под ваш участок — никаких шаблонов. Учтём рельеф, грунт и ваши пожелания.</p>
-          </article>
-          <article class="service-card">
-            <div class="service-card__icon" aria-hidden="true">🤝</div>
-            <h3 class="service-card__title">Для архитекторов</h3>
-            <p class="service-card__text">Работаем как подрядчик на частных и комплексных объектах. Соблюдаем сроки и технические требования.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Как мы работаем -->
-    <section class="section stages" id="stages" aria-labelledby="stages-title">
-      <div class="container">
-        <header class="section__header">
-          <h2 class="section__title" id="stages-title">Как мы работаем</h2>
-          <p class="section__subtitle">От заявки до сдачи — фиксированные сроки и смета в договоре. Никаких сюрпризов.</p>
-        </header>
-        <div class="stages__grid">
-          <article class="stage">
-            <span class="stage__num" aria-hidden="true">1</span>
-            <div>
-              <h3 class="stage__title">Расчёт и проектирование</h3>
-              <p class="stage__text">Выезд на объект, замеры и анализ. Смета и сроки фиксируются в договоре.</p>
-            </div>
-          </article>
-          <article class="stage">
-            <span class="stage__num" aria-hidden="true">2</span>
-            <div>
-              <h3 class="stage__title">Строительство чаши</h3>
-              <p class="stage__text">Земляные и бетонные работы, закладные элементы. Точная геометрия и технологии.</p>
-            </div>
-          </article>
-          <article class="stage">
-            <span class="stage__num" aria-hidden="true">3</span>
-            <div>
-              <h3 class="stage__title">Монтаж оборудования</h3>
-              <p class="stage__text">Фильтрация, подогрев, циркуляция. Надёжное оборудование с понятным обслуживанием.</p>
-            </div>
-          </article>
-          <article class="stage">
-            <span class="stage__num" aria-hidden="true">4</span>
-            <div>
-              <h3 class="stage__title">Гидроизоляция и отделка</h3>
-              <p class="stage__text">Защита от протечек, проверка на водопроницаемость. Отделка под ваш выбор.</p>
-            </div>
-          </article>
-          <article class="stage">
-            <span class="stage__num" aria-hidden="true">5</span>
-            <div>
-              <h3 class="stage__title">Финальные работы</h3>
-              <p class="stage__text">Оформление бассейна, мозаика или плёнка. Территория в порядке, уборка.</p>
-            </div>
-          </article>
-          <article class="stage">
-            <span class="stage__num" aria-hidden="true">6</span>
-            <div>
-              <h3 class="stage__title">Пуск и сдача объекта</h3>
-              <p class="stage__text">Пуско-наладочные работы, тестирование. Обучение использованию систем.</p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Гарантии -->
-    <section class="section" id="guarantees" aria-labelledby="guarantees-title">
-      <div class="container">
-        <header class="section__header">
-          <h2 class="section__title" id="guarantees-title">Наши гарантии</h2>
-          <p class="section__subtitle">Работаем по договору — вы защищены на каждом этапе.</p>
-        </header>
-        <div class="guarantees__grid">
-          <article class="guarantee-card">
-            <div class="guarantee-card__icon" aria-hidden="true">💰</div>
-            <h3 class="guarantee-card__title">Гарантия цены</h3>
-            <p class="guarantee-card__text">Фиксированная смета в договоре. Никаких дополнительных платежей без вашего согласия.</p>
-          </article>
-          <article class="guarantee-card">
-            <div class="guarantee-card__icon" aria-hidden="true">⏱️</div>
-            <h3 class="guarantee-card__title">Гарантия сроков</h3>
-            <p class="guarantee-card__text">Сделаем в срок, указанный в договоре, или компенсируем за каждый день просрочки.</p>
-          </article>
-          <article class="guarantee-card">
-            <div class="guarantee-card__icon" aria-hidden="true">✓</div>
-            <h3 class="guarantee-card__title">Гарантия качества</h3>
-            <p class="guarantee-card__text">Гарантия на работы по чаше, гидроизоляцию и отделку — сроки прописаны в договоре.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Интерактивная схема — разметка и логика как на референсе (pool.kit-sv.ru) -->
-    <section class="section" id="schema" aria-labelledby="schema-title">
-      <div class="container schema">
-        <div class="caption schema-caption">
-          <h2 class="schema-title" id="schema-title">Бассейн — это сложная система из множества элементов. <span>Мы разбираемся во всех нюансах!</span></h2>
-          <div class="schema-caption-text">
-            <p>Интерактивная схема, с основными элементами современного переливного бассейна</p>
+          <div class="hero-main__trust">
+            <span>10+ лет в бассейнах</span>
+            <span>120+ реализованных объектов</span>
+            <span>Гарантия до 5 лет</span>
           </div>
+          <p class="hero-main__hint">Бесплатно, без обязательств. Предварительный расчёт за 1 рабочий день.</p>
         </div>
-        <div class="schema-info">
-          <ol class="schema-list">
-            <li><span id="item-schema-1" data-element-id="1">Фильтрация бассейна</span></li>
-            <li><span id="item-schema-2" data-element-id="2">Система циркуляции воды</span></li>
-            <li><span id="item-schema-3" data-element-id="3">Водный пылесос</span></li>
-            <li><span id="item-schema-4" data-element-id="4">Подводное освещение</span></li>
-            <li><span id="item-schema-5" data-element-id="5">Подогрев бассейна</span></li>
-            <li><span id="item-schema-6" data-element-id="6">Дезинфекция</span></li>
-            <li><span id="item-schema-7" data-element-id="7">Щит управления</span></li>
-            <li><span id="item-schema-8" data-element-id="8">Аттракционы: водопад, гейзер, противоток</span></li>
-          </ol>
-          <div class="schema-img img">
-            <p id="num-schema-1" data-element-id="1"><span>1</span></p>
-            <p id="num-schema-2" data-element-id="2"><span>2</span></p>
-            <p id="num-schema-3" data-element-id="3"><span>3</span></p>
-            <p id="num-schema-4" data-element-id="4"><span>4</span></p>
-            <p id="num-schema-5" data-element-id="5"><span>5</span></p>
-            <p id="num-schema-6" data-element-id="6"><span>6</span></p>
-            <p id="num-schema-7" data-element-id="7"><span>7</span></p>
-            <p id="num-schema-8" data-element-id="8"><span>8</span></p>
-            <img src="assets/images/photo.png" loading="lazy" alt="Схема переливного бассейна" class="schema-photo" />
-            <img src="assets/images/numbers.png" loading="lazy" alt="" class="schema-numbers" aria-hidden="true" />
-            <img id="img-schema-1" data-element-id="1" loading="lazy" src="assets/images/1.png" alt="" aria-hidden="true" />
-            <img id="img-schema-2" data-element-id="2" loading="lazy" src="assets/images/2.png" alt="" aria-hidden="true" />
-            <img id="img-schema-3" data-element-id="3" loading="lazy" src="assets/images/3.png" alt="" aria-hidden="true" />
-            <img id="img-schema-4" data-element-id="4" loading="lazy" src="assets/images/4.png" alt="" aria-hidden="true" />
-            <img id="img-schema-5" data-element-id="5" loading="lazy" src="assets/images/5.png" alt="" aria-hidden="true" />
-            <img id="img-schema-6" data-element-id="6" loading="lazy" src="assets/images/6.png" alt="" aria-hidden="true" />
-            <img id="img-schema-7" data-element-id="7" loading="lazy" src="assets/images/7.png" alt="" aria-hidden="true" />
-            <img id="img-schema-8" data-element-id="8" loading="lazy" src="assets/images/8.png" alt="" aria-hidden="true" />
-          </div>
+        <div class="hero-main__visual">
+          <img src="assets/images/hero.png" alt="Современный бассейн KALIPSO у частного дома" loading="lazy" />
+        </div>
+      </div>
+    </section>
+    
+    <section class="section-simple">
+      <div class="container">
+        <h2 style="margin:0 0 20px;font-size:1.4rem;">Выберите сценарий</h2>
+        <div class="cards-grid-4">
+          <article class="card-soft">
+            <h3 class="card-soft__title">Рассчитать индивидуальный бассейн</h3>
+            <p class="card-soft__text">Для тех, у кого уже есть участок и примерные размеры. Подберём форму, глубину и оборудование под ваш сценарий.</p>
+            <a href="index.html#callback" class="section-block__link">Отправить параметры для расчёта →</a>
+          </article>
+          <article class="card-soft">
+            <h3 class="card-soft__title">Посмотреть готовые чаши</h3>
+            <p class="card-soft__text">Если хотите ускорить запуск. Готовые типовые чаши в наличии — с понятными размерами и ценой.</p>
+            <a href="catalog.html#ready" class="section-block__link">Открыть каталог готовых чаш →</a>
+          </article>
+          <article class="card-soft">
+            <h3 class="card-soft__title">Переливной / премиальный бассейн</h3>
+            <p class="card-soft__text">Для проектов с высокими требованиями к виду и комфорту. Переливные чаши, SPA‑зоны, противотоки.</p>
+            <a href="equipment.html#counterflow" class="section-block__link">Обсудить премиальный проект →</a>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Таблица цен на проектирование и строительство -->
-    <section class="section price-table-section" id="prices" aria-labelledby="prices-title">
+    <section class="pool-grid-section">
       <div class="container">
-        <header class="section__header price-table__header">
-          <h2 class="section__title" id="prices-title">Ориентировочные цены на бассейн</h2>
-          <p class="section__subtitle price-table__intro">Примерная стоимость чаши 8×3 м без оборудования. Итоговая цена зависит от размеров, типа бассейна и отделки. Точный расчёт — за 24 часа.</p>
-        </header>
-        <div class="price-table__types">
-          <div class="price-table__type-card">
-            <strong>Переливной</strong> — вода переливается через край в лоток, современный вид, дороже в строительстве.
-          </div>
-          <div class="price-table__type-card">
-            <strong>Скиммерный</strong> — забор воды через скиммер у борта, проще и дешевле, подходит для большинства задач.
-          </div>
-        </div>
-        <div class="price-table__wrap">
-          <table class="price-table">
-            <thead>
-              <tr>
-                <th class="price-table__th-name">Наименование</th>
-                <th class="price-table__th-price">Переливной бассейн 8×3 м</th>
-                <th class="price-table__th-price">Скиммерный 8×3 м</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Работы по устройству ж/б конструкций чаши бассейна</td>
-                <td class="price-table__cell-price">1 315 254 руб.</td>
-                <td class="price-table__cell-price">941 752 руб.</td>
-              </tr>
-              <tr>
-                <td>Позиционирование закладных элементов в ж/б конструкцию чаши бассейна</td>
-                <td class="price-table__cell-price">247 346 руб.</td>
-                <td class="price-table__cell-price">209 053 руб.</td>
-              </tr>
-              <tr>
-                <td>Тампонирование швов и проведение гидроиспытаний ж/б конструкции чаши бассейна</td>
-                <td class="price-table__cell-price">241 566 руб.</td>
-                <td class="price-table__cell-price">241 566 руб.</td>
-              </tr>
-              <tr>
-                <td>Выравнивание чаши бассейна</td>
-                <td class="price-table__cell-price">383 956 руб.</td>
-                <td class="price-table__cell-price">337 793 руб.</td>
-              </tr>
-              <tr>
-                <td>Гидроизоляция плавательного бассейна</td>
-                <td class="price-table__cell-price">255 370 руб.</td>
-                <td class="price-table__cell-price">225 321 руб.</td>
-              </tr>
-              <tr>
-                <td>Облицовка плавательного бассейна</td>
-                <td class="price-table__cell-price">486 689 руб.</td>
-                <td class="price-table__cell-price">355 756 руб.</td>
-              </tr>
-              <tr class="price-table__row-total">
-                <td><strong>Итого</strong></td>
-                <td class="price-table__cell-price price-table__cell-total">2 930 180 руб.</td>
-                <td class="price-table__cell-price price-table__cell-total">2 311 242 руб.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="price-table__disclaimer">Оценка предварительная и не является офертой.</p>
-        <div class="price-table__cta-wrap">
-          <a class="btn btn--primary" href="#contact">Получить точный расчёт за 24 часа</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA повтор -->
-    <section class="cta-block" id="cta-block" aria-labelledby="cta-title">
-      <div class="container">
-        <h2 class="cta-block__title" id="cta-title">Получите расчёт со всеми работами, сроками и оборудованием за 24 часа</h2>
-        <p class="cta-block__subtitle">Оставьте заявку ниже или позвоните — подготовим персональное предложение с учётом ваших размеров и пожеланий.</p>
-        <a class="btn btn--primary" href="#contact">Получить расчёт за 24 часа</a>
-        <a class="cta-block__phone mono" href="tel:+74951234567">+7 (495) 123-45-67</a>
-      </div>
-    </section>
-
-    <!-- Портфолио -->
-    <section class="section" id="portfolio" aria-labelledby="portfolio-title">
-      <div class="container">
-        <header class="section__header">
-          <h2 class="section__title" id="portfolio-title">Наши работы</h2>
-          <p class="section__subtitle">Реализованные бассейны в Москве и области. Выберите похожий проект — рассчитаем стоимость под ваши размеры.</p>
-        </header>
-        <div class="portfolio__grid">
-          <article class="portfolio-card">
-            <div class="portfolio-card__image">
-              <img src="assets/images/Real_photograph_DSL_89edd427-3bfd-41a5-8074-958dee09e81e.png" alt="Частный бассейн с противотоком, Московская обл." width="800" height="600" loading="lazy" />
+        <h2 class="pool-grid-section__title">Популярные решения</h2>
+        <div class="pool-grid">
+          <article class="pool-card">
+            <div class="pool-card__image">
+              <img src="assets/images/hero.png" alt="Бассейн 3×7 м у частного дома" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
             </div>
-            <div class="portfolio-card__body">
-              <h3 class="portfolio-card__title">Частный бассейн с противотоком</h3>
-              <p class="portfolio-card__meta">Московская обл. · 6×3 м</p>
-              <a class="btn btn--outline portfolio-card__cta-btn" href="#contact">Узнать стоимость такого</a>
+            <div class="pool-card__body">
+              <h3 class="pool-card__title">Бассейн 3×7 м</h3>
+              <p class="pool-card__specs">Кому подходит: для участков с запасом места и активного плавания.</p>
+              <p class="pool-card__specs">Параметры: ширина 3 м · длина 7 м · глубина 1,5 м.</p>
+              <p class="pool-card__price">От 138 400 ₽ за чашу</p>
+              <p class="pool-card__specs">Точная стоимость зависит от комплектации оборудования и отделки.</p>
+              <a class="pool-card__link" href="catalog.html">Рассчитать под этот размер</a>
             </div>
           </article>
-          <article class="portfolio-card">
-            <div class="portfolio-card__image">
-              <img src="assets/images/Actual_interior_phot_0c1ebc3e-4027-493f-aa03-fdcc9157c7e7.png" alt="Закрытый бассейн в коттедже, Москва" width="800" height="600" loading="lazy" />
+          <article class="pool-card">
+            <div class="pool-card__image">
+              <img src="assets/images/IMG_20220714_231241_122.jpg" alt="Круглый бассейн 3×1,5 м вечером с подсветкой" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
             </div>
-            <div class="portfolio-card__body">
-              <h3 class="portfolio-card__title">Закрытый бассейн в коттедже</h3>
-              <p class="portfolio-card__meta">Москва · 8×4 м</p>
-              <a class="btn btn--outline portfolio-card__cta-btn" href="#contact">Узнать стоимость такого</a>
+            <div class="pool-card__body">
+              <h3 class="pool-card__title">Круглый бассейн 3×1,5 м</h3>
+              <p class="pool-card__specs">Кому подходит: компактные участки, зона SPA, детский бассейн.</p>
+              <p class="pool-card__specs">Параметры: диаметр 3 м · глубина 1,5 м.</p>
+              <p class="pool-card__price">От 65 000 ₽ за чашу</p>
+              <p class="pool-card__specs">Цена «от» — для базовой комплектации без дополнительных опций.</p>
+              <a class="pool-card__link" href="catalog.html">Рассчитать под этот размер</a>
             </div>
           </article>
-          <article class="portfolio-card">
-            <div class="portfolio-card__image">
-              <img src="assets/images/Real_photograph_day_870bc447-45de-47fc-a57e-45eb2912286f.png" alt="Уличный бассейн с павильоном, Подмосковье" width="800" height="600" loading="lazy" />
+          <article class="pool-card">
+            <div class="pool-card__image">
+              <img src="assets/images/IMG_20220721_190430_575.jpg" alt="Бассейн 3×5 м на участке" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
             </div>
-            <div class="portfolio-card__body">
-              <h3 class="portfolio-card__title">Уличный бассейн с павильоном</h3>
-              <p class="portfolio-card__meta">Подмосковье · 10×5 м</p>
-              <a class="btn btn--outline portfolio-card__cta-btn" href="#contact">Узнать стоимость такого</a>
+            <div class="pool-card__body">
+              <h3 class="pool-card__title">Бассейн 3×5 м</h3>
+              <p class="pool-card__specs">Кому подходит: семейный бассейн для компактного участка.</p>
+              <p class="pool-card__specs">Параметры: ширина 3 м · длина 5 м · глубина 1,5 м.</p>
+              <p class="pool-card__price">От 105 800 ₽ за чашу</p>
+              <p class="pool-card__specs">Идеален как первый бассейн с возможностью расширения по оборудованию.</p>
+              <a class="pool-card__link" href="catalog.html">Рассчитать под этот размер</a>
+            </div>
+          </article>
+          <article class="pool-card pool-card--hit">
+            <div class="pool-card__image">
+              <img src="assets/images/IMG_20220727_121816_208.jpg" alt="Бассейн 3×6 м с лестницей" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
+            </div>
+            <div class="pool-card__body">
+              <div class="pool-card__badge">Самый популярный</div>
+              <h3 class="pool-card__title">Бассейн 3×6 м</h3>
+              <p class="pool-card__specs">Кому подходит: универсальный формат для семьи и гостей.</p>
+              <p class="pool-card__specs">Параметры: ширина 3 м · длина 6 м · глубина 1,5 м.</p>
+              <p class="pool-card__price">От 122 000 ₽ за чашу</p>
+              <p class="pool-card__specs">Точная стоимость рассчитывается после выбора комплектации и опций.</p>
+              <a class="pool-card__link" href="product-3x6.html">Рассчитать под этот размер</a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <!-- Форма -->
-    <section class="form-section" id="contact" aria-labelledby="form-title">
+    <section class="hero-pools">
       <div class="container">
-        <header class="section__header">
-          <h2 class="section__title" id="form-title">Получить консультацию и расчёт</h2>
-          <p class="section__subtitle">Оставьте контакты — перезвоним в удобное время и подготовим расчёт под ваши размеры и бюджет.</p>
-        </header>
-        <div class="form-wrap">
-          <form class="form" id="lead-form" action="thanks.html" method="get" novalidate>
-            <div class="form-group">
-              <label for="form-name">Ваше имя</label>
-              <input type="text" id="form-name" name="name" required placeholder="Как к вам обращаться" autocomplete="name" />
+        <h2 class="hero-pools__title">Бассейны с переливным бортом</h2>
+        <p class="hero-pools__lead">Для тех, кто хочет ровный «зеркальный» уровень воды, премиальный внешний вид и тихую работу системы. Подходят для частных домов и SPA-зон.</p>
+        <div class="hero-pools__grid">
+          <article class="pool-card">
+            <div class="pool-card__image">
+              <img src="assets/images/Real_photograph_day_870bc447-45de-47fc-a57e-45eb2912286f.png" alt="Переливной бассейн 3×7 м днём" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
             </div>
-            <div class="form-group">
-              <label for="form-phone">Телефон</label>
-              <input type="tel" id="form-phone" name="phone" required placeholder="+7 (___) ___-__-__" autocomplete="tel" class="mono" />
+            <div class="pool-card__body">
+              <p class="pool-card__specs">Ширина 3 м · Длина 7 м · Глубина 1,5 м</p>
+              <h3 class="pool-card__title">Переливной бассейн 3×7 м</h3>
+              <p class="pool-card__price">От 389 000 ₽</p>
+              <a class="pool-card__link" href="catalog.html">Запросить расчёт переливного</a>
             </div>
-            <div class="form-group">
-              <label for="form-comment">Комментарий (необязательно)</label>
-              <textarea id="form-comment" name="comment" placeholder="Размер участка, тип бассейна, сроки…"></textarea>
+          </article>
+          <article class="pool-card">
+            <div class="pool-card__image">
+              <img src="assets/images/Real_photograph_DSL_89edd427-3bfd-41a5-8074-958dee09e81e.png" alt="Переливной бассейн 3×6 м вечером" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
             </div>
-            <button type="submit" class="btn btn--primary">Получить расчёт за 24 часа</button>
-          </form>
-          <p class="form-wrap__privacy">Нажимая кнопку, вы соглашаетесь на обработку персональных данных в соответствии с политикой конфиденциальности.</p>
-          <p class="form-wrap__phone">Или позвоните: <a href="tel:+74951234567" class="mono">+7 (495) 123-45-67</a></p>
+            <div class="pool-card__body">
+              <p class="pool-card__specs">Ширина 3 м · Длина 6 м · Глубина 1,5 м</p>
+              <h3 class="pool-card__title">Переливной бассейн 3×6 м</h3>
+              <p class="pool-card__price">От 349 000 ₽</p>
+              <a class="pool-card__link" href="product-3x6.html">Подробнее о комплектации</a>
+            </div>
+          </article>
+        </div>
+        <p class="hero-pools__more">
+          <a class="hero-pools__more-link" href="about.html#production">Как мы производим бассейны</a>
+        </p>
+      </div>
+    </section>
+
+    <section class="section-simple">
+      <div class="container">
+        <h2 style="margin:0 0 20px;font-size:1.4rem;">Почему нам доверяют</h2>
+        <div class="cards-grid-4">
+          <article class="card-soft">
+            <h3 class="card-soft__title">Собственное производство</h3>
+            <p class="card-soft__text">Производим чаши и собираем оборудование на своих мощностях — контролируем качество на каждом этапе.</p>
+          </article>
+          <article class="card-soft">
+            <h3 class="card-soft__title">Работа по договору</h3>
+            <p class="card-soft__text">Фиксируем смету и состав работ в договоре. Никаких «допов» в процессе строительства.</p>
+          </article>
+          <article class="card-soft">
+            <h3 class="card-soft__title">Опыт и объекты</h3>
+            <p class="card-soft__text">10+ лет в бассейнах и десятки реализованных проектов — от компактных чаш до премиальных переливных.</p>
+          </article>
+          <article class="card-soft">
+            <h3 class="card-soft__title">Гарантия и сервис</h3>
+            <p class="card-soft__text">Гарантия до 5 лет на чашу и монтаж. Помогаем с обслуживанием и модернизацией.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="production-gallery">
+      <div class="container">
+        <h2 class="production-gallery__title">Как мы делаем бассейны</h2>
+        <p class="production-gallery__sub">Производство, сборка и монтаж — от изготовления чаши до пусконаладки оборудования на объекте.</p>
+        <div class="production-gallery__grid">
+          <figure class="production-gallery__item">
+            <img class="production-gallery__img" src="assets/images/IMG_20220721_190430_777.jpg" alt="Готовая чаша бассейна перед отправкой на объект" loading="lazy" />
+            <figcaption class="portfolio-grid__caption">Шаг 1. Производим чашу под ваш размер и закладываем закладные.</figcaption>
+          </figure>
+          <figure class="production-gallery__item">
+            <img class="production-gallery__img" src="assets/images/IMG_20221108_072826_919.jpg" alt="Оборудование для бассейна на складе KALIPSO" loading="lazy" />
+            <figcaption class="portfolio-grid__caption">Шаг 2. Подбираем и комплектуем оборудование на складе.</figcaption>
+          </figure>
+          <figure class="production-gallery__item">
+            <img class="production-gallery__img" src="assets/images/IMG_20220727_121816_445.jpg" alt="Техническое помещение и обвязка оборудования" loading="lazy" />
+            <figcaption class="portfolio-grid__caption">Шаг 3. Монтаж и обвязка в техпомещении.</figcaption>
+          </figure>
+          <figure class="production-gallery__item">
+            <img class="production-gallery__img" src="assets/images/IMG_20220725_223145_755.jpg" alt="Упаковка и подготовка к доставке бассейна" loading="lazy" />
+            <figcaption class="portfolio-grid__caption">Шаг 4. Доставка, пусконаладка и сдача бассейна под ключ.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio">
+      <div class="container">
+        <h2 class="portfolio__title">Примеры наших бассейнов</h2>
+        <p class="portfolio__sub">Реальные объекты KALIPSO — уличные и внутренние бассейны с разным оборудованием и подсветкой.</p>
+        <div class="portfolio-grid">
+          <figure class="portfolio-grid__item">
+            <img class="portfolio-grid__img" src="assets/images/IMG_20220714_231241_122.jpg" alt="Уличный бассейн с подсветкой" loading="lazy" />
+            <figcaption class="portfolio-grid__caption">Частный дом, прямоугольный бассейн с подсветкой и лестницей.</figcaption>
+          </figure>
+          <figure class="portfolio-grid__item">
+            <img class="portfolio-grid__img" src="assets/images/IMG_20220721_190430_575.jpg" alt="Бассейн во дворе частного дома" loading="lazy" />
+            <figcaption class="portfolio-grid__caption">Бассейн на участке с террасой и зоной отдыха.</figcaption>
+          </figure>
+          <figure class="portfolio-grid__item">
+            <img class="portfolio-grid__img" src="assets/images/IMG_20220727_121816_208.jpg" alt="Бассейн с внутренней лестницей" loading="lazy" />
+            <figcaption class="portfolio-grid__caption">Классический бассейн 3×6 м с внутренними ступенями.</figcaption>
+          </figure>
+          <figure class="portfolio-grid__item">
+            <img class="portfolio-grid__img" src="assets/images/IMG_20220730_000036_585.jpg" alt="Бассейн с подсветкой воды" loading="lazy" />
+            <figcaption class="portfolio-grid__caption">Вечерняя подсветка и комфортное купание в темное время.</figcaption>
+          </figure>
+          <figure class="portfolio-grid__item">
+            <img class="portfolio-grid__img" src="assets/images/IMG_20220810_101450_195.jpg" alt="Современный бассейн во дворе" loading="lazy" />
+            <figcaption class="portfolio-grid__caption">Бассейн у современного дома с минималистичной отделкой.</figcaption>
+          </figure>
+          <figure class="portfolio-grid__item">
+            <img class="portfolio-grid__img" src="assets/images/IMG_20230520_122717_350.jpg" alt="Бассейн на террасе" loading="lazy" />
+            <figcaption class="portfolio-grid__caption">Компактный бассейн на террасе с видом на участок.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-cta" id="callback">
+      <div class="container">
+        <div class="footer-cta__inner">
+          <div>
+            <h2 class="footer-cta__title">Рассчитаем стоимость за 15 минут</h2>
+            <p class="footer-cta__sub">Телефон — перезвоним, дадим смету. Бесплатно, без обязательств. WhatsApp / Telegram: +7 (495) 123-45-67</p>
+          </div>
+          <div class="footer-cta__form">
+            <form action="#" method="get">
+              <input type="tel" name="phone" placeholder="Телефон *" required />
+              <button type="submit">Перезвонить мне</button>
+            </form>
+            <p class="footer-cta__privacy">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -471,42 +283,31 @@
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
-        <div class="footer__brand">
-          <span class="brand__name">KALIPSO</span>
-          <span class="brand__tagline">Проектирование и строительство бассейнов</span>
+        <div>
+          <h4 class="footer__title">Каталог</h4>
+          <ul class="footer__links">
+            <li><a href="catalog.html">Бассейны</a></li>
+            <li><a href="equipment.html">Оборудование</a></li>
+          </ul>
         </div>
         <div>
-          <h4 class="footer__title">Разделы</h4>
+          <h4 class="footer__title">Компания</h4>
           <ul class="footer__links">
-            <li><a href="#services">Услуги</a></li>
-            <li><a href="#stages">Как мы работаем</a></li>
-            <li><a href="#portfolio">Портфолио</a></li>
-            <li><a href="#guarantees">Гарантии</a></li>
-            <li><a href="#contact">Контакты</a></li>
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="about.html">О компании</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
           </ul>
         </div>
         <div>
           <h4 class="footer__title">Контакты</h4>
-          <ul class="footer__links">
-            <li><a href="tel:+74951234567" class="mono">+7 (495) 123-45-67</a></li>
-            <li><a href="mailto:info@kalipso.ru">info@kalipso.ru</a></li>
-          </ul>
+          <p style="margin:0;">+7 (495) 123-45-67</p>
+          <p style="margin:4px 0 0;">info@kalipso.ru</p>
         </div>
       </div>
       <div class="footer__bottom">
-        © 2026 KALIPSO. Проектирование и строительство бассейнов. Москва и область.
+        © 2025 KALIPSO. Проектирование и строительство бассейнов. Москва и область.
       </div>
     </div>
   </footer>
-
-  <!-- Постоянная панель CTA: всегда видна при скролле -->
-  <div class="sticky-cta" id="sticky-cta">
-    <div class="sticky-cta__inner container">
-      <a class="btn btn--primary sticky-cta__btn" href="#contact">Получить расчёт за 24 часа</a>
-      <a class="sticky-cta__phone mono" href="tel:+74951234567">+7 (495) 123-45-67</a>
-    </div>
-  </div>
-
-  <script src="js/main.js"></script>
 </body>
 </html>

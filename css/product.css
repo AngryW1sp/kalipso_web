@@ -1,0 +1,106 @@
+/* Страница товара (карточка бассейна) */
+.product-page { padding: 24px 0 56px; }
+.product-breadcrumb {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+}
+.product-breadcrumb a { color: var(--color-primary); }
+.product-breadcrumb a:hover { text-decoration: underline; }
+.product-page__title {
+  margin: 0 0 8px;
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+.product-page__specs {
+  margin: 0 0 28px;
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+.product-page__gallery { margin-bottom: 40px; }
+.product-gallery__main {
+  aspect-ratio: 16/10;
+  background: linear-gradient(145deg, var(--color-accent-light) 0%, var(--color-water-light) 100%);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+.product-about { margin-bottom: 40px; }
+.product-about__title,
+.product-features__title,
+.product-configs__title,
+.product-cta__title {
+  margin: 0 0 16px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-text);
+}
+.product-about__text {
+  margin: 0;
+  max-width: 720px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+}
+.product-features { margin-bottom: 48px; }
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+@media (max-width: 600px) {
+  .feature-grid { grid-template-columns: 1fr; }
+}
+.feature-card {
+  padding: 20px;
+  background: var(--color-accent-light);
+  border-radius: var(--radius-sm);
+}
+.feature-card__title {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.feature-card__text {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+}
+.product-configs { margin-bottom: 48px; }
+.config-list { display: flex; flex-direction: column; gap: 16px; }
+.config-card {
+  padding: 20px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background: var(--color-panel);
+}
+.config-card__name { margin: 0 0 8px; font-weight: 700; color: var(--color-text); }
+.config-card__price { margin: 0 0 12px; font-size: 0.95rem; color: var(--color-text-muted); }
+.config-card__link {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+.config-card__link:hover { text-decoration: underline; }
+.product-configs__disclaimer {
+  margin-top: 16px;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+.product-cta {
+  text-align: center;
+  padding: 32px 24px;
+  background: var(--color-accent-light);
+  border-radius: var(--radius);
+}
+.product-cta__title { margin-bottom: 8px; }
+.product-cta__sub {
+  margin: 0 0 20px;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}

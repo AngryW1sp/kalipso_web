@@ -1,26 +1,21 @@
-/* KALIPSO — единая палитра: тёмно-синий и голубой, без контрастного акцента */
+/* Палитра KALIPSO: тёмно-синий, голубой и золотистый акцент */
 :root {
-  --color-bg: #f5f8fa;
+  --color-bg: #f7f9fc;
   --color-panel: #ffffff;
   --color-text: #0d1520;
   --color-text-muted: #4a5568;
-  --color-primary: #0e4a8a;
+  --color-primary: #0e4a8a;        /* тёмно-синий из логотипа */
   --color-primary-dark: #0a3566;
-  --color-water: #1e6fa8;
-  --color-water-light: #e3eef5;
-  --color-water-muted: #5a8fb4;
-  /* Мягкий акцент только для мелких выделений, не для кнопок */
-  --color-accent: #2d6a96;
-  --color-accent-light: #e8f1f7;
+  --color-accent: #d4a024;         /* золотистый акцент */
+  --color-accent-light: #fdf3d0;   /* мягкий фон под акцент */
+  --color-water-light: #e3f2fd;    /* светлый голубой для фонов */
   --color-line: rgba(13, 21, 32, 0.08);
-  --color-line-strong: rgba(13, 21, 32, 0.12);
+  --color-line-strong: rgba(13, 21, 32, 0.16);
   --shadow-sm: 0 2px 8px rgba(13, 21, 32, 0.06);
   --shadow: 0 8px 28px rgba(13, 21, 32, 0.08);
-  --shadow-lg: 0 16px 48px rgba(13, 21, 32, 0.1);
-  --radius: 16px;
-  --radius-sm: 12px;
-  --radius-lg: 24px;
+  --radius: 14px;
+  --radius-sm: 10px;
   --max-width: 1200px;
-  --header-height: 96px;
+  --header-height: 72px;
   --transition: 0.2s ease;
 }
