@@ -48,6 +48,8 @@ h1, h2, h3 { font-family: "Montserrat", sans-serif; }
   display: block;
   height: 56px;
   width: auto;
+  max-width: 180px;
+  object-fit: contain;
 }
 .brand__text {
   font-family: "Montserrat", sans-serif;
@@ -59,9 +61,33 @@ h1, h2, h3 { font-family: "Montserrat", sans-serif; }
 .brand:hover .brand__logo {
   filter: brightness(0.95);
 }
+/* Уплотнённая шапка на средних экранах (перенос строк) и на GitHub Pages */
+@media (max-width: 1024px) {
+  .header__inner {
+    min-height: 56px;
+    padding: 8px 0;
+    gap: 10px;
+  }
+  .brand__logo {
+    height: 44px;
+    max-width: 140px;
+  }
+  .brand__text { font-size: 1rem; }
+  .nav__link { padding: 6px 10px; font-size: 0.85rem; }
+  .header__cities { font-size: 0.8rem; }
+  .header__cta { padding: 8px 14px; font-size: 0.85rem; }
+}
 @media (max-width: 600px) {
   .brand__text {
     display: none;
+  }
+  .brand__logo {
+    height: 40px;
+    max-width: 120px;
+  }
+  .header__inner {
+    min-height: 48px;
+    padding: 6px 0;
   }
 }
 .nav {
