@@ -12,7 +12,7 @@
     <div class="container">
       <div class="header__inner">
         <a class="brand" href="index.html" aria-label="KALIPSO">
-          <img src="assets/images/logo.png" alt="KALIPSO — проектирование и строительство бассейнов" class="brand__logo" />
+          <img src="assets/images/logo.png" alt="KALIPSO" class="brand__logo" />
           <span class="brand__text">KALIPSO</span>
         </a>
         <nav class="nav">
@@ -23,18 +23,23 @@
           <a class="nav__link nav__link--active" href="contacts.html">Контакты</a>
         </nav>
         <div class="header__cities">Москва · Московская область</div>
-        <a class="header__phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
-        <a class="header__cta" href="index.html#callback">Рассчитать стоимость</a>
+        <div class="header__contact">
+          <a class="header__phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
+          <div class="header__note">Перезвоним за 15 минут</div>
+        </div>
+        <a class="header__cta header__cta--primary" href="index.html#callback">Рассчитать стоимость</a>
       </div>
     </div>
   </header>
   <main style="padding: 48px 0; min-height: 40vh;">
     <div class="container">
-      <h1 style="margin: 0 0 16px; font-size: 1.75rem;">Контакты</h1>
+      <h1 style="margin: 0 0 8px; font-size: 1.75rem;">Контакты KALIPSO</h1>
+      <p style="margin:0 0 16px;color:var(--color-text-muted);max-width:640px;">Свяжитесь с нами — подскажем оптимальное решение и ответим на вопросы по вашему проекту.</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:16px;">
         <div>
           <p style="margin:0 0 8px;color:var(--color-text);font-weight:600;">Телефон</p>
-          <p style="margin:0 0 16px;color:var(--color-text-muted);"><a href="tel:+74951234567" style="color:var(--color-primary);">+7 (495) 123-45-67</a></p>
+          <p style="margin:0 0 4px;color:var(--color-text-muted);"><a href="tel:+74951234567" style="color:var(--color-primary);">+7 (495) 123-45-67</a></p>
+          <p style="margin:0 0 16px;color:var(--color-text-muted);font-size:0.9rem;">Ответим на вопросы по проектированию и строительству бассейнов.</p>
           <p style="margin:0 0 8px;color:var(--color-text);font-weight:600;">E‑mail</p>
           <p style="margin:0 0 16px;color:var(--color-text-muted);"><a href="mailto:info@kalipso.ru" style="color:var(--color-primary);">info@kalipso.ru</a></p>
           <p style="margin:0 0 8px;color:var(--color-text);font-weight:600;">Режим работы</p>
@@ -42,10 +47,10 @@
         </div>
         <div>
           <p style="margin:0 0 8px;color:var(--color-text);font-weight:600;">Офис в Москве</p>
-          <p style="margin:0 0 8px;color:var(--color-text-muted);">Москва, офис продаж KALIPSO.</p>
+          <p style="margin:0 0 8px;color:var(--color-text-muted);">Москва. Консультации по проектам и оборудованию.</p>
           <p style="margin:16px 0 8px;color:var(--color-text);font-weight:600;">Мы рядом</p>
-          <p style="margin:0 0 16px;color:var(--color-text-muted);">Удобно добраться на машине и общественным транспортом.</p>
-          <a href="index.html#callback" class="header__cta">Заказать звонок</a>
+          <p style="margin:0 0 16px;color:var(--color-text-muted);">Удобно добраться на машине и общественном транспорте.</p>
+          <a href="index.html#callback" class="header__cta">Получить консультацию</a>
         </div>
       </div>
     </div>
@@ -55,13 +60,14 @@
       <div class="footer-cta__inner">
         <div>
           <h2 class="footer-cta__title">Не дозвонились?</h2>
-          <p class="footer-cta__sub">Оставьте номер — мы сами перезвоним в удобное время.</p>
+          <p class="footer-cta__sub">Оставьте номер — мы перезвоним и ответим на вопросы по вашему проекту.</p>
         </div>
         <div class="footer-cta__form">
           <form action="#" method="get">
             <input type="tel" name="phone" placeholder="Телефон *" required />
             <button type="submit">Перезвонить мне</button>
           </form>
+          <p class="footer-cta__privacy">Бесплатно. Без обязательств.</p>
         </div>
       </div>
     </div>
