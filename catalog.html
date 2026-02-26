@@ -7,214 +7,206 @@
   <meta name="description" content="Каталог бассейнов разных размеров и форм. Цены, характеристики, доставка." />
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/catalog-hero.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="header__inner">
-        <a class="brand" href="index.html" aria-label="KALIPSO">
-          <img src="assets/images/logo.png" alt="KALIPSO — проектирование и строительство бассейнов" class="brand__logo" />
-          <span class="brand__text">KALIPSO</span>
-        </a>
-        <nav class="nav">
-          <a class="nav__link" href="services.html">Услуги</a>
-          <a class="nav__link nav__link--active" href="catalog.html">Каталог бассейнов</a>
-          <a class="nav__link" href="equipment.html">Оборудование</a>
-          <a class="nav__link" href="about.html">О компании</a>
-          <a class="nav__link" href="contacts.html">Контакты</a>
-        </nav>
-        <div class="header__cities">Москва · Московская область</div>
-        <div class="header__contact">
-          <a class="header__phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
-          <div class="header__note">Перезвоним за 15 минут</div>
-        </div>
-      </div>
-    </div>
-  </header>
+  <header class="header"></header>
+  <script src="js/header.js"></script>
 
   <main>
-    <!-- 1. Первый экран каталога — зачем этот каталог клиенту -->
-    <section class="section-simple catalog-hero">
+    <!-- 1. Hero — первый экран каталога -->
+    <section class="catalog-hero">
       <div class="container">
         <nav class="catalog-hero__breadcrumbs">
-          <a href="index.html">Главная</a> / Каталог бассейнов
+          <a href="index.html">Главная</a>
+          <span class="catalog-hero__sep">/</span>
+          <span>Каталог бассейнов</span>
         </nav>
-        <h1 class="catalog-hero__title">Каталог бассейнов под ключ — готовые решения и индивидуальные проекты</h1>
-        <p class="catalog-hero__lead">Подберите оптимальный размер и формат бассейна под ваш участок, бюджет и сценарий использования — без переплаты и неожиданных работ в процессе строительства. Производим, монтируем и запускаем бассейны с гарантией.</p>
-        <ul class="catalog-hero__markers">
-          <li>Фиксированная смета в договоре</li>
-          <li>Собственное производство чаш</li>
-          <li>Работаем в Москве и Московской области</li>
-          <li>Гарантия на чашу и монтаж</li>
-        </ul>
-        <div class="catalog-hero__actions">
-          <a href="index.html#callback" class="header__cta header__cta--primary">Рассчитать стоимость бассейна</a>
-          <p class="catalog-hero__hint">Бесплатно. Фиксируем смету после консультации.</p>
+        <div class="catalog-hero__text">
+          <h1 class="catalog-hero__title">Бассейн под ключ</h1>
+          <p class="catalog-hero__lead">Проектируем, производим и монтируем в Москве и области. Смета фиксируется в договоре — без скрытых платежей.</p>
+          <div class="catalog-hero__benefits">
+            <div class="catalog-hero__benefit">
+              <span class="catalog-hero__benefit-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              </span>
+              <span>Фиксированная смета в договоре</span>
+            </div>
+            <div class="catalog-hero__benefit">
+              <span class="catalog-hero__benefit-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+              </span>
+              <span>Собственное производство чаш</span>
+            </div>
+            <div class="catalog-hero__benefit">
+              <span class="catalog-hero__benefit-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </span>
+              <span>Москва и Московская область</span>
+            </div>
+            <div class="catalog-hero__benefit">
+              <span class="catalog-hero__benefit-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </span>
+              <span>Гарантия на чашу и монтаж</span>
+            </div>
+          </div>
+          <div class="catalog-hero__actions">
+            <a href="index.html#callback" class="btn btn-primary">Получить расчёт</a>
+            <a href="#pool-catalog-grid" class="btn btn-outline">Смотреть каталог</a>
+            <p class="catalog-hero__hint">Бесплатно. Смету фиксируем после консультации.</p>
+          </div>
+        </div>
+        <div class="catalog-hero__visual">
+          <img src="assets/pools/IMG_20220714_231241_122.jpg" alt="Бассейн KALIPSO" loading="eager" class="catalog-hero__image" onerror="this.src='assets/images/IMG_20220810_101450_262.jpg'" />
         </div>
       </div>
     </section>
 
-    <!-- 2. Фильтр / навигация — помочь выбрать, а не просто смотреть -->
-    <section class="section-simple catalog-filter">
+    <!-- 2. Каталог — карточки бассейнов -->
+    <section class="catalog-pools-section">
       <div class="container">
-        <h2 class="catalog-filter__title">Подберите бассейн под ваш участок</h2>
-        <form class="catalog-filter__form" action="#" method="get">
-          <div class="catalog-filter__grid">
-            <div class="catalog-filter__group">
-              <label class="catalog-filter__label" for="size">Размер</label>
-              <select id="size" name="size" class="catalog-filter__control">
-                <option>3×6 м</option>
-                <option>3×7 м</option>
-                <option>4×8 м</option>
-                <option>Индивидуальный размер</option>
-              </select>
-            </div>
-            <div class="catalog-filter__group">
-              <label class="catalog-filter__label" for="type">Тип бассейна</label>
-              <select id="type" name="type" class="catalog-filter__control">
-                <option>Скимерный</option>
-                <option>Переливной</option>
-              </select>
-            </div>
-            <div class="catalog-filter__group">
-              <label class="catalog-filter__label" for="purpose">Назначение</label>
-              <select id="purpose" name="purpose" class="catalog-filter__control">
-                <option>Частный дом</option>
-                <option>SPA</option>
-                <option>Коммерческий объект</option>
-              </select>
-            </div>
-            <div class="catalog-filter__group">
-              <label class="catalog-filter__label" for="budget">Бюджет</label>
-              <select id="budget" name="budget" class="catalog-filter__control">
-                <option>До 1,5 млн ₽</option>
-                <option>1,5–3 млн ₽</option>
-                <option>3–5 млн ₽</option>
-                <option>Обсудить индивидуально</option>
-              </select>
-            </div>
-          </div>
-          <div class="catalog-filter__footer">
-            <p class="catalog-filter__note">Если не уверены в параметрах — поможем подобрать оптимальный вариант.</p>
-            <a href="index.html#callback" class="header__cta">Получить консультацию по подбору</a>
-          </div>
-        </form>
+        <span class="catalog-pools__caption">Готовые решения</span>
+        <h2 class="catalog-pools__title">Бассейны из полипропилена</h2>
+        <div class="pool-grid pool-grid--catalog" id="pool-catalog-grid"></div>
       </div>
     </section>
 
-    <!-- 3. Каталог — карточки бассейнов -->
-    <section class="section-simple">
+    <!-- 4. Не нашли подходящий размер? -->
+    <section class="catalog-custom">
       <div class="container">
-        <div class="pool-grid">
-          <article class="pool-card">
-            <div class="pool-card__image">
-              <img src="assets/images/IMG_20220810_101450_262.jpg" alt="Бассейн 3×7 м для частного дома" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-            </div>
-            <div class="pool-card__body">
-              <p class="pool-card__specs">3×7 м · 1,5 м · Частный дом</p>
-              <h3 class="pool-card__title">Бассейн 3×7 м для частного дома</h3>
-              <p class="pool-card__subtitle">Оптимальный размер для комфортного плавания и отдыха на участке.</p>
-              <ul class="pool-card__list">
-                <li><strong>Размер:</strong> 3×7 м</li>
-                <li><strong>Глубина:</strong> 1,5 м</li>
-                <li><strong>Тип:</strong> скимерный</li>
-                <li><strong>Назначение:</strong> частный дом</li>
-              </ul>
-              <p class="pool-card__label">Ориентировочная стоимость</p>
-              <p class="pool-card__price">От 138 400 ₽</p>
-              <p class="pool-card__note">Стоимость зависит от комплектации и оборудования.</p>
-              <div class="pool-card__actions">
-                <a class="pool-card__btn-primary" href="index.html#callback">Запросить расчёт под этот размер</a>
-                <a class="pool-card__btn-secondary" href="product-3x7.html">Подробнее о комплектации</a>
-              </div>
-              <p class="pool-card__ticks">✔ Фиксируем смету в договоре · ✔ Производство и монтаж «под ключ» · ✔ Гарантия на чашу и работы</p>
-            </div>
-          </article>
-          <article class="pool-card">
-            <div class="pool-card__image">
-              <img src="assets/images/IMG_20230520_122717_642.jpg" alt="Бассейн 3×6 м для частного дома" style="width:100%;height:100%;object-fit:cover;" loading="lazy" />
-            </div>
-            <div class="pool-card__body">
-              <p class="pool-card__specs">3×6 м · 1,5 м · Частный дом</p>
-              <h3 class="pool-card__title">Бассейн 3×6 м для частного дома</h3>
-              <p class="pool-card__subtitle">Компактное решение для участка, где важен каждый метр.</p>
-              <ul class="pool-card__list">
-                <li><strong>Размер:</strong> 3×6 м</li>
-                <li><strong>Глубина:</strong> 1,5 м</li>
-                <li><strong>Тип:</strong> скимерный</li>
-                <li><strong>Назначение:</strong> частный дом</li>
-              </ul>
-              <p class="pool-card__label">Ориентировочная стоимость</p>
-              <p class="pool-card__price">От 122 000 ₽</p>
-              <p class="pool-card__note">Стоимость зависит от комплектации и оборудования.</p>
-              <div class="pool-card__actions">
-                <a class="pool-card__btn-primary" href="index.html#callback">Запросить расчёт под этот размер</a>
-                <a class="pool-card__btn-secondary" href="product-3x6.html">Подробнее о комплектации</a>
-              </div>
-              <p class="pool-card__ticks">✔ Фиксируем смету в договоре · ✔ Производство и монтаж «под ключ» · ✔ Гарантия на чашу и работы</p>
-            </div>
-          </article>
+        <div class="catalog-custom__banner">
+          <div class="catalog-custom__content">
+            <h2 class="catalog-custom__title">Не нашли подходящий размер?</h2>
+            <p class="catalog-custom__text">Мы проектируем бассейны под конкретный участок и задачи — подберём оптимальные размеры, глубину и оборудование без переплаты.</p>
+          </div>
+          <a href="index.html#callback" class="btn btn-primary catalog-custom__cta">Обсудить индивидуальный проект</a>
         </div>
       </div>
     </section>
 
-    <!-- 4. Блок между карточками — снимаем главный страх -->
-    <section class="section-simple catalog-custom">
-      <div class="container">
-        <h2 class="catalog-section__title">Не нашли подходящий размер?</h2>
-        <p class="catalog-section__text">Мы проектируем бассейны под конкретный участок и задачи — подберём оптимальные размеры, глубину и оборудование без переплаты и лишних решений.</p>
-        <a href="index.html#callback" class="header__cta">Обсудить индивидуальный проект</a>
-      </div>
-    </section>
-
-    <!-- 5. Объяснение цен — чтобы не было «дорого / дёшево» -->
+    <!-- 5. От чего зависит стоимость -->
     <section class="section-simple catalog-pricing">
       <div class="container">
         <h2 class="catalog-section__title">От чего зависит стоимость бассейна</h2>
-        <ul class="catalog-list">
-          <li>Размер и глубина чаши</li>
-          <li>Тип бассейна (скимерный или переливной)</li>
-          <li>Комплектация и оборудование</li>
-          <li>Подготовка участка и инженерия</li>
-        </ul>
+        <div class="catalog-cards">
+          <div class="catalog-card">
+            <span class="catalog-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <p class="catalog-card__text">Размер и глубина чаши</p>
+          </div>
+          <div class="catalog-card">
+            <span class="catalog-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <p class="catalog-card__text">Тип бассейна (скимерный или переливной)</p>
+          </div>
+          <div class="catalog-card">
+            <span class="catalog-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <p class="catalog-card__text">Комплектация и оборудование</p>
+          </div>
+          <div class="catalog-card">
+            <span class="catalog-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <p class="catalog-card__text">Подготовка участка и инженерия</p>
+          </div>
+        </div>
         <p class="catalog-section__note">Мы заранее фиксируем состав работ и стоимость в договоре и исключаем дополнительные расходы после начала строительства.</p>
       </div>
     </section>
 
-    <!-- 6. Почему каталог — это безопасный выбор -->
+    <!-- 6. Почему выбирают KALIPSO -->
     <section class="section-simple catalog-trust">
       <div class="container">
         <h2 class="catalog-section__title">Почему клиенты выбирают бассейны KALIPSO</h2>
-        <ul class="catalog-list">
-          <li>Собственное производство без посредников</li>
-          <li>Контроль качества на каждом этапе строительства</li>
-          <li>Опыт более 10 лет</li>
-          <li>Реальные реализованные объекты в Москве и области</li>
-          <li>Гарантия на чашу и работы</li>
-        </ul>
+        <div class="catalog-cards">
+          <div class="catalog-card">
+            <span class="catalog-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <p class="catalog-card__text">Собственное производство без посредников</p>
+          </div>
+          <div class="catalog-card">
+            <span class="catalog-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <p class="catalog-card__text">Контроль качества на каждом этапе строительства</p>
+          </div>
+          <div class="catalog-card">
+            <span class="catalog-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <p class="catalog-card__text">Опыт более 10 лет</p>
+          </div>
+          <div class="catalog-card">
+            <span class="catalog-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <p class="catalog-card__text">Реальные реализованные объекты в Москве и области</p>
+          </div>
+          <div class="catalog-card">
+            <span class="catalog-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></span>
+            <p class="catalog-card__text">Гарантия на чашу и работы</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- 7. Финальный дожим каталога -->
-  <section class="footer-cta" id="callback">
+  <!-- 7. Финальный CTA — синий градиент, золотая кнопка -->
+  <section class="footer-cta callback callback--blue" id="callback">
     <div class="container">
-      <div class="footer-cta__inner">
-        <div>
-          <h2 class="footer-cta__title">Нужна помощь с выбором бассейна?</h2>
-          <p class="footer-cta__sub">Оставьте номер — мы перезвоним, уточним задачу и предложим оптимальные варианты под ваш участок и бюджет.</p>
+      <div class="callback__glass">
+        <div class="callback__text">
+          <h2 class="callback__title">Нужна помощь с выбором бассейна?</h2>
+          <p class="callback__desc">Перезвоним, уточним задачу и предложим оптимальный вариант под участок и бюджет.</p>
+          <p class="callback__hint">Бесплатно. Обычно отвечаем за 15 минут.</p>
         </div>
-        <div class="footer-cta__form">
-          <form action="#" method="get">
-            <input type="tel" name="phone" placeholder="Телефон *" required />
-            <button type="submit">Перезвонить мне</button>
+        <div class="callback__form-wrap">
+          <form action="#" method="get" class="callback__form">
+            <div class="callback__form-row">
+              <input id="callback-phone" type="tel" name="phone" class="callback__input" placeholder="+7 (___) ___-__-__" required />
+              <button type="submit" class="btn btn-gold callback__btn">Перезвонить мне</button>
+            </div>
           </form>
-          <p class="footer-cta__privacy">Бесплатно. Консультация 15 минут.</p>
         </div>
       </div>
     </div>
   </section>
 
+  <script src="data/pools-data.js"></script>
+  <script>
+    (function() {
+      var pools = window.POOLS_DATA || [];
+      var grid = document.getElementById('pool-catalog-grid');
+      var fallbackImg = 'assets/images/IMG_20220810_101450_262.jpg';
+      function fmtPrice(n) {
+        return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+      }
+      function escapeHtml(s) {
+        if (!s) return '';
+        var d = document.createElement('div');
+        d.textContent = s;
+        return d.innerHTML;
+      }
+      pools.forEach(function(p) {
+        var article = document.createElement('article');
+        article.className = 'pool-card pool-card--catalog';
+        var specs = (p.specs || []).slice(0, 4);
+        var specsHtml = specs.map(function(s) {
+          return '<span class="pool-card__pill">' + escapeHtml(s) + '</span>';
+        }).join('');
+        var priceStr = fmtPrice(p.priceFrom);
+        article.innerHTML =
+          '<a href="pool-product.html?id=' + encodeURIComponent(p.id) + '" class="pool-card__image">' +
+            '<img src="' + (p.image || fallbackImg).replace(/"/g, '&quot;') + '" alt="' + escapeHtml(p.title) + '" loading="lazy" onerror="this.src=\'' + fallbackImg + '\'" />' +
+          '</a>' +
+          '<div class="pool-card__body">' +
+            '<h3 class="pool-card__title">' + escapeHtml(p.title) + '</h3>' +
+            '<div class="pool-card__specs-pills">' + specsHtml + '</div>' +
+            '<p class="pool-card__label">Ориентировочно</p>' +
+            '<p class="pool-card__price">От ' + priceStr + '</p>' +
+            '<div class="pool-card__trust">' +
+              '<span class="pool-card__trust-item"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Смета в договоре</span>' +
+              '<span class="pool-card__trust-item"><svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Гарантия</span>' +
+            '</div>' +
+            '<div class="pool-card__actions">' +
+              '<a class="btn btn-primary pool-card__btn-primary" href="index.html#callback">Запросить расчёт</a>' +
+              '<a class="pool-card__btn-secondary" href="pool-product.html?id=' + encodeURIComponent(p.id) + '">Подробнее</a>' +
+            '</div>' +
+          '</div>';
+        grid.appendChild(article);
+      });
+    })();
+  </script>
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">

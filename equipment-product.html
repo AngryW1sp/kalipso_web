@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Оборудование — KALIPSO</title>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/product.css" />
+  <link rel="stylesheet" href="css/catalog-hero.css" />
+</head>
+<body>
+  <header class="header"></header>
+  <script src="js/header.js"></script>
+
+  <main class="product-page">
+    <div class="container" id="product-content">
+      <nav class="product-breadcrumb" id="breadcrumb"></nav>
+      <h1 class="product-page__title" id="product-title"></h1>
+      <p class="product-page__specs" id="product-specs"></p>
+      <div class="product-page__gallery">
+        <div class="product-gallery__main">
+          <img id="product-image" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" loading="lazy" />
+        </div>
+      </div>
+
+      <nav class="product-tabs" id="product-tabs" aria-label="Разделы">
+        <button type="button" class="product-tab product-tab--active" data-tab="description" aria-selected="true">Описание</button>
+        <button type="button" class="product-tab" data-tab="specs" aria-selected="false">Характеристики</button>
+        <button type="button" class="product-tab" data-tab="docs" aria-selected="false">Документация</button>
+      </nav>
+      <div id="product-tab-description" class="product-tab-panel product-tab-panel--active" role="tabpanel" aria-hidden="false">
+        <div id="product-body" class="product-description"></div>
+      </div>
+      <div id="product-tab-specs" class="product-tab-panel" role="tabpanel" aria-hidden="true" hidden>
+        <div id="product-specs-content" class="product-specs-content"></div>
+      </div>
+      <div id="product-tab-docs" class="product-tab-panel" role="tabpanel" aria-hidden="true" hidden>
+        <p class="product-docs-placeholder">Документация пока не добавлена.</p>
+      </div>
+
+      <section class="product-configs">
+        <h2 class="product-configs__title">Стоимость</h2>
+        <div class="config-list" id="product-config"></div>
+        <p class="product-configs__disclaimer" id="product-disclaimer"></p>
+      </section>
+      <section class="product-cta">
+        <h2 class="product-cta__title" id="product-cta-title"></h2>
+        <p class="product-cta__sub" id="product-cta-sub"></p>
+        <a class="header__cta" href="index.html#callback">Получить консультацию</a>
+      </section>
+    </div>
+  </main>
+
+  <section class="footer-cta callback callback--blue" id="callback">
+    <div class="container">
+      <div class="callback__glass">
+        <div class="callback__text">
+          <h2 class="callback__title">Остались вопросы?</h2>
+          <p class="callback__desc">Оставьте контакты — перезвоним и ответим на вопросы по оборудованию. +7 (495) 123-45-67</p>
+          <p class="callback__hint">Бесплатно. Перезвоним за 15 минут.</p>
+        </div>
+        <div class="callback__form-wrap">
+          <form action="#" method="get" class="callback__form">
+            <div class="callback__form-row">
+              <input type="tel" name="phone" class="callback__input" placeholder="+7 (___) ___-__-__" required />
+              <button type="submit" class="btn btn-gold callback__btn">Перезвонить мне</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h4 class="footer__title">Каталог</h4>
+          <ul class="footer__links">
+            <li><a href="catalog.html">Бассейны</a></li>
+            <li><a href="equipment.html">Оборудование</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Компания</h4>
+          <ul class="footer__links">
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="about.html">О компании</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Контакты</h4>
+          <p style="margin:0;">+7 (495) 123-45-67</p>
+          <p style="margin:4px 0 0;">info@kalipso.ru</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        © 2025 KALIPSO. Проектирование и строительство бассейнов. Москва и область.
+      </div>
+    </div>
+  </footer>
+  <script src="data/equipment-products.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function() {
+      var API_BASE = window.EQUIPMENT_API_BASE !== undefined ? window.EQUIPMENT_API_BASE : 'http://127.0.0.1:8000';
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get('id');
+
+      function renderProduct(product, catName) {
+      if (!product) {
+        window.location.replace('equipment.html');
+        return;
+      }
+      var catSlug = product.category;
+      if (!catName) catName = (window.EQUIPMENT_CATEGORIES || {})[catSlug] || catSlug;
+      var catalogUrl = 'equipment-catalog.html?cat=' + encodeURIComponent(catSlug);
+
+      document.title = (product.title || 'Товар') + ' — KALIPSO';
+
+      document.getElementById('breadcrumb').innerHTML =
+        '<a href="index.html">Главная</a> / <a href="equipment.html">Оборудование</a> / <a href="' + catalogUrl + '">' + escapeHtml(catName) + '</a> / ' + escapeHtml(product.title || '');
+      document.getElementById('product-title').textContent = product.title || '';
+      document.getElementById('product-specs').textContent = product.specs || '';
+      document.getElementById('product-image').src = product.image || '';
+      document.getElementById('product-image').alt = product.imageAlt || product.title || '';
+
+      var body = document.getElementById('product-body');
+      function addParagraphs(container, title, paragraphs) {
+        if (!paragraphs || !paragraphs.length) return;
+        var sec = document.createElement('section');
+        sec.className = 'product-description__section';
+        if (title) sec.innerHTML = '<h2 class="product-description__heading">' + escapeHtml(title) + '</h2>';
+        paragraphs.forEach(function(para) {
+          var p = document.createElement('p');
+          p.className = 'product-description__text';
+          p.textContent = para;
+          sec.appendChild(p);
+        });
+        container.appendChild(sec);
+      }
+      function addList(container, title, items) {
+        if (!items || !items.length) return;
+        var sec = document.createElement('section');
+        sec.className = 'product-description__section';
+        if (title) sec.innerHTML = '<h2 class="product-description__heading">' + escapeHtml(title) + '</h2>';
+        var ul = document.createElement('ul');
+        ul.className = 'product-description__list';
+        items.forEach(function(item) {
+          var li = document.createElement('li');
+          var t = (item.title || '').trim();
+          var x = (item.text || '').trim();
+          li.textContent = x ? t + ' — ' + x : t;
+          ul.appendChild(li);
+        });
+        sec.appendChild(ul);
+        container.appendChild(sec);
+      }
+      if (product.blocks && product.blocks.length) {
+        product.blocks.forEach(function(block) {
+          if (block.type === 'about' && block.paragraphs && block.paragraphs.length) {
+            addParagraphs(body, block.title || '', block.paragraphs);
+          } else if (block.type === 'features' && block.items && block.items.length) {
+            addList(body, block.title || '', block.items);
+          }
+        });
+      } else {
+        if (product.description && product.description.length) addParagraphs(body, 'О товаре', product.description);
+        if (product.features && product.features.length) addList(body, 'Особенности', product.features);
+      }
+
+      var specsPanel = document.getElementById('product-specs-content');
+      var specParts = [];
+      if (product.specs) specParts.push('<p class="product-specs-content__line"><strong>Характеристики:</strong> ' + escapeHtml(product.specs) + '</p>');
+      if (product.configName || product.configPrice) specParts.push('<p class="product-specs-content__line"><strong>Комплектация/цена:</strong> ' + escapeHtml(product.configName || product.title || '') + ' — ' + escapeHtml(product.configPrice || product.price || '') + '</p>');
+      if (product.disclaimer) specParts.push('<p class="product-specs-content__disclaimer">' + escapeHtml(product.disclaimer) + '</p>');
+      specsPanel.innerHTML = specParts.length ? specParts.join('') : '<p>Нет данных.</p>';
+
+      document.getElementById('product-config').innerHTML =
+        '<article class="config-card">' +
+        '<p class="config-card__name">' + escapeHtml(product.configName || product.title || '') + '</p>' +
+        '<p class="config-card__price">' + escapeHtml(product.configPrice || product.price || '') + '</p>' +
+        '<a class="config-card__link" href="index.html#callback">' + escapeHtml(product.configLink || 'Уточнить') + '</a>' +
+        '</article>';
+      document.getElementById('product-disclaimer').textContent = product.disclaimer || '';
+      document.getElementById('product-cta-title').textContent = product.ctaTitle || 'Подобрать оборудование';
+      document.getElementById('product-cta-sub').textContent = product.ctaSub || 'Оставьте контакты — перезвоним.';
+
+      function escapeHtml(s) {
+        if (!s) return '';
+        var div = document.createElement('div');
+        div.textContent = s;
+        return div.innerHTML;
+      }
+      }
+
+      document.getElementById('product-tabs').addEventListener('click', function(e) {
+        var t = e.target.getAttribute('data-tab');
+        if (!t) return;
+        document.querySelectorAll('.product-tab').forEach(function(btn) {
+          btn.classList.toggle('product-tab--active', btn.getAttribute('data-tab') === t);
+          btn.setAttribute('aria-selected', btn.getAttribute('data-tab') === t ? 'true' : 'false');
+        });
+        document.querySelectorAll('.product-tab-panel').forEach(function(panel) {
+          var isActive = panel.id === 'product-tab-' + t;
+          panel.classList.toggle('product-tab-panel--active', isActive);
+          panel.hidden = !isActive;
+          panel.setAttribute('aria-hidden', !isActive);
+        });
+      });
+
+      if (id && API_BASE && typeof fetch === 'function') {
+        fetch(API_BASE + '/api/equipment/' + encodeURIComponent(id)).then(function(r) {
+          if (!r.ok) throw new Error();
+          return r.json();
+        }).then(function(product) {
+          renderProduct(product, product.categoryName);
+        }).catch(function() {
+          var products = window.EQUIPMENT_PRODUCTS || [];
+          var product = products.filter(function(p) { return p.id === id; })[0];
+          renderProduct(product);
+        });
+      } else {
+        var products = window.EQUIPMENT_PRODUCTS || [];
+        var product = id ? products.filter(function(p) { return p.id === id; })[0] : null;
+        renderProduct(product);
+      }
+    })();
+  </script>
+</body>
+</html>

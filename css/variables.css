@@ -1,21 +1,139 @@
-/* Палитра KALIPSO: тёмно-синий, голубой и золотистый акцент */
+/**
+ * KALIPSO — дизайн-система
+ * Премиальный минимализм: глубокий синий + приглушённый золотой
+ */
 :root {
-  --color-bg: #f7f9fc;
-  --color-panel: #ffffff;
-  --color-text: #0d1520;
-  --color-text-muted: #4a5568;
-  --color-primary: #0e4a8a;        /* тёмно-синий из логотипа */
-  --color-primary-dark: #0a3566;
-  --color-accent: #d4a024;         /* золотистый акцент */
-  --color-accent-light: #fdf3d0;   /* мягкий фон под акцент */
-  --color-water-light: #e3f2fd;    /* светлый голубой для фонов */
-  --color-line: rgba(13, 21, 32, 0.08);
-  --color-line-strong: rgba(13, 21, 32, 0.16);
-  --shadow-sm: 0 2px 8px rgba(13, 21, 32, 0.06);
-  --shadow: 0 8px 28px rgba(13, 21, 32, 0.08);
-  --radius: 14px;
-  --radius-sm: 10px;
-  --max-width: 1200px;
+  /* Brand — синий (основа бренда) */
+  --blue-900: #062557;
+  --blue-700: #0A3580;
+  --blue-600: #0B3D91;
+  --blue-800: var(--blue-900);
+  --brand-blue: var(--blue-600);
+  --brand-blue-700: var(--blue-700);
+  --brand-blue-900: var(--blue-900);
+
+  /* Brand — премиальный золотой (дорогой жёлтый, акцент) */
+  --gold-500: #D6B25E;
+  --gold-accent: #C9A227;
+  --brand-gold: var(--gold-500);
+  --brand-gold-700: #C9A24A;
+
+  /* Текст */
+  --text-900: #0F172A;
+  --text-700: #334155;
+  --text-500: #64748B;
+  --text: var(--text-900);
+  --muted: var(--text-500);
+
+  /* Фоны */
+  --bg-50: #F8FAFC;
+  --bg-100: #F2F5FA;
+  --bg: var(--bg-50);
+  --surface: #FFFFFF;
+  --surface-2: var(--bg-100);
+  --border: #E2E8F0;
+
+  /* Радиусы */
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --r-sm: 12px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --radius-16: var(--r-md);
+  --radius-20: var(--r-lg);
+  --r-xl: 28px;
+
+  /* Тени — мягкие, без грязи */
+  --shadow-sm: 0 2px 12px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.10);
+
+  /* Отступы 8/12/16/24/32/48 */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-7: 32px;
+  --s-8: 40px;
+  --s-9: 48px;
+  --s-10: 64px;
+
+  /* Типографика — clamp */
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: "Montserrat", var(--font);
+
+  /* Material-like type scale */
+  --fs-h1: clamp(2rem, 4vw, 2.75rem);
+  --fs-h2: clamp(1.5rem, 2.5vw, 1.875rem);
+  --fs-h3: clamp(1.125rem, 1.5vw, 1.25rem);
+  --fs-body: clamp(1rem, 1.5vw, 1.125rem);
+  --fs-small: clamp(0.875rem, 1vw, 0.9375rem);
+  --lh-body: 1.6;
+  --lh-tight: 1.25;
+  --lh-loose: 1.7;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+
+  /* Layout — единая сетка */
+  --container: min(1240px, 100% - 48px);
+  --container-narrow: min(720px, 100% - 48px);
+  --padding-inline: 32px;
+  --padding-inline-mobile: 16px;
+  --section-py: 96px;
+  --section-py-tablet: 72px;
+  --section-py-mobile: 48px;
+  --section-block: 64px;
   --header-height: 72px;
-  --transition: 0.2s ease;
+  --transition: 180ms ease;
+
+  /* Кнопки */
+  --btn-height: 48px;
+  --btn-min-height: 44px;
+
+  /* Focus */
+  --focus-ring: 0 0 0 3px rgba(11, 61, 145, 0.25);
+
+  /* Legacy */
+  --radius-sm: var(--r-sm);
+
+  /* Алиасы (совместимость) */
+  --primary: var(--brand-blue);
+  --primary-hover: var(--brand-blue-700);
+  --gold: var(--brand-gold);
+  --gold-hover: var(--brand-gold-700);
+  --ink-900: var(--text);
+  --ink-700: #334155;
+  --ink-500: var(--muted);
+  --line-200: var(--border);
+  --bg-050: var(--bg);
+  --bg-000: var(--surface);
+  --blue-050: #EFF6FF;
+  --gold-500: var(--brand-gold);
+  --gold-600: var(--brand-gold-700);
+  --chip-bg: #F2F5FA;
+  --chip-text: #1F2A37;
+  --color-primary: var(--brand-blue);
+  --color-primary-dark: var(--brand-blue-700);
+  --color-text: var(--text);
+  --color-text-muted: var(--muted);
+  --color-line: var(--border);
+  --color-panel: var(--surface);
+  --card: var(--surface);
+  --shadow: var(--shadow-sm);
+  --color-accent: var(--brand-gold);
+  --color-accent-light: #FAF6ED;
+  --color-water-light: #E8F1FA;
+  --shadow-soft: var(--shadow-sm);
+  --shadow-elevated: var(--shadow-md);
+  --shadow-focus: var(--focus-ring);
+  --r-btn: var(--r-lg);
+  --sp-2: var(--s-2);
+  --sp-3: var(--s-3);
+  --sp-4: var(--s-4);
+  --sp-6: var(--s-6);
+  --sp-8: var(--s-7);
+  --sp-12: var(--s-9);
+  --sp-16: var(--s-10);
 }

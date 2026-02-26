@@ -6,30 +6,11 @@
   <title>Оборудование для бассейнов — KALIPSO</title>
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/catalog-hero.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="header__inner">
-        <a class="brand" href="index.html" aria-label="KALIPSO">
-          <img src="assets/images/logo.png" alt="KALIPSO" class="brand__logo" />
-          <span class="brand__text">KALIPSO</span>
-        </a>
-        <nav class="nav">
-          <a class="nav__link" href="services.html">Услуги</a>
-          <a class="nav__link" href="catalog.html">Каталог бассейнов</a>
-          <a class="nav__link nav__link--active" href="equipment.html">Оборудование</a>
-          <a class="nav__link" href="about.html">О компании</a>
-          <a class="nav__link" href="contacts.html">Контакты</a>
-        </nav>
-        <div class="header__cities">Москва · Московская область</div>
-        <div class="header__contact">
-          <a class="header__phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
-          <div class="header__note">Перезвоним за 15 минут</div>
-        </div>
-      </div>
-    </div>
-  </header>
+  <header class="header"></header>
+  <script src="js/header.js"></script>
   <main>
     <!-- 1. Первый экран — правильный фрейм в голове клиента -->
     <section class="section-simple equipment-hero">
@@ -50,57 +31,32 @@
       </div>
     </section>
 
-    <!-- 2. Категории оборудования — усиленные карточки -->
-    <section class="section-simple">
+    <!-- Каталог оборудования: 4 карточки в ряд, по клику — отдельная страница каталога -->
+    <section class="section-simple equipment-catalog">
       <div class="container">
-        <h2 class="services-section__title">Категории оборудования для бассейна</h2>
-        <div class="cards-grid-4">
-          <article id="filtration" class="card-soft">
-            <h3 class="card-soft__title">Фильтрация и циркуляция</h3>
-            <p class="card-soft__subtitle">Чистая и прозрачная вода без лишней химии</p>
-            <p class="card-soft__text">Насосы и фильтры, подобранные под объём чаши и нагрузку.</p>
-            <ul class="card-soft__list">
-              <li>Поддержание прозрачности воды</li>
-              <li>Стабильная циркуляция</li>
-              <li>Надёжная работа весь сезон</li>
-            </ul>
-            <a href="index.html#callback" class="equipment-card__cta">Подобрать систему фильтрации</a>
-          </article>
-          <article class="card-soft">
-            <h3 class="card-soft__title">Подогрев воды</h3>
-            <p class="card-soft__subtitle">Комфортная температура в любое время сезона</p>
-            <p class="card-soft__text">Электронагреватели, теплообменники и тепловые насосы.</p>
-            <ul class="card-soft__list">
-              <li>Экономичные решения</li>
-              <li>Подбор под климат и сценарий использования</li>
-              <li>Интеграция в систему управления</li>
-            </ul>
-            <a href="index.html#callback" class="equipment-card__cta">Рассчитать подогрев воды</a>
-          </article>
-          <article id="dosing" class="card-soft">
-            <h3 class="card-soft__title">Автоматика и дозирование</h3>
-            <p class="card-soft__subtitle">Минимум ручного обслуживания</p>
-            <p class="card-soft__text">Станции контроля pH и хлора, панели управления фильтрацией и подсветкой.</p>
-            <ul class="card-soft__list">
-              <li>Стабильное качество воды</li>
-              <li>Меньше ручной работы</li>
-              <li>Удобное управление системой</li>
-            </ul>
-            <a href="index.html#callback" class="equipment-card__cta">Подобрать автоматику</a>
-          </article>
-          <article id="waterfall" class="card-soft">
-            <h3 class="card-soft__title">Аттракционы</h3>
-            <p class="card-soft__subtitle">Комфорт, релакс и эффект премиального бассейна</p>
-            <p class="card-soft__text">Противотоки, водопады, гидромассаж и декоративная подсветка.</p>
-            <ul class="card-soft__list">
-              <li>Для отдыха и тренировок</li>
-              <li>Индивидуальная комплектация</li>
-              <li>Визуальный и функциональный эффект</li>
-            </ul>
-            <a href="index.html#callback" class="equipment-card__cta">Добавить аттракционы</a>
-          </article>
+        <h2 class="services-section__title">Каталог оборудования</h2>
+        <p class="equipment-catalog__intro">Нажмите на категорию — откроется страница каталога с оборудованием.</p>
+
+        <div class="equipment-catalog__cards">
+          <a href="equipment-catalog.html?cat=filtration" class="equipment-catalog__card">
+            <span class="equipment-catalog__card-title">Фильтрация</span>
+            <img src="assets/equipment/filter/Фильтрация.jpg" alt="" class="equipment-catalog__card-img" />
+          </a>
+          <a href="equipment-catalog.html?cat=heating" class="equipment-catalog__card">
+            <span class="equipment-catalog__card-title">Подогрев воды</span>
+            <img src="assets/equipment/filter/Фильтрация.jpg" alt="" class="equipment-catalog__card-img" />
+          </a>
+          <a href="equipment-catalog.html?cat=automation" class="equipment-catalog__card">
+            <span class="equipment-catalog__card-title">Автоматика и дозирование</span>
+            <img src="assets/equipment/filter/Фильтрация.jpg" alt="" class="equipment-catalog__card-img" />
+          </a>
+          <a href="equipment-catalog.html?cat=attractions" class="equipment-catalog__card">
+            <span class="equipment-catalog__card-title">Аттракционы</span>
+            <img src="assets/equipment/filter/Фильтрация.jpg" alt="" class="equipment-catalog__card-img" />
+          </a>
         </div>
-        <div class="equipment-categories__cta">
+
+        <div class="equipment-categories__cta" style="margin-top: 32px;">
           <a href="index.html#callback" class="header__cta">Подобрать оборудование под мой бассейн</a>
         </div>
       </div>
@@ -180,19 +136,21 @@
       </div>
     </section>
   </main>
-  <section class="footer-cta">
+  <section class="footer-cta callback callback--blue" id="callback">
     <div class="container">
-      <div class="footer-cta__inner">
-        <div>
-          <h2 class="footer-cta__title">Нужна консультация по оборудованию?</h2>
-          <p class="footer-cta__sub">Подскажем оптимальный комплект под ваш бассейн, задачи и бюджет. Без переплаты и лишних элементов.</p>
+      <div class="callback__glass">
+        <div class="callback__text">
+          <h2 class="callback__title">Нужна консультация по оборудованию?</h2>
+          <p class="callback__desc">Подскажем оптимальный комплект под ваш бассейн, задачи и бюджет. Без переплаты и лишних элементов.</p>
+          <p class="callback__hint">Бесплатно. Консультация 15 минут.</p>
         </div>
-        <div class="footer-cta__form">
-          <form action="#" method="get">
-            <input type="tel" name="phone" placeholder="Телефон *" required />
-            <button type="submit">Перезвонить мне</button>
+        <div class="callback__form-wrap">
+          <form action="#" method="get" class="callback__form">
+            <div class="callback__form-row">
+              <input type="tel" name="phone" class="callback__input" placeholder="+7 (___) ___-__-__" required />
+              <button type="submit" class="btn btn-gold callback__btn">Перезвонить мне</button>
+            </div>
           </form>
-          <p class="footer-cta__privacy">Бесплатно. Консультация 15 минут.</p>
         </div>
       </div>
     </div>

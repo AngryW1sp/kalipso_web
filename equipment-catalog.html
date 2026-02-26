@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Каталог оборудования — KALIPSO</title>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/catalog-hero.css" />
+</head>
+<body>
+  <header class="header"></header>
+  <script src="js/header.js"></script>
+  <main>
+    <section class="section-simple equipment-catalog-page">
+      <div class="container">
+        <nav class="equipment-catalog-page__breadcrumbs" id="breadcrumbs">
+          <a href="index.html">Главная</a> / <a href="equipment.html">Оборудование</a> / <span id="breadcrumb-category">Фильтрация</span>
+        </nav>
+        <h1 class="services-section__title" id="category-title">Каталог: Фильтрация</h1>
+
+        <div id="products-filtration" class="equipment-catalog-page__products">
+          <div class="equipment-product-grid" id="grid-filtration"></div>
+          <p class="equipment-catalog-page__empty" id="empty-filtration" style="display:none;">В этой категории пока нет товаров. <a href="index.html#callback">Напишите нам</a> — подберём оборудование под ваш бассейн.</p>
+        </div>
+
+        <div id="products-heating" class="equipment-catalog-page__products" hidden>
+          <div class="equipment-product-grid" id="grid-heating"></div>
+          <p class="equipment-catalog-page__empty" id="empty-heating" style="display:none;">В этой категории пока нет товаров. <a href="index.html#callback">Напишите нам</a> — подберём оборудование под ваш бассейн.</p>
+        </div>
+
+        <div id="products-automation" class="equipment-catalog-page__products" hidden>
+          <div class="equipment-product-grid" id="grid-automation"></div>
+          <p class="equipment-catalog-page__empty" id="empty-automation" style="display:none;">В этой категории пока нет товаров. <a href="index.html#callback">Напишите нам</a> — подберём оборудование под ваш бассейн.</p>
+        </div>
+
+        <div id="products-attractions" class="equipment-catalog-page__products" hidden>
+          <div class="equipment-product-grid" id="grid-attractions"></div>
+          <p class="equipment-catalog-page__empty" id="empty-attractions" style="display:none;">В этой категории пока нет товаров. <a href="index.html#callback">Напишите нам</a> — подберём оборудование под ваш бассейн.</p>
+        </div>
+
+        <div class="equipment-categories__cta" style="margin-top: 32px;">
+          <a href="equipment.html" class="header__cta">Все категории оборудования</a>
+          <a href="index.html#callback" class="header__cta" style="margin-left: 12px;">Подобрать оборудование под мой бассейн</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="footer-cta callback callback--blue" id="callback">
+    <div class="container">
+      <div class="callback__glass">
+        <div class="callback__text">
+          <h2 class="callback__title">Нужна консультация по оборудованию?</h2>
+          <p class="callback__desc">Подскажем оптимальный комплект под ваш бассейн, задачи и бюджет. Без переплаты и лишних элементов.</p>
+          <p class="callback__hint">Бесплатно. Перезвоним за 15 минут.</p>
+        </div>
+        <div class="callback__form-wrap">
+          <form action="#" method="get" class="callback__form">
+            <div class="callback__form-row">
+              <input type="tel" name="phone" class="callback__input" placeholder="+7 (___) ___-__-__" required />
+              <button type="submit" class="btn btn-gold callback__btn">Перезвонить мне</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h4 class="footer__title">Каталог</h4>
+          <ul class="footer__links">
+            <li><a href="catalog.html">Бассейны</a></li>
+            <li><a href="equipment.html">Оборудование</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Компания</h4>
+          <ul class="footer__links">
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="about.html">О компании</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Контакты</h4>
+          <p style="margin:0;">+7 (495) 123-45-67</p>
+          <p style="margin:4px 0 0;">info@kalipso.ru</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        © 2025 KALIPSO. Проектирование и строительство бассейнов. Москва и область.
+      </div>
+    </div>
+  </footer>
+  <script src="data/equipment-products.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function() {
+      var API_BASE = window.EQUIPMENT_API_BASE !== undefined ? window.EQUIPMENT_API_BASE : 'http://127.0.0.1:8000';
+      var catKeys = ['filtration', 'heating', 'automation', 'attractions'];
+
+      function runWith(categories, products) {
+        categories = categories || {};
+        products = products || [];
+
+      // Заполняем сетки товаров по категориям
+      catKeys.forEach(function(key) {
+        var list = products.filter(function(p) { return p.category === key; });
+        var grid = document.getElementById('grid-' + key);
+        var emptyEl = document.getElementById('empty-' + key);
+        if (!grid) return;
+        if (list.length === 0) {
+          grid.style.display = 'none';
+          if (emptyEl) emptyEl.style.display = 'block';
+          return;
+        }
+        grid.style.display = '';
+        if (emptyEl) emptyEl.style.display = 'none';
+        list.forEach(function(p) {
+          var a = document.createElement('a');
+          a.className = 'equipment-product-card';
+          a.href = 'equipment-product.html?id=' + encodeURIComponent(p.id);
+          a.innerHTML = '<div class="equipment-product-card__image">' +
+            '<img src="' + (p.image || '').replace(/"/g, '&quot;') + '" alt="' + (p.imageAlt || p.title || '').replace(/"/g, '&quot;') + '" loading="lazy" />' +
+            '</div><div class="equipment-product-card__body">' +
+            '<h4 class="equipment-product-card__title">' + (p.title || '').replace(/</g, '&lt;') + '</h4>' +
+            '<p class="equipment-product-card__price">' + (p.price || '').replace(/</g, '&lt;') + '</p>' +
+            '</div>';
+          grid.appendChild(a);
+        });
+      });
+
+      var params = new URLSearchParams(window.location.search);
+      var cat = (params.get('cat') || 'filtration').toLowerCase();
+      if (!categories[cat]) {
+        window.location.replace('equipment.html');
+        return;
+      }
+      var title = categories[cat];
+      document.title = 'Каталог: ' + title + ' — KALIPSO';
+      var breadcrumbEl = document.getElementById('breadcrumb-category');
+      var titleEl = document.getElementById('category-title');
+      if (breadcrumbEl) breadcrumbEl.textContent = title;
+      if (titleEl) titleEl.textContent = 'Каталог: ' + title;
+      var panel = document.getElementById('products-' + cat);
+      if (panel) panel.hidden = false;
+      document.querySelectorAll('.equipment-catalog-page__products').forEach(function(p) {
+        if (p.id !== 'products-' + cat) p.hidden = true;
+      });
+      }
+
+      if (API_BASE && typeof fetch === 'function') {
+        fetch(API_BASE + '/api/equipment/all').then(function(r) { return r.ok ? r.json() : Promise.reject(); }).then(function(d) {
+          runWith(d.categories, d.products);
+        }).catch(function() {
+          runWith(window.EQUIPMENT_CATEGORIES, window.EQUIPMENT_PRODUCTS);
+        });
+      } else {
+        runWith(window.EQUIPMENT_CATEGORIES, window.EQUIPMENT_PRODUCTS);
+      }
+    })();
+  </script>
+</body>
+</html>

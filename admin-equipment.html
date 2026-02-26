@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Админка: каталог оборудования — KALIPSO</title>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .admin { padding: 24px 0 48px; }
+    .admin__bar { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+    .admin__api { font-size: 0.9rem; color: var(--color-text-muted); }
+    .admin__api input { width: 220px; padding: 6px 10px; margin-left: 8px; }
+    .admin-table { width: 100%; border-collapse: collapse; margin-bottom: 24px; }
+    .admin-table th, .admin-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--color-line); }
+    .admin-table th { font-weight: 700; color: var(--color-text-muted); font-size: 0.85rem; }
+    .admin-table .actions { white-space: nowrap; }
+    .admin-table .actions button { margin-right: 8px; padding: 4px 10px; font-size: 0.85rem; cursor: pointer; }
+    .admin-form { max-width: 640px; padding: 24px; background: var(--color-panel); border-radius: var(--radius); border: 1px solid var(--color-line); margin-bottom: 24px; }
+    .admin-form h3 { margin: 0 0 16px; }
+    .admin-form .field { margin-bottom: 14px; }
+    .admin-form .field label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 4px; }
+    .admin-form .field input, .admin-form .field select, .admin-form .field textarea { width: 100%; padding: 8px 10px; font: inherit; }
+    .admin-form .field textarea { min-height: 80px; resize: vertical; }
+    .admin-form .features-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: flex-start; }
+    .admin-form .features-row input { flex: 1; }
+    .admin-form .features-row button { flex-shrink: 0; padding: 6px 12px; cursor: pointer; }
+    .admin-form .form-actions { margin-top: 20px; display: flex; gap: 12px; }
+    .admin-form .form-actions button { padding: 10px 20px; cursor: pointer; font-weight: 600; }
+    .admin-form .form-actions button[type="button"].cancel { background: transparent; border: 1px solid var(--color-line); }
+    .admin-form .hint { font-size: 0.85rem; color: var(--color-text-muted); margin-top: 2px; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header__inner">
+        <a class="brand" href="index.html" aria-label="KALIPSO">
+          <img src="assets/images/logo.png" alt="KALIPSO" class="brand__logo" />
+          <span class="brand__text">KALIPSO</span>
+        </a>
+        <nav class="nav">
+          <a class="nav__link" href="equipment.html">Оборудование</a>
+          <a class="nav__link" href="equipment-catalog.html?cat=filtration">Каталог (фильтрация)</a>
+          <a class="nav__link nav__link--active" href="admin-equipment.html">Админка</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main class="admin">
+    <div class="container">
+      <h1 class="services-section__title">Админка: каталог оборудования</h1>
+      <div class="admin__bar">
+        <span class="admin__api">
+          API: <input type="text" id="api-base" value="http://127.0.0.1:8000" placeholder="http://127.0.0.1:8000" />
+        </span>
+        <button type="button" class="header__cta" id="btn-reload">Обновить список</button>
+        <button type="button" class="header__cta" id="btn-add">Добавить товар</button>
+      </div>
+
+      <div id="list-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr><th>ID</th><th>Название</th><th>Категория</th><th>Цена</th><th></th></tr>
+          </thead>
+          <tbody id="product-list"></tbody>
+        </table>
+        <p id="list-empty" style="display:none; color: var(--color-text-muted);">Товаров нет. Запустите бэкенд и нажмите «Обновить список» или «Добавить товар».</p>
+      </div>
+
+      <div id="form-wrap" style="display: none;" class="admin-form">
+        <h3 id="form-title">Добавить товар</h3>
+        <input type="hidden" id="edit-id" />
+        <div class="field">
+          <label for="f-id">ID (slug, латиница)</label>
+          <input type="text" id="f-id" required placeholder="например emaux-p400" />
+        </div>
+        <div class="field">
+          <label for="f-category">Категория</label>
+          <select id="f-category" required>
+            <option value="filtration">Фильтрация</option>
+            <option value="heating">Подогрев воды</option>
+            <option value="automation">Автоматика и дозирование</option>
+            <option value="attractions">Аттракционы</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-title">Название</label>
+          <input type="text" id="f-title" required />
+        </div>
+        <div class="field">
+          <label for="f-price">Цена</label>
+          <input type="text" id="f-price" required placeholder="15 000 ₽ или Уточняйте цену" />
+        </div>
+        <div class="field">
+          <label for="f-image">Изображение (имя файла)</label>
+          <input type="text" id="f-image" placeholder="Фильтрация.jpg" />
+          <span class="hint">Файл из папки assets/equipment/filter/</span>
+        </div>
+        <div class="field">
+          <label for="f-imageAlt">Подпись к изображению</label>
+          <input type="text" id="f-imageAlt" />
+        </div>
+        <div class="field">
+          <label for="f-specs">Краткие характеристики (под заголовком)</label>
+          <input type="text" id="f-specs" placeholder="Диаметр 400 мм · верхнее подключение" />
+        </div>
+        <div class="field">
+          <label for="f-description">Описание</label>
+          <textarea id="f-description" placeholder="Текст описания товара"></textarea>
+        </div>
+        <div class="field">
+          <label>Особенности (заголовок + текст)</label>
+          <div id="features-container"></div>
+          <button type="button" id="btn-add-feature">+ Добавить пункт</button>
+        </div>
+        <div class="field">
+          <label for="f-configName">Блок «Стоимость»: название</label>
+          <input type="text" id="f-configName" />
+        </div>
+        <div class="field">
+          <label for="f-configPrice">Блок «Стоимость»: цена</label>
+          <input type="text" id="f-configPrice" />
+        </div>
+        <div class="field">
+          <label for="f-configLink">Текст кнопки в блоке стоимости</label>
+          <input type="text" id="f-configLink" placeholder="Уточнить наличие и заказать" />
+        </div>
+        <div class="field">
+          <label for="f-disclaimer">Примечание под ценой</label>
+          <input type="text" id="f-disclaimer" />
+        </div>
+        <div class="field">
+          <label for="f-ctaTitle">Заголовок CTA</label>
+          <input type="text" id="f-ctaTitle" placeholder="Подобрать фильтр под ваш бассейн" />
+        </div>
+        <div class="field">
+          <label for="f-ctaSub">Подзаголовок CTA</label>
+          <input type="text" id="f-ctaSub" />
+        </div>
+        <div class="form-actions">
+          <button type="button" class="header__cta" id="btn-save">Сохранить</button>
+          <button type="button" class="cancel" id="btn-cancel">Отмена</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    (function() {
+      var API_BASE = function() { return (document.getElementById('api-base').value || '').replace(/\/$/, ''); };
+      var listEl = document.getElementById('product-list');
+      var listEmpty = document.getElementById('list-empty');
+      var formWrap = document.getElementById('form-wrap');
+      var formTitle = document.getElementById('form-title');
+      var editIdInput = document.getElementById('edit-id');
+      var featuresContainer = document.getElementById('features-container');
+
+      function loadList() {
+        var base = API_BASE();
+        if (!base) { listEl.innerHTML = ''; listEmpty.style.display = 'block'; return; }
+        fetch(base + '/api/equipment').then(function(r) { return r.json(); }).then(function(d) {
+          var products = d.products || [];
+          listEmpty.style.display = products.length ? 'none' : 'block';
+          listEl.innerHTML = products.map(function(p) {
+            return '<tr><td>' + escapeHtml(p.id) + '</td><td>' + escapeHtml(p.title || '') + '</td><td>' + escapeHtml(p.category || '') + '</td><td>' + escapeHtml(p.price || '') + '</td><td class="actions"><button type="button" class="edit-btn" data-id="' + escapeHtml(p.id) + '">Изменить</button><button type="button" class="delete-btn" data-id="' + escapeHtml(p.id) + '">Удалить</button></td></tr>';
+          }).join('');
+        }).catch(function() {
+          listEl.innerHTML = ''; listEmpty.style.display = 'block'; listEmpty.textContent = 'Не удалось загрузить список. Проверьте, что бэкенд запущен (uvicorn).';
+        });
+      }
+
+      function escapeHtml(s) {
+        if (s == null) return '';
+        var div = document.createElement('div');
+        div.textContent = s;
+        return div.innerHTML;
+      }
+
+      function buildProductFromForm() {
+        var descText = document.getElementById('f-description').value.trim();
+        var desc = descText ? [descText] : [];
+        var imgRaw = document.getElementById('f-image').value.trim();
+        var image = imgRaw ? (imgRaw.indexOf('/') >= 0 ? imgRaw : 'assets/equipment/filter/' + imgRaw) : undefined;
+        var features = [];
+        featuresContainer.querySelectorAll('.features-row').forEach(function(row) {
+          var t = row.querySelector('input[data-type="title"]');
+          var x = row.querySelector('input[data-type="text"]');
+          if (t && x && (t.value.trim() || x.value.trim())) features.push({ title: t.value.trim(), text: x.value.trim() });
+        });
+        return {
+          id: document.getElementById('f-id').value.trim(),
+          category: document.getElementById('f-category').value,
+          title: document.getElementById('f-title').value.trim(),
+          price: document.getElementById('f-price').value.trim(),
+          image: image,
+          imageAlt: document.getElementById('f-imageAlt').value.trim() || undefined,
+          specs: document.getElementById('f-specs').value.trim() || undefined,
+          description: desc.length ? desc : undefined,
+          features: features.length ? features : undefined,
+          configName: document.getElementById('f-configName').value.trim() || undefined,
+          configPrice: document.getElementById('f-configPrice').value.trim() || undefined,
+          configLink: document.getElementById('f-configLink').value.trim() || undefined,
+          disclaimer: document.getElementById('f-disclaimer').value.trim() || undefined,
+          ctaTitle: document.getElementById('f-ctaTitle').value.trim() || undefined,
+          ctaSub: document.getElementById('f-ctaSub').value.trim() || undefined
+        };
+      }
+
+      function fillForm(p) {
+        document.getElementById('f-id').value = p.id || '';
+        document.getElementById('f-category').value = p.category || 'filtration';
+        document.getElementById('f-title').value = p.title || '';
+        document.getElementById('f-price').value = p.price || '';
+        var img = (p.image || '').trim();
+        document.getElementById('f-image').value = img.indexOf('assets/equipment/filter/') === 0 ? img.replace('assets/equipment/filter/', '') : img;
+        document.getElementById('f-imageAlt').value = p.imageAlt || '';
+        document.getElementById('f-specs').value = p.specs || '';
+        var desc = p.description;
+        document.getElementById('f-description').value = Array.isArray(desc) ? desc.join('\n') : (desc || '');
+        featuresContainer.innerHTML = '';
+        (p.features || []).forEach(function(f) { addFeatureRow(f.title, f.text); });
+        if ((p.features || []).length === 0) addFeatureRow('', '');
+        document.getElementById('f-configName').value = p.configName || '';
+        document.getElementById('f-configPrice').value = p.configPrice || '';
+        document.getElementById('f-configLink').value = p.configLink || '';
+        document.getElementById('f-disclaimer').value = p.disclaimer || '';
+        document.getElementById('f-ctaTitle').value = p.ctaTitle || '';
+        document.getElementById('f-ctaSub').value = p.ctaSub || '';
+      }
+
+      function addFeatureRow(title, text) {
+        var row = document.createElement('div');
+        row.className = 'features-row';
+        row.innerHTML = '<input type="text" data-type="title" placeholder="Заголовок" value="' + escapeHtml(title || '') + '"><input type="text" data-type="text" placeholder="Текст" value="' + escapeHtml(text || '') + '"><button type="button" class="remove-feature">−</button>';
+        row.querySelector('.remove-feature').onclick = function() { row.remove(); };
+        featuresContainer.appendChild(row);
+      }
+
+      document.getElementById('btn-add-feature').onclick = function() { addFeatureRow('', ''); };
+
+      document.getElementById('btn-reload').onclick = loadList;
+      document.getElementById('btn-add').onclick = function() {
+        editIdInput.value = '';
+        formTitle.textContent = 'Добавить товар';
+        fillForm({ id: '', category: 'filtration', title: '', price: '' });
+        document.getElementById('f-id').readOnly = false;
+        formWrap.style.display = 'block';
+      };
+
+      listEl.addEventListener('click', function(e) {
+        var id = e.target.getAttribute('data-id');
+        if (!id) return;
+        if (e.target.classList.contains('edit-btn')) {
+          var base = API_BASE();
+          if (!base) return;
+          fetch(base + '/api/equipment/' + encodeURIComponent(id)).then(function(r) { return r.json(); }).then(function(p) {
+            editIdInput.value = p.id;
+            formTitle.textContent = 'Редактировать товар';
+            fillForm(p);
+            document.getElementById('f-id').readOnly = true;
+            formWrap.style.display = 'block';
+          });
+        } else if (e.target.classList.contains('delete-btn') && confirm('Удалить товар «' + id + '»?')) {
+          fetch(API_BASE() + '/api/equipment/' + encodeURIComponent(id), { method: 'DELETE' }).then(function() { loadList(); formWrap.style.display = 'none'; }).catch(function(err) { alert('Ошибка удаления'); });
+        }
+      });
+
+      document.getElementById('btn-cancel').onclick = function() { formWrap.style.display = 'none'; };
+
+      document.getElementById('btn-save').onclick = function() {
+        var body = buildProductFromForm();
+        var base = API_BASE();
+        if (!base) { alert('Укажите URL API'); return; }
+        var isEdit = editIdInput.value;
+        var url = base + (isEdit ? '/api/equipment/' + encodeURIComponent(isEdit) : '/api/equipment');
+        var method = isEdit ? 'PUT' : 'POST';
+        fetch(url, { method: method, headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+          .then(function(r) {
+            if (!r.ok) return r.json().then(function(e) { throw new Error(e.detail || r.status); });
+            return r.json();
+          })
+          .then(function() { loadList(); formWrap.style.display = 'none'; })
+          .catch(function(err) { alert('Ошибка: ' + (err.message || err)); });
+      };
+
+      loadList();
+    })();
+  </script>
+</body>
+</html>

@@ -7,30 +7,11 @@
   <meta name="description" content="KALIPSO — проектируем и строим бассейны под ключ. Специализация только на бассейнах, фиксированная смета, гарантия." />
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/catalog-hero.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="header__inner">
-        <a class="brand" href="index.html" aria-label="KALIPSO">
-          <img src="assets/images/logo.png" alt="KALIPSO" class="brand__logo" />
-          <span class="brand__text">KALIPSO</span>
-        </a>
-        <nav class="nav">
-          <a class="nav__link" href="services.html">Услуги</a>
-          <a class="nav__link" href="catalog.html">Каталог бассейнов</a>
-          <a class="nav__link" href="equipment.html">Оборудование</a>
-          <a class="nav__link nav__link--active" href="about.html">О компании</a>
-          <a class="nav__link" href="contacts.html">Контакты</a>
-        </nav>
-        <div class="header__cities">Москва · Московская область</div>
-        <div class="header__contact">
-          <a class="header__phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
-          <div class="header__note">Перезвоним за 15 минут</div>
-        </div>
-      </div>
-    </div>
-  </header>
+  <header class="header"></header>
+  <script src="js/header.js"></script>
 
   <main>
     <!-- 1. Первый экран — позиционирование и доверие -->
@@ -159,19 +140,21 @@
   </main>
 
   <!-- 8. Финальный CTA -->
-  <section class="footer-cta" id="callback">
+  <section class="footer-cta callback callback--blue" id="callback">
     <div class="container">
-      <div class="footer-cta__inner">
-        <div>
-          <h2 class="footer-cta__title">Хотите бассейн под ключ?</h2>
-          <p class="footer-cta__sub">Расскажите о задаче — предложим оптимальные варианты и ориентировочную стоимость.</p>
+      <div class="callback__glass">
+        <div class="callback__text">
+          <h2 class="callback__title">Хотите бассейн под ключ?</h2>
+          <p class="callback__desc">Расскажите о задаче — предложим оптимальные варианты и ориентировочную стоимость.</p>
+          <p class="callback__hint">Бесплатно. Консультация 15 минут.</p>
         </div>
-        <div class="footer-cta__form">
-          <form action="#" method="get">
-            <input type="tel" name="phone" placeholder="Телефон *" required />
-            <button type="submit">Перезвонить мне</button>
+        <div class="callback__form-wrap">
+          <form action="#" method="get" class="callback__form">
+            <div class="callback__form-row">
+              <input type="tel" name="phone" class="callback__input" placeholder="+7 (___) ___-__-__" required />
+              <button type="submit" class="btn btn-gold callback__btn">Перезвонить мне</button>
+            </div>
           </form>
-          <p class="footer-cta__privacy">Бесплатно. Консультация 15 минут.</p>
         </div>
       </div>
     </div>

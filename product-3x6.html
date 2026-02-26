@@ -8,27 +8,11 @@
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/product.css" />
+  <link rel="stylesheet" href="css/catalog-hero.css" />
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <div class="header__inner">
-        <a class="brand" href="index.html" aria-label="KALIPSO">
-          <img src="assets/images/logo.png" alt="KALIPSO — проектирование и строительство бассейнов" class="brand__logo" />
-          <span class="brand__text">KALIPSO</span>
-        </a>
-        <nav class="nav">
-          <a class="nav__link" href="services.html">Услуги</a>
-          <a class="nav__link nav__link--active" href="catalog.html">Каталог бассейнов</a>
-          <a class="nav__link" href="equipment.html">Оборудование</a>
-          <a class="nav__link" href="about.html">О компании</a>
-          <a class="nav__link" href="contacts.html">Контакты</a>
-        </nav>
-        <div class="header__cities">Москва · Московская область</div>
-        <a class="header__phone" href="tel:+74951234567">+7 (495) 123-45-67</a>
-      </div>
-    </div>
-  </header>
+  <header class="header"></header>
+  <script src="js/header.js"></script>
 
   <main class="product-page">
     <div class="container">
@@ -103,17 +87,20 @@
     </div>
   </main>
 
-  <section class="footer-cta" id="callback">
+  <section class="footer-cta callback callback--blue" id="callback">
     <div class="container">
-      <div class="footer-cta__inner">
-        <div>
-          <h2 class="footer-cta__title">Остались вопросы?</h2>
-          <p class="footer-cta__sub">+7 (495) 123-45-67 · Перезвоним за 15 минут</p>
+      <div class="callback__glass">
+        <div class="callback__text">
+          <h2 class="callback__title">Остались вопросы?</h2>
+          <p class="callback__desc">Оставьте контакты — перезвоним и подготовим расчёт под ваши размеры и пожелания. +7 (495) 123-45-67</p>
+          <p class="callback__hint">Бесплатно. Перезвоним за 15 минут.</p>
         </div>
-        <div class="footer-cta__form">
-          <form action="#" method="get">
-            <input type="tel" name="phone" placeholder="Телефон *" required />
-            <button type="submit">Перезвонить мне</button>
+        <div class="callback__form-wrap">
+          <form action="#" method="get" class="callback__form">
+            <div class="callback__form-row">
+              <input type="tel" name="phone" class="callback__input" placeholder="+7 (___) ___-__-__" required />
+              <button type="submit" class="btn btn-gold callback__btn">Перезвонить мне</button>
+            </div>
           </form>
         </div>
       </div>

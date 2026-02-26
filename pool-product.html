@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Бассейн — KALIPSO</title>
+  <meta name="description" content="Бассейны из полипропилена. Характеристики, комплектации, цены. Доставка по Москве и области." />
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/product.css" />
+  <link rel="stylesheet" href="css/catalog-hero.css" />
+</head>
+<body>
+  <header class="header"></header>
+  <script src="js/header.js"></script>
+
+  <main class="product-page">
+    <div class="container product-page__wrap">
+      <nav class="product-breadcrumb" id="breadcrumb"></nav>
+      <h1 class="product-page__title" id="pool-title"></h1>
+      <p class="product-page__lead" id="pool-lead"></p>
+
+      <div class="product-hero">
+        <div class="product-gallery">
+          <div class="product-gallery__main">
+            <img id="pool-image" alt="" loading="lazy" />
+          </div>
+          <div class="product-gallery__thumbs" aria-hidden="true"></div>
+        </div>
+        <aside class="product-buybox" id="buybox">
+          <div class="buybox__price-block">
+            <span class="buybox__label">от</span>
+            <span class="buybox__price" id="pool-price"></span>
+          </div>
+          <div class="buybox__specs" id="pool-specs-grid"></div>
+          <a href="index.html#callback" class="btn btn-primary buybox__cta">Запросить расчёт</a>
+          <a href="tel:+74951234567" class="btn btn-outline buybox__secondary">Позвонить</a>
+          <p class="buybox__hint">Бесплатно. Перезвоним за 15 минут.</p>
+        </aside>
+      </div>
+
+      <section class="product-includes">
+        <h2 class="product-section__title">Что входит «под ключ»</h2>
+        <div class="includes-grid" id="pool-includes"></div>
+      </section>
+
+      <section class="product-about">
+        <h2 class="product-section__title">О бассейне</h2>
+        <ul class="product-about__list" id="pool-about"></ul>
+      </section>
+
+      <section class="product-specs-table">
+        <h2 class="product-section__title">Характеристики</h2>
+        <div class="specs-table" id="pool-specs-table"></div>
+      </section>
+
+      <section class="product-delivery">
+        <h2 class="product-section__title">Монтаж и доставка</h2>
+        <div class="delivery-cards">
+          <div class="delivery-card">
+            <span class="delivery-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12"/></svg>
+            </span>
+            <h3 class="delivery-card__title">Доставка</h3>
+            <p class="delivery-card__text">Готовая чаша доставляется на участок. Закладные элементы установлены на производстве.</p>
+          </div>
+          <div class="delivery-card">
+            <span class="delivery-card__icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            </span>
+            <h3 class="delivery-card__title">Монтаж</h3>
+            <p class="delivery-card__text">Подготовка основания, установка чаши, подключение оборудования, пусконаладка.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-configs">
+        <h2 class="product-section__title">Комплектации и стоимость</h2>
+        <div class="config-list" id="pool-config"></div>
+        <p class="product-configs__disclaimer">Цены ориентировочные. Точный расчёт после замера и выбора комплектации.</p>
+      </section>
+
+      <section class="product-faq">
+        <h2 class="product-section__title">Частые вопросы</h2>
+        <div class="accordion">
+          <details class="accordion__item">
+            <summary class="accordion__trigger">Сколько времени занимает установка?</summary>
+            <p class="accordion__content">С учётом подготовки основания и пусконаладки — ориентировочно 2–4 недели после доставки чаши. Точные сроки зависят от объёма работ и сезона.</p>
+          </details>
+          <details class="accordion__item">
+            <summary class="accordion__trigger">Какая гарантия на чашу?</summary>
+            <p class="accordion__content">Гарантия на чашу из полипропилена — до 15 лет. Гарантия на монтажные работы указывается в договоре.</p>
+          </details>
+          <details class="accordion__item">
+            <summary class="accordion__trigger">Можно ли установить зимой?</summary>
+            <p class="accordion__content">Монтаж возможен при плюсовых температурах. Котлован можно подготовить заранее. Конкретные условия — по согласованию.</p>
+          </details>
+          <details class="accordion__item">
+            <summary class="accordion__trigger">Входит ли оборудование в цену?</summary>
+            <p class="accordion__content">Базовая комплектация — чаша с закладными. Фильтрация, насос, подогрев подбираются индивидуально и влияют на итоговую стоимость.</p>
+          </details>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <section class="footer-cta callback callback--blue" id="callback">
+    <div class="container">
+      <div class="callback__glass">
+        <div class="callback__text">
+          <h2 class="callback__title">Рассчитать точную стоимость</h2>
+          <p class="callback__desc">Оставьте контакты — перезвоним и подготовим расчёт под ваши размеры и пожелания.</p>
+          <p class="callback__hint">Бесплатно. Обычно отвечаем за 15 минут.</p>
+        </div>
+        <div class="callback__form-wrap">
+          <form action="#" method="get" class="callback__form">
+            <div class="callback__form-row">
+              <input id="callback-phone-pdp" type="tel" name="phone" class="callback__input" placeholder="+7 (___) ___-__-__" required />
+              <button type="submit" class="btn btn-gold callback__btn">Перезвонить мне</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <h4 class="footer__title">Каталог</h4>
+          <ul class="footer__links">
+            <li><a href="catalog.html">Бассейны</a></li>
+            <li><a href="equipment.html">Оборудование</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Компания</h4>
+          <ul class="footer__links">
+            <li><a href="services.html">Услуги</a></li>
+            <li><a href="about.html">О компании</a></li>
+            <li><a href="contacts.html">Контакты</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__title">Контакты</h4>
+          <p style="margin:0;">+7 (495) 123-45-67</p>
+          <p style="margin:4px 0 0;">info@kalipso.ru</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        © 2025 KALIPSO. Проектирование и строительство бассейнов. Москва и область.
+      </div>
+    </div>
+  </footer>
+  <script src="data/pools-data.js"></script>
+  <script>
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var id = params.get('id');
+      var pools = window.POOLS_DATA || [];
+      var pool = id ? pools.filter(function(p) { return p.id === id; })[0] : null;
+      var fallbackImg = 'assets/images/IMG_20220810_101450_262.jpg';
+
+      function fmtPrice(n) {
+        return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+      }
+      function escapeHtml(s) {
+        if (!s) return '';
+        var d = document.createElement('div');
+        d.textContent = s;
+        return d.innerHTML;
+      }
+
+      if (!pool) {
+        window.location.replace('catalog.html');
+        return;
+      }
+
+      document.title = pool.title + ' — KALIPSO';
+      document.getElementById('breadcrumb').innerHTML =
+        '<a href="index.html">Главная</a> / <a href="catalog.html">Каталог бассейнов</a> / ' + escapeHtml(pool.title);
+      document.getElementById('pool-title').textContent = pool.title;
+      document.getElementById('pool-lead').textContent = (pool.specs || []).join(' · ');
+
+      var img = document.getElementById('pool-image');
+      img.src = pool.image || fallbackImg;
+      img.alt = pool.title;
+      img.onerror = function() { this.src = fallbackImg; };
+
+      document.getElementById('pool-price').textContent = fmtPrice(pool.priceFrom);
+
+      var specsGrid = document.getElementById('pool-specs-grid');
+      var specItems = [];
+      if (pool.shape === 'round' && pool.specs) {
+        pool.specs.forEach(function(s) { specItems.push('<span class="buybox__spec">' + escapeHtml(s) + '</span>'); });
+      } else {
+        if (pool.width) specItems.push('<span class="buybox__spec">Ширина ' + pool.width + ' м</span>');
+        if (pool.length) specItems.push('<span class="buybox__spec">Длина ' + pool.length + ' м</span>');
+        if (pool.depth) specItems.push('<span class="buybox__spec">Глубина ' + pool.depth + ' м</span>');
+        if (pool.shape) specItems.push('<span class="buybox__spec">' + (pool.shape === 'rect' ? 'Прямоугольный' : 'Круглый') + '</span>');
+      }
+      if (specItems.length === 0 && pool.specs) {
+        pool.specs.forEach(function(s) { specItems.push('<span class="buybox__spec">' + escapeHtml(s) + '</span>'); });
+      }
+      specsGrid.innerHTML = specItems.join('');
+
+      var aboutList = document.getElementById('pool-about');
+      var aboutItems = [
+        'Чаша из пищевого полипропилена — устойчива к УФ и перепадам температур',
+        'Гладкие стенки упрощают уход за водой',
+        'Доставка готовой чаши на участок',
+        'Гарантия на чашу и монтаж'
+      ];
+      aboutList.innerHTML = aboutItems.map(function(i) { return '<li>' + i + '</li>'; }).join('');
+
+      var specsTable = document.getElementById('pool-specs-table');
+      var tableRows = [
+        ['Материал', 'Пищевой полипропилен'],
+        ['Глубина', (pool.depth || '1,5') + ' м'],
+        ['Форма', pool.shape === 'round' ? 'Круглая' : 'Прямоугольная']
+      ];
+      if (pool.width) tableRows.push(['Ширина', pool.width + ' м']);
+      if (pool.length) tableRows.push(['Длина', pool.length + ' м']);
+      specsTable.innerHTML = tableRows.map(function(r) {
+        return '<div class="specs-table__row"><span class="specs-table__label">' + r[0] + '</span><span class="specs-table__value">' + r[1] + '</span></div>';
+      }).join('');
+
+      var includes = ['Чаша с закладными', 'Монтаж', 'Фильтрация', 'Пусконаладка'];
+      document.getElementById('pool-includes').innerHTML = includes.map(function(i) {
+        return '<div class="includes-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg><span>' + i + '</span></div>';
+      }).join('');
+
+      var basinEst = Math.round(pool.priceFrom * 0.6);
+      var eqEst = Math.round(pool.priceFrom * 0.4);
+      document.getElementById('pool-config').innerHTML =
+        '<article class="config-card">' +
+          '<p class="config-card__name">Чаша бассейна</p>' +
+          '<p class="config-card__price">От ' + fmtPrice(basinEst) + '</p>' +
+          '<a class="config-card__link btn btn-outline" href="index.html#callback">Запросить расчёт</a>' +
+        '</article>' +
+        '<article class="config-card">' +
+          '<p class="config-card__name">Комплект оборудования</p>' +
+          '<p class="config-card__price">От ' + fmtPrice(eqEst) + '</p>' +
+          '<a class="config-card__link btn btn-outline" href="index.html#callback">Запросить расчёт</a>' +
+        '</article>';
+    })();
+  </script>
+</body>
+</html>
