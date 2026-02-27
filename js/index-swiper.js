@@ -6,10 +6,15 @@
   if (!el || typeof Swiper === 'undefined') return;
 
   new Swiper('.portfolio-swiper', {
-    slidesPerView: 1.2,
+    slidesPerView: 1,
     spaceBetween: 16,
     loop: false,
     grabCursor: true,
+    keyboard: { enabled: true },
+    a11y: {
+      prevSlideMessage: 'Предыдущий слайд',
+      nextSlideMessage: 'Следующий слайд'
+    },
     navigation: {
       nextEl: '.portfolio-slider__next',
       prevEl: '.portfolio-slider__prev'
@@ -19,10 +24,10 @@
       clickable: true
     },
     breakpoints: {
-      375: { slidesPerView: 1.15, spaceBetween: 12 },
-      640: { slidesPerView: 1.5, spaceBetween: 16 },
+      375: { slidesPerView: 1, spaceBetween: 12 },
+      640: { slidesPerView: 1.2, spaceBetween: 16 },
       768: { slidesPerView: 2, spaceBetween: 20 },
-      1024: { slidesPerView: 2.5, spaceBetween: 24 },
+      1024: { slidesPerView: 3, spaceBetween: 24 },
       1280: { slidesPerView: 3, spaceBetween: 24 }
     }
   });

@@ -9,36 +9,24 @@ window.EQUIPMENT_CATEGORIES = {
   attractions: "Аттракционы"
 };
 
+window.EQUIPMENT_CATEGORY_SUBTITLES = {
+  filtration: "Фильтры и установки. Подбор по объёму и гидравлике.",
+  heating: "Нагреватели и теплообменники. Подбор под объём воды.",
+  automation: "Станции дозирования и автоматика. Управление качеством воды.",
+  attractions: "Противоток, гидромассаж, водопады. Подбор под сценарий."
+};
+
 window.EQUIPMENT_PRODUCTS = [
-  {
-    id: "sand-filter",
-    category: "filtration",
-    title: "Песочный фильтр",
-    price: "Уточняйте цену",
-    image: "assets/equipment/filter/Фильтрация.jpg",
-    imageAlt: "Песочный фильтр для бассейна",
-    specs: "Фильтрация воды через кварцевый песок · Для частных бассейнов",
-    description: [
-      "Надёжная фильтрация воды через кварцевый песок. Многоходовый кран позволяет переключать режимы фильтрации, обратной промывки и слива. Фильтр подбирается под объём чаши и режим использования бассейна, чтобы вода оставалась прозрачной без лишней химии."
-    ],
-    features: [
-      { title: "Простое обслуживание", text: "Обратная промывка занимает несколько минут и производится поворотом ручки на вентиле." },
-      { title: "Надёжная конструкция", text: "Корпус из износостойкого материала, рассчитан на постоянную работу в сезон." },
-      { title: "Подбор под ваш бассейн", text: "Рассчитываем производительность по объёму чаши и гидравлике трассы." },
-      { title: "Совместим с автоматикой", text: "Легко интегрируется в систему автоматического управления фильтрацией." }
-    ],
-    configName: "Песочный фильтр под ваш объём бассейна",
-    configPrice: "Цена по запросу",
-    configLink: "Запросить подбор и цену",
-    disclaimer: "Точная стоимость зависит от объёма бассейна, схемы обвязки и региона монтажа.",
-    ctaTitle: "Нужна помощь в подборе фильтра?",
-    ctaSub: "Оставьте телефон — подберём фильтр под ваш бассейн и отправим коммерческое предложение."
-  },
   {
     id: "emaux-p400",
     category: "filtration",
-    title: "Фильтр д.400мм (верх. подсоед. 50мм) Emaux P400 (Opus) 88011602",
-    price: "15 000 ₽",
+    title: "Фильтр песочный Emaux P400",
+    shortTitle: "Фильтр песочный Emaux P400",
+    model: "Ø400, 50 мм · 88011602",
+    cardSpecs: ["Ø400 мм", "Подкл. 50 мм"],
+    brand: "Emaux",
+    price: "15 000",
+    priceCurrency: "₽",
     image: "assets/equipment/filter/Фильтры_Emaux_P400-P450.jpg",
     imageAlt: "Фильтр Emaux P400 (Opus) 88011602",
     specs: "Диаметр 400 мм · верхнее подключение 50 мм · фильтрация кварцевым песком",
@@ -61,8 +49,13 @@ window.EQUIPMENT_PRODUCTS = [
   {
     id: "emaux-v400",
     category: "filtration",
-    title: "Фильтр д.400мм (верх. подсоед. 50мм) Emaux V400 (Opus) 88010102",
-    price: "20 547 ₽",
+    title: "Фильтр песочный Emaux V400",
+    shortTitle: "Фильтр песочный Emaux V400",
+    model: "Ø400, 50 мм · 88010102",
+    cardSpecs: ["Ø400 мм", "Подкл. 50 мм", "Стекловолокно"],
+    brand: "Emaux",
+    price: "20 547",
+    priceCurrency: "₽",
     image: "assets/equipment/filter/Фильтры_Emaux_P400-P450.jpg",
     imageAlt: "Фильтр Emaux V400 (Opus) 88010102",
     specs: "Диаметр 400 мм · верхнее подключение 50 мм · серия V (стекловолокно) · вентиль 6-поз.",
@@ -113,8 +106,13 @@ window.EQUIPMENT_PRODUCTS = [
   {
     id: "emaux-s700",
     category: "filtration",
-    title: "Фильтр д.700мм (бок. подсоед. 63мм) Emaux S700 (B) (Opus) (с 6-ти поз. вентилем 2\") 88011208",
-    price: "50 000 ₽",
+    title: "Фильтр песочный Emaux S700",
+    shortTitle: "Фильтр песочный Emaux S700",
+    model: "Ø700, 63 мм · 88011208",
+    cardSpecs: ["Ø700 мм", "Подкл. 63 мм", "Вентиль 2″"],
+    brand: "Emaux",
+    price: "50 000",
+    priceCurrency: "₽",
     image: "assets/equipment/filter/Фильтры_Emaux_P400-P450.jpg",
     imageAlt: "Фильтр Emaux S700 (Opus) 88011208",
     specs: "Диаметр 700 мм · боковое подключение 63 мм · серия S (стекловолокно) · вентиль 6-поз. 2\"",
@@ -165,8 +163,13 @@ window.EQUIPMENT_PRODUCTS = [
   {
     id: "kripsol-granada-gt506",
     category: "filtration",
-    title: "Фильтр БЕЗ НАСОСА (500мм) (верх. подсоед.) Kripsol GRANADA GT/GTV506",
-    price: "50 550 ₽",
+    title: "Фильтр Kripsol GRANADA GT/GTV506",
+    shortTitle: "Фильтр Kripsol GRANADA GT/GTV506",
+    model: "Ø600, 1½″ · без насоса",
+    cardSpecs: ["Ø600 мм", "Подкл. 1½″", "Без насоса"],
+    brand: "Kripsol",
+    price: "50 550",
+    priceCurrency: "₽",
     image: "assets/equipment/filter/Фильтрация.jpg",
     imageAlt: "Фильтр Kripsol GRANADA GT/GTV506",
     specs: "Бочка 600 мм · верхнее подключение 1½\" · серия GRANADA (полипропилен) · вентиль 6-поз.",
@@ -217,8 +220,13 @@ window.EQUIPMENT_PRODUCTS = [
   {
     id: "emaux-fsu8tp",
     category: "filtration",
-    title: "Фильтровальная установка (330мм 8 м³/ч) (верх. подсоед.) Emaux FSU-8TP",
-    price: "23 321 ₽",
+    title: "Фильтровальная установка Emaux FSU-8TP",
+    shortTitle: "Фильтровальная установка Emaux FSU-8TP",
+    model: "Ø330, 8 м³/ч · с насосом",
+    cardSpecs: ["Ø330 мм", "8 м³/ч", "С насосом"],
+    brand: "Emaux",
+    price: "23 321",
+    priceCurrency: "₽",
     image: "assets/equipment/filter/Фильтровальная_установка_Emaux_FSU-2.jpg",
     imageAlt: "Фильтровальная установка Emaux FSU-8TP",
     specs: "Бочка 330 мм · производительность 8 м³/ч · верхнее подключение 1½\" · насос с таймером",
@@ -269,8 +277,13 @@ window.EQUIPMENT_PRODUCTS = [
   {
     id: "emaux-fsp350-4w",
     category: "filtration",
-    title: "Фильтровальная установка (350мм) (верх. подсоед.) Emaux FSP350-4W (Opus) 88030308",
-    price: "32 271 ₽",
+    title: "Фильтровальная установка Emaux FSP350-4W",
+    shortTitle: "Фильтровальная установка Emaux FSP350-4W",
+    model: "Ø350, 1½″ · 88030308",
+    cardSpecs: ["Ø350 мм", "Подкл. 1½″", "С насосом"],
+    brand: "Emaux",
+    price: "32 271",
+    priceCurrency: "₽",
     image: "assets/equipment/filter/Фильтровальная_установка_Emaux_FSU-2.jpg",
     imageAlt: "Фильтровальная установка Emaux FSP350-4W (Opus)",
     specs: "Бочка 350 мм · верхнее подключение 1½\" · вентиль 4-поз. · насос Emaux SS020 (Opus)",

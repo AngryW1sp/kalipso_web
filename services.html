@@ -4,140 +4,172 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Услуги — KALIPSO</title>
-  <meta name="description" content="Комплексные услуги по проектированию и строительству бассейнов под ключ. Один подрядчик — от проекта до сервиса." />
+  <meta name="description" content="Бассейн под ключ — от замера до первого купания. Один подрядчик, фиксированная смета. Москва и область." />
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/catalog-hero.css" />
+  <link rel="stylesheet" href="css/services.css" />
 </head>
 <body>
   <header class="header"></header>
   <script src="js/header.js"></script>
 
   <main>
-    <!-- 1. Первый экран — за что платят и почему вам -->
-    <section class="section-simple services-hero">
+    <!-- 1. Hero -->
+    <section class="services-hero" id="hero">
       <div class="container">
-        <h1 class="services-hero__title">Комплексные услуги по строительству бассейнов под ключ</h1>
-        <p class="section-simple__lead">От проектирования и строительства чаши до запуска и дальнейшего сервиса. Один подрядчик — один результат без перекладывания ответственности.</p>
-        <ul class="services-hero__bullets">
-          <li>Фиксированная смета и сроки в договоре</li>
-          <li>Собственное производство и проверенные технологии</li>
-          <li>Работаем в Москве и Московской области</li>
-          <li>Гарантия на чашу и выполненные работы</li>
-        </ul>
+        <nav class="services-hero__breadcrumbs">
+          <a href="index.html">Главная</a>
+          <span class="services-hero__sep">/</span>
+          <span>Услуги</span>
+        </nav>
+        <h1 class="services-hero__title">Бассейн под ключ — от замера до первого купания</h1>
+        <p class="services-hero__lead">Один подрядчик, фиксированная смета и сроки в договоре. Подберём решение под участок, бюджет и сценарий использования.</p>
         <div class="services-hero__actions">
-          <a href="index.html#callback" class="header__cta">Обсудить проект</a>
+          <a href="#callback" class="btn btn-primary">Обсудить проект</a>
           <p class="services-hero__hint">Бесплатно. Подскажем решение под участок и бюджет.</p>
         </div>
       </div>
     </section>
 
-    <!-- 2. Этапы работ — что именно вы делаете (и за что платят) -->
-    <section class="section-simple">
+    <!-- 2. Включено в «под ключ» -->
+    <section class="services-included" id="included">
       <div class="container">
-        <h2 class="services-section__title">Все этапы строительства бассейна — в одной компании</h2>
-        <div class="cards-grid-4">
-          <article class="card-soft">
-            <h3 class="card-soft__title">Проектирование бассейна</h3>
-            <p class="card-soft__subtitle">Точный проект — основа надёжного бассейна</p>
-            <p class="card-soft__text">Подбираем оптимальное расположение, размеры и комплектацию с учётом участка, бюджета и сценариев использования.</p>
-            <ul class="card-soft__list">
-              <li>Учитываем нормы, грунты и коммуникации</li>
-              <li>Рассчитываем нагрузку, объём и гидравлику</li>
-              <li>Проект = точная смета без «сюрпризов»</li>
-            </ul>
-          </article>
-          <article class="card-soft">
-            <h3 class="card-soft__title">Строительство чаши бассейна</h3>
-            <p class="card-soft__subtitle">Капитальная чаша с гарантией</p>
-            <p class="card-soft__text">Изготавливаем и монтируем чаши с соблюдением технологий, гидроизоляции и контроля качества.</p>
-            <ul class="card-soft__list">
-              <li>Без компромиссов по материалам</li>
-              <li>Контроль на каждом этапе</li>
-              <li>Гарантия на чашу и монтаж</li>
-            </ul>
-          </article>
-          <article class="card-soft">
-            <h3 class="card-soft__title">Монтаж оборудования</h3>
-            <p class="card-soft__subtitle">Не просто установить — настроить под ваш бассейн</p>
-            <p class="card-soft__text">Фильтрация, подогрев, автоматика и аттракционы подбираются под задачи и бюджет.</p>
-            <ul class="card-soft__list">
-              <li>Подбор без переплаты</li>
-              <li>Настройка под реальный режим эксплуатации</li>
-              <li>Надёжная и удобная система управления</li>
-            </ul>
-          </article>
-          <article class="card-soft">
-            <h3 class="card-soft__title">Сервис и реконструкция</h3>
-            <p class="card-soft__subtitle">Поддержка бассейна после запуска</p>
-            <p class="card-soft__text">Обслуживание, модернизация и восстановление существующих бассейнов.</p>
-            <ul class="card-soft__list">
-              <li>Работаем и с новыми, и с действующими объектами</li>
-              <li>Обновление оборудования и инженерных систем</li>
-              <li>Долгосрочное сопровождение</li>
-            </ul>
-          </article>
-        </div>
-        <div class="services-stages-cta">
-          <a href="index.html#callback" class="header__cta">Получить консультацию по этапам</a>
-          <p class="services-stages-cta__hint">Ответим на вопросы и подскажем оптимальный путь.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. Блок «Под ключ» — для сомневающихся -->
-    <section class="section-simple services-key">
-      <div class="container">
-        <h2 class="services-section__title">Работаем под ключ — от идеи до запуска бассейна</h2>
-        <p class="section-simple__lead">Вы можете обратиться к нам на любом этапе. Мы подключимся, возьмём проект под контроль и доведём его до готового, работающего бассейна.</p>
-        <ul class="services-key__list">
-          <li>Вам не нужно координировать подрядчиков</li>
-          <li>Мы отвечаем за результат целиком</li>
-          <li>Вы заранее понимаете бюджет и сроки</li>
+        <h2 class="services-section__title">Включено в «под ключ»</h2>
+        <p class="services-section__sub">Один подрядчик, фиксируем смету и сроки, сдаём объект с инструктажем.</p>
+        <ul class="included-list">
+          <li class="included-item">
+            <span class="included-item__icon" aria-hidden="true"></span>
+            <div>
+              <h3 class="included-item__title">Консультация и замер</h3>
+              <p class="included-item__text">Выезд/созвон, уточняем задачу, ограничения участка, желаемый сценарий (семья/спорт/SPA). Проверяем место под чашу и техпомещение, согласуем сроки.</p>
+            </div>
+          </li>
+          <li class="included-item">
+            <span class="included-item__icon" aria-hidden="true"></span>
+            <div>
+              <h3 class="included-item__title">Проект и смета</h3>
+              <p class="included-item__text">Подбор типа (скиммер/перелив), размеров и глубины. Смета и состав работ фиксируются в договоре (без «всплывающих» допов).</p>
+            </div>
+          </li>
+          <li class="included-item">
+            <span class="included-item__icon" aria-hidden="true"></span>
+            <div>
+              <h3 class="included-item__title">Изготовление чаши и закладные</h3>
+              <p class="included-item__text">Чаша из пищевого полипропилена. Закладные под оборудование (скиммер/форсунки/донный слив/подсветка — по комплектации).</p>
+            </div>
+          </li>
+          <li class="included-item">
+            <span class="included-item__icon" aria-hidden="true"></span>
+            <div>
+              <h3 class="included-item__title">Подготовка основания и монтаж чаши</h3>
+              <p class="included-item__text">Основание, установка, выставление геометрии. Подготовка коммуникаций под подключение.</p>
+            </div>
+          </li>
+          <li class="included-item">
+            <span class="included-item__icon" aria-hidden="true"></span>
+            <div>
+              <h3 class="included-item__title">Монтаж оборудования и обвязка</h3>
+              <p class="included-item__text">Фильтрация, насос, трубопроводы, арматура. Подключение узлов, проверка герметичности.</p>
+            </div>
+          </li>
+          <li class="included-item">
+            <span class="included-item__icon" aria-hidden="true"></span>
+            <div>
+              <h3 class="included-item__title">Пусконаладка</h3>
+              <p class="included-item__text">Запуск системы, первичная настройка режимов/автоматики (если есть). Проверка работы фильтрации и циркуляции.</p>
+            </div>
+          </li>
+          <li class="included-item">
+            <span class="included-item__icon" aria-hidden="true"></span>
+            <div>
+              <h3 class="included-item__title">Сдача объекта и гарантия</h3>
+              <p class="included-item__text">Инструктаж по эксплуатации и уходу. Гарантийные обязательства по договору + рекомендации по обслуживанию.</p>
+            </div>
+          </li>
         </ul>
+        <p class="services-included__note">Состав работ уточняется по выбранной комплектации и условиям участка.</p>
       </div>
     </section>
 
-    <!-- 4. Как проходит работа — снимаем хаос и страхи -->
-    <section class="section-simple">
+    <!-- 3. Дополнительные услуги и цены -->
+    <section class="services-prices" id="prices">
       <div class="container">
-        <h2 class="services-section__title">Прозрачный процесс — без неожиданностей</h2>
-        <ol class="services-process">
-          <li><strong>Консультация и анализ участка</strong> — выезд, замеры, понимание задачи</li>
-          <li><strong>Проектирование и расчёт сметы</strong> — фиксируем стоимость в договоре</li>
-          <li><strong>Производство и строительство чаши</strong> — контроль качества</li>
-          <li><strong>Монтаж и настройка оборудования</strong> — под конкретный бассейн</li>
-          <li><strong>Пусконаладка и передача объекта</strong> — запуск, инструкции, гарантия</li>
-        </ol>
-        <p class="services-process__note">На каждом этапе — контроль и прозрачность.</p>
+        <h2 class="services-section__title">Дополнительные услуги и цены</h2>
+        <div class="price-list">
+          <div class="price-list__row">
+            <span class="price-list__name">Доставка чаши на участок</span>
+            <span class="price-list__dash"></span>
+            <span class="price-list__price">от <span class="price-list__value">4 750</span> <span class="price-list__currency">₽</span></span>
+          </div>
+          <div class="price-list__row">
+            <span class="price-list__name">Базовый монтаж оборудования (насос, фильтр, электрическая часть)</span>
+            <span class="price-list__dash"></span>
+            <span class="price-list__price">от <span class="price-list__value">33 250</span> <span class="price-list__currency">₽</span></span>
+          </div>
+          <div class="price-list__row">
+            <span class="price-list__name">Монтаж электронагревателя / теплообменника (без подключения к котлу)</span>
+            <span class="price-list__dash"></span>
+            <span class="price-list__price">от <span class="price-list__value">9 500</span> <span class="price-list__currency">₽</span></span>
+          </div>
+          <div class="price-list__row">
+            <span class="price-list__name">Монтаж автоматической станции дозирования</span>
+            <span class="price-list__dash"></span>
+            <span class="price-list__price">от <span class="price-list__value">14 250</span> <span class="price-list__currency">₽</span></span>
+          </div>
+          <div class="price-list__row">
+            <span class="price-list__name">Монтаж аттракционов (противоток / гидромассаж / аэроплато / водопад)</span>
+            <span class="price-list__dash"></span>
+            <span class="price-list__price">от <span class="price-list__value">17 100</span> <span class="price-list__currency">₽</span></span>
+          </div>
+          <div class="price-list__row">
+            <span class="price-list__name">Земляные и бетонные работы по установке чаши (без материалов)</span>
+            <span class="price-list__dash"></span>
+            <span class="price-list__price">от <span class="price-list__value">95 000</span> <span class="price-list__currency">₽</span></span>
+          </div>
+        </div>
+        <p class="services-prices__disclaimer">Цена зависит от условий участка и комплектации. Точную смету фиксируем после замера.</p>
+        <div class="services-prices__cta">
+          <a href="#callback" class="btn btn-primary">Получить расчёт услуг</a>
+          <p class="services-prices__cta-hint">Ответим за 15 минут</p>
+        </div>
       </div>
     </section>
 
-    <!-- 5. Почему нам доверяют — доказательства, а не лозунги -->
-    <section class="section-simple">
+    <!-- 4. FAQ -->
+    <section class="services-faq" id="faq">
       <div class="container">
-        <h2 class="services-section__title">Почему нам доверяют строительство бассейнов</h2>
-        <ul class="services-trust">
-          <li>Собственное производство и проверенные технологии</li>
-          <li>Работаем по договору с фиксированной сметой</li>
-          <li>Опыт более 10 лет</li>
-          <li>Реальные объекты в Москве и области</li>
-          <li>Гарантия на чашу и выполненные работы</li>
-        </ul>
+        <h2 class="services-section__title">Частые вопросы</h2>
+        <div class="faq-list" role="list">
+          <div class="faq-item" role="listitem">
+            <button type="button" class="faq-item__trigger" aria-expanded="false" aria-controls="faq-1" id="faq-trigger-1">Сколько времени занимает бассейн «под ключ»?<span class="faq-item__icon" aria-hidden="true">+</span></button>
+            <div class="faq-item__content" id="faq-1" role="region" aria-labelledby="faq-trigger-1"><div class="faq-item__inner">В среднем — до 30 дней, срок зависит от типа чаши, участка и выбранного оборудования. Точный срок фиксируем в договоре после замера.</div></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button type="button" class="faq-item__trigger" aria-expanded="false" aria-controls="faq-2" id="faq-trigger-2">Как формируется цена и почему на сайте «от»?<span class="faq-item__icon" aria-hidden="true">+</span></button>
+            <div class="faq-item__content" id="faq-2" role="region" aria-labelledby="faq-trigger-2"><div class="faq-item__inner">Цена «от» — за базовую комплектацию. Итог зависит от размеров/типа (скиммерный или переливной), подготовки участка и состава оборудования. Перед стартом делаем смету и фиксируем её в договоре.</div></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button type="button" class="faq-item__trigger" aria-expanded="false" aria-controls="faq-3" id="faq-trigger-3">Какая гарантия на чашу и работы?<span class="faq-item__icon" aria-hidden="true">+</span></button>
+            <div class="faq-item__content" id="faq-3" role="region" aria-labelledby="faq-trigger-3"><div class="faq-item__inner">Гарантия прописывается в договоре отдельно на чашу и отдельно на монтаж/работы. Срок зависит от комплектации и условий эксплуатации.</div></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button type="button" class="faq-item__trigger" aria-expanded="false" aria-controls="faq-4" id="faq-trigger-4">Можно ли устанавливать бассейн зимой?<span class="faq-item__icon" aria-hidden="true">+</span></button>
+            <div class="faq-item__content" id="faq-4" role="region" aria-labelledby="faq-trigger-4"><div class="faq-item__inner">Да, но зависит от погодных условий и вида работ на участке. Подберём технологию и график, чтобы не потерять качество.</div></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button type="button" class="faq-item__trigger" aria-expanded="false" aria-controls="faq-5" id="faq-trigger-5">Что нужно подготовить на участке до начала работ?<span class="faq-item__icon" aria-hidden="true">+</span></button>
+            <div class="faq-item__content" id="faq-5" role="region" aria-labelledby="faq-trigger-5"><div class="faq-item__inner">Обеспечить доступ техники/материалов, согласовать место размещения, при необходимости — подготовить точку подключения электричества и воды. Остальное уточняем на замере.</div></div>
+          </div>
+          <div class="faq-item" role="listitem">
+            <button type="button" class="faq-item__trigger" aria-expanded="false" aria-controls="faq-6" id="faq-trigger-6">Нужен ли сервис после запуска?<span class="faq-item__icon" aria-hidden="true">+</span></button>
+            <div class="faq-item__content" id="faq-6" role="region" aria-labelledby="faq-trigger-6"><div class="faq-item__inner">Обычно — да: настройка режимов, обслуживание фильтрации и химии, сезонная консервация. Можем взять сопровождение или дать регламент.</div></div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 6. Финальный дожим — для тех, кто «ещё думает» -->
-    <section class="services-cta-mid">
-      <div class="container">
-        <h2 class="services-cta-mid__title">Не знаете, с чего начать?</h2>
-        <p class="services-cta-mid__sub">Ответим на вопросы, оценим задачу и предложим оптимальное решение под ваш участок и бюджет.</p>
-        <a href="index.html#callback" class="header__cta">Получить консультацию</a>
-        <p class="services-cta-mid__hint">Бесплатно. Без обязательств.</p>
-      </div>
-    </section>
-
-    <!-- 7. Нижний лид-форма-блок -->
+    <!-- 5. Callback -->
     <section class="footer-cta callback callback--blue" id="callback">
       <div class="container">
         <div class="callback__glass">
@@ -183,10 +215,10 @@
           <p style="margin:4px 0 0;">info@kalipso.ru</p>
         </div>
       </div>
-      <div class="footer__bottom">
-        © 2025 KALIPSO. Проектирование и строительство бассейнов. Москва и область.
-      </div>
+      <div class="footer__bottom">© 2025 KALIPSO. Проектирование и строительство бассейнов. Москва и область.</div>
     </div>
   </footer>
+
+  <script src="js/services-accordion.js"></script>
 </body>
 </html>

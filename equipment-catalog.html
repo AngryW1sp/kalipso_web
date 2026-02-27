@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/catalog-hero.css" />
+  <link rel="stylesheet" href="css/equipment-catalog.css" />
 </head>
 <body>
   <header class="header"></header>
@@ -17,31 +18,101 @@
         <nav class="equipment-catalog-page__breadcrumbs" id="breadcrumbs">
           <a href="index.html">Главная</a> / <a href="equipment.html">Оборудование</a> / <span id="breadcrumb-category">Фильтрация</span>
         </nav>
-        <h1 class="services-section__title" id="category-title">Каталог: Фильтрация</h1>
-
-        <div id="products-filtration" class="equipment-catalog-page__products">
-          <div class="equipment-product-grid" id="grid-filtration"></div>
-          <p class="equipment-catalog-page__empty" id="empty-filtration" style="display:none;">В этой категории пока нет товаров. <a href="index.html#callback">Напишите нам</a> — подберём оборудование под ваш бассейн.</p>
+        <div class="equipment-catalog-page__header">
+          <h1 class="equipment-catalog-page__title" id="category-title">Фильтрация</h1>
+          <p class="equipment-catalog-page__subtitle" id="category-subtitle">Фильтры и установки. Подбор по объёму и гидравлике.</p>
         </div>
 
-        <div id="products-heating" class="equipment-catalog-page__products" hidden>
-          <div class="equipment-product-grid" id="grid-heating"></div>
-          <p class="equipment-catalog-page__empty" id="empty-heating" style="display:none;">В этой категории пока нет товаров. <a href="index.html#callback">Напишите нам</a> — подберём оборудование под ваш бассейн.</p>
+        <div class="equipment-catalog-sticky-cta">
+          <p class="equipment-catalog-sticky-cta__text" id="sticky-cta-text">Не уверены? Подберём оборудование под объём чаши за 15 минут.</p>
+          <a href="#callback" class="btn btn-primary">Подобрать оборудование</a>
         </div>
 
-        <div id="products-automation" class="equipment-catalog-page__products" hidden>
-          <div class="equipment-product-grid" id="grid-automation"></div>
-          <p class="equipment-catalog-page__empty" id="empty-automation" style="display:none;">В этой категории пока нет товаров. <a href="index.html#callback">Напишите нам</a> — подберём оборудование под ваш бассейн.</p>
-        </div>
+        <div class="equipment-catalog-layout">
+          <aside class="equipment-filters" id="filters-sidebar" role="region" aria-label="Фильтры каталога">
+            <h3 class="equipment-filters__title">Фильтры</h3>
+            <div class="equipment-filters__group">
+              <label class="equipment-filters__label" for="filter-brand">Бренд</label>
+              <select id="filter-brand" class="equipment-filters__select">
+                <option value="">Все бренды</option>
+              </select>
+            </div>
+            <div class="equipment-filters__group">
+              <label class="equipment-filters__label" for="filter-diameter">Диаметр (Ø)</label>
+              <select id="filter-diameter" class="equipment-filters__select">
+                <option value="">Все</option>
+              </select>
+            </div>
+            <div class="equipment-filters__group">
+              <label class="equipment-filters__label" for="filter-connection">Подключение</label>
+              <select id="filter-connection" class="equipment-filters__select">
+                <option value="">Все</option>
+              </select>
+            </div>
+            <div class="equipment-filters__group">
+              <label class="equipment-filters__label" for="filter-perf">Производительность</label>
+              <select id="filter-perf" class="equipment-filters__select">
+                <option value="">Все</option>
+              </select>
+            </div>
+            <div class="equipment-filters__group">
+              <label class="equipment-filters__label" for="filter-type">Тип</label>
+              <select id="filter-type" class="equipment-filters__select">
+                <option value="">Все</option>
+              </select>
+            </div>
+            <div class="equipment-filters__group">
+              <label class="equipment-filters__label" for="filter-price">Цена</label>
+              <select id="filter-price" class="equipment-filters__select">
+                <option value="">Все</option>
+              </select>
+            </div>
+          </aside>
 
-        <div id="products-attractions" class="equipment-catalog-page__products" hidden>
-          <div class="equipment-product-grid" id="grid-attractions"></div>
-          <p class="equipment-catalog-page__empty" id="empty-attractions" style="display:none;">В этой категории пока нет товаров. <a href="index.html#callback">Напишите нам</a> — подберём оборудование под ваш бассейн.</p>
-        </div>
+          <div class="equipment-catalog-main">
+            <button type="button" class="equipment-filters-toggle" id="filters-toggle" aria-expanded="false" aria-controls="filters-sidebar">
+              Фильтры
+            </button>
+            <div class="equipment-catalog-bar">
+              <span class="equipment-catalog-count" id="products-count">Найдено: 0</span>
+              <div class="equipment-catalog-sort">
+                <select id="sort-select">
+                  <option value="popular">Популярные</option>
+                  <option value="price-asc">Дешевле</option>
+                  <option value="price-desc">Дороже</option>
+                  <option value="perf">По производительности</option>
+                </select>
+              </div>
+              <div class="equipment-catalog-chips" id="chips-row">
+                <button type="button" class="equipment-catalog-chip-reset" id="chips-reset" style="display:none;">Сбросить</button>
+              </div>
+            </div>
 
-        <div class="equipment-categories__cta" style="margin-top: 32px;">
-          <a href="equipment.html" class="header__cta">Все категории оборудования</a>
-          <a href="index.html#callback" class="header__cta" style="margin-left: 12px;">Подобрать оборудование под мой бассейн</a>
+            <div id="products-filtration" class="equipment-catalog-page__products">
+              <div class="equipment-product-grid" id="grid-filtration"></div>
+              <p class="equipment-catalog-page__empty" id="empty-filtration" style="display:none;">В этой категории пока нет товаров. <a href="#callback">Напишите нам</a> — подберём оборудование под ваш бассейн.</p>
+            </div>
+
+            <div id="products-heating" class="equipment-catalog-page__products" hidden>
+              <div class="equipment-product-grid" id="grid-heating"></div>
+              <p class="equipment-catalog-page__empty" id="empty-heating" style="display:none;">В этой категории пока нет товаров. <a href="#callback">Напишите нам</a> — подберём оборудование под ваш бассейн.</p>
+            </div>
+
+            <div id="products-automation" class="equipment-catalog-page__products" hidden>
+              <div class="equipment-product-grid" id="grid-automation"></div>
+              <p class="equipment-catalog-page__empty" id="empty-automation" style="display:none;">В этой категории пока нет товаров. <a href="#callback">Напишите нам</a> — подберём оборудование под ваш бассейн.</p>
+            </div>
+
+            <div id="products-attractions" class="equipment-catalog-page__products" hidden>
+              <div class="equipment-product-grid" id="grid-attractions"></div>
+              <p class="equipment-catalog-page__empty" id="empty-attractions" style="display:none;">В этой категории пока нет товаров. <a href="#callback">Напишите нам</a> — подберём оборудование под ваш бассейн.</p>
+            </div>
+
+            <div class="equipment-catalog-cta">
+              <a href="#callback" class="btn btn-primary">Подобрать оборудование под мой бассейн</a>
+              <a href="equipment.html" class="btn btn-outline">Все категории оборудования</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -102,55 +173,252 @@
     (function() {
       var API_BASE = window.EQUIPMENT_API_BASE !== undefined ? window.EQUIPMENT_API_BASE : 'http://127.0.0.1:8000';
       var catKeys = ['filtration', 'heating', 'automation', 'attractions'];
+      var subTitles = window.EQUIPMENT_CATEGORY_SUBTITLES || {};
+
+      function esc(s) { return (s || '').replace(/</g, '&lt;').replace(/"/g, '&quot;'); }
+      function formatPrice(val) {
+        if (!val) return '';
+        var s = String(val).replace(/\s/g, '');
+        if (/^\d+$/.test(s)) {
+          return s.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+        }
+        return val;
+      }
+
+      function parseProductFilters(p) {
+        var d = null, c = null, perf = null, type = 'filter';
+        var text = [].concat(p.cardSpecs || [], [p.model || '', p.shortTitle || '', p.title || '']).join(' ');
+        if (/\Ø(\d+)/.test(text)) d = text.match(/\Ø(\d+)/)[1];
+        if (/Подкл\.\s*([^\s·]+)/.test(text)) c = text.match(/Подкл\.\s*([^\s·]+)/)[1].trim();
+        else if (/(\d+)\s*мм/.test(text)) c = text.match(/(\d+)\s*мм/)[0];
+        else if (/1½|1½″/.test(text)) c = '1½″';
+        if (/(\d+)\s*м³\/ч/.test(text)) perf = text.match(/(\d+)\s*м³\/ч/)[1];
+        if (/установка/.test(text)) type = 'filter-unit';
+        else if (/без насоса/.test(text)) type = 'without-pump';
+        else if (/с насосом/.test(text)) type = 'with-pump';
+        return { diameter: d, connection: c, perf: perf, type: type };
+      }
+
+      function buildCard(p) {
+        var title = p.shortTitle || p.title || '';
+        var model = p.model || '';
+        var specs = p.cardSpecs || [];
+        var img = p.image || '';
+        var imgAlt = p.imageAlt || title;
+        var href = 'equipment-product.html?id=' + encodeURIComponent(p.id);
+        var hasPrice = p.price && String(p.price).trim();
+        var currency = p.priceCurrency || '₽';
+        var priceNum = hasPrice ? formatPrice(p.price) : '';
+        var priceNote = p.priceNote || '';
+        var specsHtml = specs.length ? '<div class="equipment-product-card__specs">' + specs.map(function(s) {
+          return '<span class="equipment-product-card__spec">' + esc(s) + '</span>';
+        }).join('') + '</div>' : '';
+        var priceHtml;
+        if (hasPrice) {
+          priceHtml = '<div class="equipment-product-card__price">' + priceNum + '<span class="equipment-product-card__currency">' + esc(currency) + '</span></div>';
+        } else {
+          priceHtml = '<div class="equipment-product-card__price-request">Цена по запросу</div>' +
+            (priceNote ? '<span class="equipment-product-card__price-note">' + esc(priceNote) + '</span>' : '');
+        }
+        return '<div class="equipment-product-card">' +
+          '<div class="equipment-product-card__image">' +
+            '<img src="' + esc(img) + '" alt="' + esc(imgAlt) + '" loading="lazy" />' +
+          '</div>' +
+          '<div class="equipment-product-card__body">' +
+            '<h4 class="equipment-product-card__title">' + esc(title) + '</h4>' +
+            (model ? '<p class="equipment-product-card__model">' + esc(model) + '</p>' : '') +
+            specsHtml +
+            '<div class="equipment-product-card__price-wrap">' + priceHtml + '</div>' +
+            '<div class="equipment-product-card__actions">' +
+              '<a href="#callback" class="equipment-product-card__cta">Уточнить и подобрать</a>' +
+              '<a href="' + href + '" class="equipment-product-card__more">Подробнее</a>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }
+
+      function getFilterVal(p, key, parsed) {
+        if (key === 'brand') return p.brand || null;
+        if (key === 'diameter') return parsed.diameter;
+        if (key === 'connection') return parsed.connection;
+        if (key === 'perf') return parsed.perf;
+        if (key === 'type') return parsed.type;
+        if (key === 'price') return p.price && String(p.price).trim() ? 'yes' : 'no';
+        return null;
+      }
+
+      function matchesFilters(p, filters, parsed) {
+        for (var k in filters) {
+          if (!filters[k]) continue;
+          var fv = filters[k];
+          var pv = getFilterVal(p, k, parsed);
+          if (k === 'price') {
+            if (fv === 'yes' && !pv) return false;
+            if (fv === 'no' && pv) return false;
+          } else if (pv !== fv) return false;
+        }
+        return true;
+      }
+
+      function sortProducts(list, sortBy, parsedMap) {
+        var arr = list.slice();
+        if (sortBy === 'price-asc') {
+          arr.sort(function(a, b) {
+            var pa = parseFloat(String(a.price || '').replace(/\s/g, '')) || Infinity;
+            var pb = parseFloat(String(b.price || '').replace(/\s/g, '')) || Infinity;
+            return pa - pb;
+          });
+        } else if (sortBy === 'price-desc') {
+          arr.sort(function(a, b) {
+            var pa = parseFloat(String(a.price || '').replace(/\s/g, '')) || 0;
+            var pb = parseFloat(String(b.price || '').replace(/\s/g, '')) || 0;
+            return pb - pa;
+          });
+        } else if (sortBy === 'perf') {
+          arr.sort(function(a, b) {
+            var pa = parseInt(parsedMap[a.id] && parsedMap[a.id].perf, 10) || 0;
+            var pb = parseInt(parsedMap[b.id] && parsedMap[b.id].perf, 10) || 0;
+            return pb - pa;
+          });
+        }
+        return arr;
+      }
+
+      function render() {
+        var cat = (new URLSearchParams(window.location.search).get('cat') || 'filtration').toLowerCase();
+        var filters = {
+          brand: document.getElementById('filter-brand') && document.getElementById('filter-brand').value || '',
+          diameter: document.getElementById('filter-diameter') && document.getElementById('filter-diameter').value || '',
+          connection: document.getElementById('filter-connection') && document.getElementById('filter-connection').value || '',
+          perf: document.getElementById('filter-perf') && document.getElementById('filter-perf').value || '',
+          type: document.getElementById('filter-type') && document.getElementById('filter-type').value || '',
+          price: document.getElementById('filter-price') && document.getElementById('filter-price').value || ''
+        };
+        var sortBy = document.getElementById('sort-select') && document.getElementById('sort-select').value || 'popular';
+        var products = window.EQUIPMENT_PRODUCTS || [];
+        var list = products.filter(function(p) { return p.category === cat; });
+        var parsedMap = {};
+        list.forEach(function(p) { parsedMap[p.id] = parseProductFilters(p); });
+        var filtered = list.filter(function(p) { return matchesFilters(p, filters, parsedMap[p.id]); });
+        var sorted = sortProducts(filtered, sortBy, parsedMap);
+
+        var grid = document.getElementById('grid-' + cat);
+        var emptyEl = document.getElementById('empty-' + cat);
+        if (grid) {
+          grid.innerHTML = '';
+          sorted.forEach(function(p) { grid.insertAdjacentHTML('beforeend', buildCard(p)); });
+        }
+        if (emptyEl) {
+          emptyEl.style.display = sorted.length ? 'none' : 'block';
+        }
+        if (grid) grid.style.display = sorted.length ? '' : 'none';
+
+        var countEl = document.getElementById('products-count');
+        if (countEl) countEl.textContent = 'Найдено: ' + sorted.length;
+
+        var chipsRow = document.getElementById('chips-row');
+        var resetBtn = document.getElementById('chips-reset');
+        if (chipsRow) {
+          var active = Object.keys(filters).filter(function(k) { return filters[k]; });
+          chipsRow.querySelectorAll('.equipment-catalog-chip').forEach(function(n) { n.remove(); });
+          if (resetBtn) resetBtn.style.display = active.length ? 'inline' : 'none';
+          var labels = { brand: 'Бренд', diameter: 'Ø', connection: 'Подкл.', perf: 'Пр-сть', type: 'Тип', price: 'Цена' };
+          var typeLabels = { 'filter': 'Фильтр', 'filter-unit': 'Установка', 'with-pump': 'С насосом', 'without-pump': 'Без насоса' };
+          var priceLabels = { yes: 'С ценой', no: 'По запросу' };
+          active.forEach(function(k) {
+            var chip = document.createElement('span');
+            chip.className = 'equipment-catalog-chip equipment-catalog-chip--active';
+            var val = filters[k];
+            if (k === 'type') val = typeLabels[val] || val;
+            if (k === 'price') val = priceLabels[val] || val;
+            chip.textContent = labels[k] + ': ' + val;
+            chipsRow.appendChild(chip);
+          });
+        }
+      }
+
+      function fillFilterOptions(cat, products) {
+        var list = products.filter(function(p) { return p.category === cat; });
+        var parsedMap = {};
+        list.forEach(function(p) { parsedMap[p.id] = parseProductFilters(p); });
+        var brands = {}, diameters = {}, connections = {}, perfs = {}, types = {};
+        list.forEach(function(p) {
+          var p0 = parsedMap[p.id];
+          if (p.brand) brands[p.brand] = 1;
+          if (p0.diameter) diameters[p0.diameter] = 1;
+          if (p0.connection) connections[p0.connection] = 1;
+          if (p0.perf) perfs[p0.perf] = 1;
+          types[p0.type] = 1;
+        });
+        function fillSel(id, opts, labels) {
+          var sel = document.getElementById(id);
+          if (!sel) return;
+          var first = sel.querySelector('option');
+          sel.innerHTML = first ? first.outerHTML : '';
+          Object.keys(opts).sort().forEach(function(v) {
+            var o = document.createElement('option');
+            o.value = v;
+            o.textContent = labels && labels[v] ? labels[v] : v;
+            sel.appendChild(o);
+          });
+        }
+        var typeLabels = { 'filter': 'Фильтр', 'filter-unit': 'Фильтровальная установка', 'with-pump': 'С насосом', 'without-pump': 'Без насоса' };
+        fillSel('filter-brand', brands);
+        fillSel('filter-diameter', diameters);
+        fillSel('filter-connection', connections);
+        fillSel('filter-perf', perfs);
+        fillSel('filter-type', types, typeLabels);
+        fillSel('filter-price', { yes: 'С ценой', no: 'По запросу' }, { yes: 'С ценой', no: 'По запросу' });
+      }
 
       function runWith(categories, products) {
         categories = categories || {};
         products = products || [];
-
-      // Заполняем сетки товаров по категориям
-      catKeys.forEach(function(key) {
-        var list = products.filter(function(p) { return p.category === key; });
-        var grid = document.getElementById('grid-' + key);
-        var emptyEl = document.getElementById('empty-' + key);
-        if (!grid) return;
-        if (list.length === 0) {
-          grid.style.display = 'none';
-          if (emptyEl) emptyEl.style.display = 'block';
+        var params = new URLSearchParams(window.location.search);
+        var cat = (params.get('cat') || 'filtration').toLowerCase();
+        if (!categories[cat]) {
+          window.location.replace('equipment.html');
           return;
         }
-        grid.style.display = '';
-        if (emptyEl) emptyEl.style.display = 'none';
-        list.forEach(function(p) {
-          var a = document.createElement('a');
-          a.className = 'equipment-product-card';
-          a.href = 'equipment-product.html?id=' + encodeURIComponent(p.id);
-          a.innerHTML = '<div class="equipment-product-card__image">' +
-            '<img src="' + (p.image || '').replace(/"/g, '&quot;') + '" alt="' + (p.imageAlt || p.title || '').replace(/"/g, '&quot;') + '" loading="lazy" />' +
-            '</div><div class="equipment-product-card__body">' +
-            '<h4 class="equipment-product-card__title">' + (p.title || '').replace(/</g, '&lt;') + '</h4>' +
-            '<p class="equipment-product-card__price">' + (p.price || '').replace(/</g, '&lt;') + '</p>' +
-            '</div>';
-          grid.appendChild(a);
+        var title = categories[cat];
+        document.title = title + ' — KALIPSO';
+        var breadcrumbEl = document.getElementById('breadcrumb-category');
+        var titleEl = document.getElementById('category-title');
+        var subEl = document.getElementById('category-subtitle');
+        if (breadcrumbEl) breadcrumbEl.textContent = title;
+        if (titleEl) titleEl.textContent = title;
+        if (subEl) subEl.textContent = subTitles[cat] || 'Оборудование для бассейнов.';
+        var stickyTexts = { filtration: 'Не уверены? Подберём фильтрацию под объём чаши за 15 минут.', heating: 'Подберём подогрев под объём и режим бассейна.', automation: 'Подберём автоматику и дозирование под вашу схему.', attractions: 'Подберём аттракционы под сценарий и бюджет.' };
+        var stickyEl = document.getElementById('sticky-cta-text');
+        if (stickyEl) stickyEl.textContent = stickyTexts[cat] || 'Не уверены? Подберём оборудование под объём чаши за 15 минут.';
+        document.querySelectorAll('.equipment-catalog-page__products').forEach(function(p) {
+          p.hidden = p.id !== 'products-' + cat;
         });
-      });
+        fillFilterOptions(cat, products);
+        render();
 
-      var params = new URLSearchParams(window.location.search);
-      var cat = (params.get('cat') || 'filtration').toLowerCase();
-      if (!categories[cat]) {
-        window.location.replace('equipment.html');
-        return;
-      }
-      var title = categories[cat];
-      document.title = 'Каталог: ' + title + ' — KALIPSO';
-      var breadcrumbEl = document.getElementById('breadcrumb-category');
-      var titleEl = document.getElementById('category-title');
-      if (breadcrumbEl) breadcrumbEl.textContent = title;
-      if (titleEl) titleEl.textContent = 'Каталог: ' + title;
-      var panel = document.getElementById('products-' + cat);
-      if (panel) panel.hidden = false;
-      document.querySelectorAll('.equipment-catalog-page__products').forEach(function(p) {
-        if (p.id !== 'products-' + cat) p.hidden = true;
-      });
+        ['filter-brand','filter-diameter','filter-connection','filter-perf','filter-type','filter-price','sort-select'].forEach(function(id) {
+          var el = document.getElementById(id);
+          if (el) el.addEventListener('change', render);
+        });
+        var toggleBtn = document.getElementById('filters-toggle');
+        var filtersEl = document.getElementById('filters-sidebar');
+        if (toggleBtn && filtersEl) {
+          toggleBtn.addEventListener('click', function() {
+            var open = filtersEl.classList.toggle('is-open');
+            toggleBtn.setAttribute('aria-expanded', open);
+          });
+        }
+        var resetBtn = document.getElementById('chips-reset');
+        if (resetBtn) {
+          resetBtn.addEventListener('click', function() {
+            ['filter-brand','filter-diameter','filter-connection','filter-perf','filter-type','filter-price'].forEach(function(id) {
+              var el = document.getElementById(id);
+              if (el) el.value = '';
+            });
+            render();
+          });
+        }
       }
 
       if (API_BASE && typeof fetch === 'function') {

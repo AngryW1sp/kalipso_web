@@ -1,0 +1,231 @@
+/**
+ * KALIPSO — страница «Оборудование»
+ * Премиальная витрина, единый стиль
+ */
+
+/* Заголовки секций */
+.equipment-section__title {
+  margin: 0 0 var(--s-2);
+  padding-bottom: var(--s-2);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+  border-bottom: 3px solid var(--gold-accent);
+  display: inline-block;
+}
+
+/* ========== 1. Hero ========== */
+.equipment-hero {
+  padding: 56px 0 64px;
+  background: var(--bg);
+}
+.equipment-hero__title {
+  margin: 0 0 var(--s-4);
+  font-size: var(--fs-h1);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.equipment-hero__lead {
+  margin: 0 0 var(--s-5);
+  font-size: var(--fs-body);
+  line-height: var(--lh-loose);
+  color: var(--muted);
+  max-width: 640px;
+}
+.equipment-hero__bullets {
+  margin: 0 0 var(--s-5);
+  padding: 0;
+  list-style: none;
+}
+.equipment-hero__bullets li {
+  position: relative;
+  padding-left: 1.5em;
+  margin-bottom: var(--s-2);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+.equipment-hero__bullets li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-accent);
+}
+.equipment-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+}
+.equipment-hero__secondary {
+  font-weight: 600;
+  color: var(--brand-blue);
+  transition: color var(--transition);
+}
+.equipment-hero__secondary:hover {
+  color: var(--gold-accent);
+}
+.equipment-hero__hint {
+  width: 100%;
+  margin: var(--s-2) 0 0;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* ========== 2. Каталог — премиальная витрина ========== */
+.equipment-catalog {
+  padding: 56px 0 64px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+.equipment-catalog__intro {
+  margin: 0 0 var(--s-6);
+  font-size: 0.9375rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+.equipment-catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-5);
+}
+@media (max-width: 900px) {
+  .equipment-catalog__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .equipment-catalog__grid { grid-template-columns: 1fr; }
+}
+.equipment-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: var(--s-5);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  min-height: 180px;
+}
+.equipment-card:hover {
+  border-color: var(--brand-blue);
+  box-shadow: var(--shadow-sm);
+}
+.equipment-card__icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--s-4);
+  color: var(--brand-blue);
+}
+.equipment-card__icon svg {
+  width: 100%;
+  height: 100%;
+}
+.equipment-card:hover .equipment-card__icon {
+  color: var(--gold-accent);
+}
+.equipment-card__title {
+  margin: 0 0 var(--s-2);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.equipment-card__desc {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ========== 3. Почему комплексно ========== */
+.equipment-why {
+  padding: 56px 0 64px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+.equipment-why .equipment-section__title {
+  margin-bottom: var(--s-6);
+}
+.equipment-why__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-5);
+}
+@media (max-width: 900px) {
+  .equipment-why__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 500px) {
+  .equipment-why__grid { grid-template-columns: 1fr; }
+}
+.equipment-why__card .card-soft__title {
+  min-height: auto;
+}
+.equipment-why__cta {
+  margin: var(--s-6) 0 0;
+}
+.equipment-why__cta .btn-outline:hover {
+  border-color: var(--gold-accent);
+  color: var(--gold-accent);
+}
+
+/* ========== 4. Почему KALIPSO ========== */
+.equipment-trust {
+  padding: 56px 0 64px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+.equipment-trust__list {
+  margin: 0;
+  padding: 0 0 0 1.3em;
+  max-width: 640px;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.equipment-trust__list li {
+  margin-bottom: var(--s-3);
+  position: relative;
+}
+.equipment-trust__list li::before {
+  content: "";
+  position: absolute;
+  left: -1.2em;
+  top: 0.5em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold-accent);
+}
+
+/* ========== 5. Как работает система ========== */
+.equipment-systems {
+  padding: 56px 0 64px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+.equipment-systems__intro {
+  margin: 0 0 var(--s-5);
+  font-size: 0.9375rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+.equipment-systems__list {
+  margin: 0;
+  padding: 0 0 0 1.3em;
+  max-width: 560px;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.equipment-systems__list li {
+  margin-bottom: var(--s-2);
+}

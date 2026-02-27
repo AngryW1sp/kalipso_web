@@ -1,0 +1,183 @@
+/**
+ * KALIPSO — страница «Контакты»
+ * Карта, адрес, кликабельные контакты, WhatsApp/Telegram
+ */
+
+.contacts-page {
+  padding: 56px 0 64px;
+}
+.contacts-page__title {
+  margin: 0 0 var(--s-2);
+  font-size: var(--fs-h1);
+  font-weight: 800;
+  color: var(--text);
+}
+.contacts-page__lead {
+  margin: 0 0 var(--s-6);
+  font-size: var(--fs-body);
+  line-height: var(--lh-loose);
+  color: var(--muted);
+  max-width: 600px;
+}
+
+.contacts-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: var(--s-8);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .contacts-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.contacts-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-6);
+}
+
+.contacts-section__title {
+  margin: 0 0 var(--s-4);
+  padding-bottom: var(--s-2);
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 3px solid var(--gold-accent);
+  display: inline-block;
+}
+
+.contacts-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.contacts-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+}
+.contacts-item__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  color: var(--gold-accent);
+}
+.contacts-item__icon svg {
+  width: 100%;
+  height: 100%;
+}
+.contacts-link {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.contacts-link:hover {
+  color: var(--brand-blue-700);
+}
+.contacts-hint {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.contacts-messengers {
+  display: flex;
+  gap: var(--s-2);
+  margin-top: var(--s-4);
+}
+.contacts-messenger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-sm);
+  background: var(--bg-100);
+  color: var(--text);
+  transition: background var(--transition), color var(--transition);
+}
+.contacts-messenger:hover {
+  background: var(--gold-accent);
+  color: #1a1508;
+}
+.contacts-messenger svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contacts-hours {
+  margin: 0 0 var(--s-2);
+  font-size: 0.9375rem;
+  color: var(--text);
+  line-height: 1.5;
+}
+.contacts-hours:last-of-type {
+  margin-bottom: 0;
+}
+.contacts-hours--accent {
+  color: var(--brand-blue);
+  font-weight: 600;
+}
+
+/* Карта и адрес */
+.contacts-map-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.contacts-address {
+  margin: 0 0 var(--s-2);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.contacts-address-hint {
+  margin: 0 0 var(--s-4);
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.contacts-map-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-bottom: var(--s-4);
+}
+.contacts-map-btn:hover {
+  border-color: var(--gold-accent);
+  color: var(--gold-accent);
+}
+.contacts-logistics {
+  margin: 0 0 var(--s-2);
+  font-size: 0.875rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.contacts-zone {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.contacts-map-wrap {
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Юр. информация */
+.contacts-legal {
+  margin-top: var(--s-8);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--border);
+}
+.contacts-legal p {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--muted);
+}

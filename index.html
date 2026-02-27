@@ -37,7 +37,7 @@
             </li>
           </ul>
           <div class="hero-main__actions">
-            <a href="index.html#callback" class="hero-main__cta">Рассчитать стоимость бассейна</a>
+            <a href="#callback" class="hero-main__cta">Рассчитать стоимость бассейна</a>
             <a href="catalog.html#pool-catalog-grid" class="hero-main__secondary">Готовые чаши в наличии</a>
           </div>
           <div class="hero-main__trust">
@@ -54,35 +54,16 @@
       </div>
     </section>
 
-    <!-- 2. Выберите сценарий -->
-    <section class="index-section index-scenarios">
-      <div class="container">
-        <h2 class="index-section__title">Выберите сценарий</h2>
-        <div class="cards-grid-4">
-          <article class="card-soft">
-            <h3 class="card-soft__title">Рассчитать индивидуальный бассейн</h3>
-            <p class="card-soft__text">Для тех, у кого уже есть участок и примерные размеры. Подберём форму, глубину и оборудование под ваш сценарий.</p>
-            <a href="index.html#callback" class="section-block__link">Отправить параметры для расчёта →</a>
-          </article>
-          <article class="card-soft">
-            <h3 class="card-soft__title">Посмотреть готовые чаши</h3>
-            <p class="card-soft__text">Если хотите ускорить запуск. Готовые типовые чаши в наличии — с понятными размерами и ценой.</p>
-            <a href="catalog.html#pool-catalog-grid" class="section-block__link">Открыть каталог готовых чаш →</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. Популярные решения (данные из POOLS_DATA) -->
+    <!-- 2. Популярные решения (данные из POOLS_DATA) -->
     <section class="index-section index-pools">
       <div class="container">
         <h2 class="index-section__title">Популярные решения</h2>
         <p class="index-section__sub">Типовые размеры чаш в наличии — от компактных до семейных форматов.</p>
-        <div class="pool-grid" id="index-popular-pools"></div>
+        <div class="index-pool-grid" id="index-popular-pools"></div>
       </div>
     </section>
 
-    <!-- 4. Доверие + Процесс -->
+    <!-- 3. Доверие + Процесс -->
     <section class="index-section index-trust-process">
       <div class="container">
         <h2 class="index-section__title">Почему нам доверяют</h2>
@@ -143,54 +124,78 @@
       </div>
     </section>
 
-    <!-- 5. Галерея — слайдер -->
+    <!-- 4. Галерея — слайдер -->
     <section class="index-section index-portfolio">
       <div class="container">
         <h2 class="index-section__title">Примеры наших бассейнов</h2>
         <p class="index-section__sub">Реальные объекты KALIPSO — уличные и внутренние бассейны.</p>
-        <div class="portfolio-slider">
+        <div class="portfolio-slider" role="region" aria-label="Примеры бассейнов">
           <div class="swiper portfolio-swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
                 <figure class="portfolio-slide">
                   <img src="assets/pools/IMG_20220714_231241_122.jpg" alt="Уличный бассейн" loading="lazy" />
-                  <figcaption>Объект: частный дом, МО · Размер: 3×6 · Срок: 30 дней</figcaption>
+                  <figcaption class="portfolio-slide__cap">
+                    <span class="portfolio-slide__line">Объект: частный дом, МО</span>
+                    <span class="portfolio-slide__line">Размер: 3×6</span>
+                    <span class="portfolio-slide__line">Срок: 30 дней</span>
+                  </figcaption>
                 </figure>
               </div>
               <div class="swiper-slide">
                 <figure class="portfolio-slide">
                   <img src="assets/pools/IMG_20220721_190430_575.jpg" alt="Бассейн во дворе" loading="lazy" />
-                  <figcaption>Объект: участок с террасой · Размер: 3×5 · Срок: 28 дней</figcaption>
+                  <figcaption class="portfolio-slide__cap">
+                    <span class="portfolio-slide__line">Объект: участок с террасой</span>
+                    <span class="portfolio-slide__line">Размер: 3×5</span>
+                    <span class="portfolio-slide__line">Срок: 28 дней</span>
+                  </figcaption>
                 </figure>
               </div>
               <div class="swiper-slide">
                 <figure class="portfolio-slide">
                   <img src="assets/pools/IMG_20220909_140915_617.jpg" alt="Бассейн 3×6" loading="lazy" />
-                  <figcaption>Объект: частный дом · Размер: 3×6 · Срок: 30 дней</figcaption>
+                  <figcaption class="portfolio-slide__cap">
+                    <span class="portfolio-slide__line">Объект: частный дом</span>
+                    <span class="portfolio-slide__line">Размер: 3×6</span>
+                    <span class="portfolio-slide__line">Срок: 30 дней</span>
+                  </figcaption>
                 </figure>
               </div>
               <div class="swiper-slide">
                 <figure class="portfolio-slide">
                   <img src="assets/pools/IMG_20220730_000036_585.jpg" alt="Бассейн с подсветкой" loading="lazy" />
-                  <figcaption>Объект: МО · Размер: 3×7 · Срок: 32 дня</figcaption>
+                  <figcaption class="portfolio-slide__cap">
+                    <span class="portfolio-slide__line">Объект: МО</span>
+                    <span class="portfolio-slide__line">Размер: 3×7</span>
+                    <span class="portfolio-slide__line">Срок: 32 дня</span>
+                  </figcaption>
                 </figure>
               </div>
               <div class="swiper-slide">
                 <figure class="portfolio-slide">
                   <img src="assets/pools/IMG_20230520_122716_960.jpg" alt="Современный бассейн" loading="lazy" />
-                  <figcaption>Объект: частный дом · Размер: 3×9 · Срок: 35 дней</figcaption>
+                  <figcaption class="portfolio-slide__cap">
+                    <span class="portfolio-slide__line">Объект: частный дом</span>
+                    <span class="portfolio-slide__line">Размер: 3×9</span>
+                    <span class="portfolio-slide__line">Срок: 35 дней</span>
+                  </figcaption>
                 </figure>
               </div>
               <div class="swiper-slide">
                 <figure class="portfolio-slide">
                   <img src="assets/pools/IMG_20220714_231241_274.jpg" alt="Компактный бассейн" loading="lazy" />
-                  <figcaption>Объект: компактный участок · Размер: 2×3 · Срок: 20 дней</figcaption>
+                  <figcaption class="portfolio-slide__cap">
+                    <span class="portfolio-slide__line">Объект: компактный участок</span>
+                    <span class="portfolio-slide__line">Размер: 2×3</span>
+                    <span class="portfolio-slide__line">Срок: 20 дней</span>
+                  </figcaption>
                 </figure>
               </div>
             </div>
-            <button type="button" class="portfolio-slider__prev" aria-label="Назад"></button>
-            <button type="button" class="portfolio-slider__next" aria-label="Вперёд"></button>
-            <div class="swiper-pagination portfolio-pagination"></div>
+            <button type="button" class="portfolio-slider__prev" aria-label="Предыдущий слайд"></button>
+            <button type="button" class="portfolio-slider__next" aria-label="Следующий слайд"></button>
+            <div class="swiper-pagination portfolio-pagination" aria-hidden="true"></div>
           </div>
         </div>
         <div class="index-portfolio-cta">
@@ -199,10 +204,11 @@
       </div>
     </section>
 
-    <!-- 6. FAQ (компактный, 4 вопроса) -->
+    <!-- 5. FAQ (компактный, 6 вопросов, 2 колонки) -->
     <section class="index-section index-faq">
       <div class="container">
         <h2 class="index-section__title">Частые вопросы</h2>
+        <p class="index-section__sub index-faq__sub">Ответы на типичные вопросы о сроках, гарантии и стоимости.</p>
         <div class="faq-grid">
           <ul class="faq-list">
             <li class="faq-item">
@@ -239,6 +245,24 @@
               </button>
               <div class="faq-content" id="faq-4" role="region" aria-labelledby="faq-trigger-4">
                 <div class="faq-content__inner">Проект, производство чаши, подбор и комплектация оборудования, доставка, монтаж, пусконаладка и обучение владельца.</div>
+              </div>
+            </li>
+            <li class="faq-item">
+              <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-5" id="faq-trigger-5">
+                <span>Цена фиксирована?</span>
+                <svg class="faq-trigger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-content" id="faq-5" role="region" aria-labelledby="faq-trigger-5">
+                <div class="faq-content__inner">Да. Смета и состав работ фиксируются в договоре. Доплаты только по вашей инициативе — например, за дополнительные опции.</div>
+              </div>
+            </li>
+            <li class="faq-item">
+              <button type="button" class="faq-trigger" aria-expanded="false" aria-controls="faq-6" id="faq-trigger-6">
+                <span>Как начать?</span>
+                <svg class="faq-trigger__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-content" id="faq-6" role="region" aria-labelledby="faq-trigger-6">
+                <div class="faq-content__inner">Оставьте заявку — перезвоним, уточним параметры и дадим предварительную смету. Выезд на замер бесплатный.</div>
               </div>
             </li>
           </ul>

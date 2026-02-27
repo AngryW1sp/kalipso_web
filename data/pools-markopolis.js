@@ -10,7 +10,7 @@ window.MARKOPOLIS_POOLS = [
     title: "Бассейн круглый 3×1,5 м",
     dims: { shape: "round", diameter_m: 3, depth_m: 1.5 },
     material: {
-      base: "Пищевой полипропилен",
+      base: "Полипропилен",
       notes: [
         "Не выцветает со временем",
         "Устойчив к УФ и перепадам температур",
@@ -46,7 +46,7 @@ window.MARKOPOLIS_POOLS = [
     title: "Бассейн 2×3 м",
     dims: { shape: "rect", width_m: 2, length_m: 3, depth_m: 1.5 },
     material: {
-      base: "Пищевой полипропилен",
+      base: "Полипропилен",
       notes: ["Не выцветает", "Устойчив к УФ", "До −40 °C (по описанию)"],
     },
     delivery: {
@@ -78,7 +78,7 @@ window.MARKOPOLIS_POOLS = [
     title: "Бассейн 2×4 м",
     dims: { shape: "rect", width_m: 2, length_m: 4, depth_m: 1.5 },
     material: {
-      base: "Пищевой полипропилен",
+      base: "Полипропилен",
       notes: ["Не выцветает", "Устойчив к УФ", "До −40 °C (по описанию)"],
     },
     warranty: { years: 15, serviceLifeYears: 30 },
@@ -104,7 +104,7 @@ window.MARKOPOLIS_POOLS = [
     title: "Бассейн 2×5 м",
     dims: { shape: "rect", width_m: 2, length_m: 5, depth_m: 1.5 },
     material: {
-      base: "Пищевой полипропилен",
+      base: "Полипропилен",
       notes: ["Не выцветает", "Устойчив к УФ", "До −40 °C (по описанию)"],
     },
     warranty: { years: 15, serviceLifeYears: 30 },
@@ -129,7 +129,7 @@ window.MARKOPOLIS_POOLS = [
     markopolisUrl: "https://www.markopolis.ru/pools/pool-2x6",
     title: "Бассейн 2×6 м",
     dims: { shape: "rect", width_m: 2, length_m: 6, depth_m: 1.5 },
-    material: { base: "Пищевой полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
+    material: { base: "Полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
     warranty: { years: 15, serviceLifeYears: 30 },
     prices: {
       bowl_from_rub: null,
@@ -152,7 +152,7 @@ window.MARKOPOLIS_POOLS = [
     markopolisUrl: "https://www.markopolis.ru/pools/pool-25x4",
     title: "Бассейн 2,5×4 м",
     dims: { shape: "rect", width_m: 2.5, length_m: 4, depth_m: 1.5 },
-    material: { base: "Пищевой полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
+    material: { base: "Полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
     warranty: { years: 15, serviceLifeYears: 30 },
     prices: {
       bowl_from_rub: 76500,
@@ -175,7 +175,7 @@ window.MARKOPOLIS_POOLS = [
     markopolisUrl: "https://www.markopolis.ru/pools/pool-25x5",
     title: "Бассейн 2,5×5 м",
     dims: { shape: "rect", width_m: 2.5, length_m: 5, depth_m: 1.5 },
-    material: { base: "Пищевой полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
+    material: { base: "Полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
     warranty: { years: 15, serviceLifeYears: 30 },
     prices: {
       bowl_from_rub: null,
@@ -198,7 +198,7 @@ window.MARKOPOLIS_POOLS = [
     markopolisUrl: "https://www.markopolis.ru/pools/pool-25x6",
     title: "Бассейн 2,5×6 м",
     dims: { shape: "rect", width_m: 2.5, length_m: 6, depth_m: 1.5 },
-    material: { base: "Пищевой полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
+    material: { base: "Полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
     warranty: { years: 15, serviceLifeYears: 30 },
     prices: {
       bowl_from_rub: 103500,
@@ -221,7 +221,7 @@ window.MARKOPOLIS_POOLS = [
     markopolisUrl: "https://www.markopolis.ru/pools/pool-3x4",
     title: "Бассейн 3×4 м",
     dims: { shape: "rect", width_m: 3, length_m: 4, depth_m: 1.5 },
-    material: { base: "Пищевой полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
+    material: { base: "Полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
     warranty: { years: 15, serviceLifeYears: 30 },
     prices: { bowl_from_rub: null, equipment_from_rub: null },
     contentBlocksForOurCard: {
@@ -241,7 +241,7 @@ window.MARKOPOLIS_POOLS = [
     markopolisUrl: "https://www.markopolis.ru/pools/pool-3x5",
     title: "Бассейн 3×5 м",
     dims: { shape: "rect", width_m: 3, length_m: 5, depth_m: 1.5 },
-    material: { base: "Пищевой полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
+    material: { base: "Полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
     warranty: { years: 15, serviceLifeYears: 30 },
     prices: { bowl_from_rub: null, equipment_from_rub: null },
     contentBlocksForOurCard: {
@@ -261,7 +261,7 @@ window.MARKOPOLIS_POOLS = [
     markopolisUrl: "https://www.markopolis.ru/pools/pool-3x6",
     title: "Бассейн 3×6 м",
     dims: { shape: "rect", width_m: 3, length_m: 6, depth_m: 1.5 },
-    material: { base: "Пищевой полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
+    material: { base: "Полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
     warranty: { years: 15, serviceLifeYears: 30 },
     prices: {
       bowl_from_rub: 122000,
@@ -284,7 +284,7 @@ window.MARKOPOLIS_POOLS = [
     markopolisUrl: "https://www.markopolis.ru/pools/pool-3x7",
     title: "Бассейн 3×7 м",
     dims: { shape: "rect", width_m: 3, length_m: 7, depth_m: 1.5 },
-    material: { base: "Пищевой полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
+    material: { base: "Полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
     warranty: { years: 15, serviceLifeYears: 30 },
     prices: { bowl_from_rub: null, equipment_from_rub: null },
     contentBlocksForOurCard: {
@@ -304,7 +304,7 @@ window.MARKOPOLIS_POOLS = [
     markopolisUrl: "https://www.markopolis.ru/pools/pool-3x8",
     title: "Бассейн 3×8 м",
     dims: { shape: "rect", width_m: 3, length_m: 8, depth_m: 1.5 },
-    material: { base: "Пищевой полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
+    material: { base: "Полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
     warranty: { years: 15, serviceLifeYears: 30 },
     prices: { bowl_from_rub: null, equipment_from_rub: null },
     contentBlocksForOurCard: {
@@ -324,7 +324,7 @@ window.MARKOPOLIS_POOLS = [
     markopolisUrl: "https://www.markopolis.ru/pools/pool-3x9",
     title: "Бассейн 3×9 м",
     dims: { shape: "rect", width_m: 3, length_m: 9, depth_m: 1.5 },
-    material: { base: "Пищевой полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
+    material: { base: "Полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
     warranty: { years: 15, serviceLifeYears: 30 },
     prices: { bowl_from_rub: null, equipment_from_rub: null },
     contentBlocksForOurCard: {
@@ -344,7 +344,7 @@ window.MARKOPOLIS_POOLS = [
     markopolisUrl: "https://www.markopolis.ru/pools/pool-4x8",
     title: "Бассейн 4×8 м",
     dims: { shape: "rect", width_m: 4, length_m: 8, depth_m: 1.5 },
-    material: { base: "Пищевой полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
+    material: { base: "Полипропилен", notes: ["УФ-стойкость", "Не выцветает", "До −40 °C (по описанию)"] },
     warranty: { years: 15, serviceLifeYears: 30 },
     prices: { bowl_from_rub: null, equipment_from_rub: null },
     contentBlocksForOurCard: {

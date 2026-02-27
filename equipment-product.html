@@ -47,7 +47,7 @@
       <section class="product-cta">
         <h2 class="product-cta__title" id="product-cta-title"></h2>
         <p class="product-cta__sub" id="product-cta-sub"></p>
-        <a class="header__cta" href="index.html#callback">Получить консультацию</a>
+        <a class="header__cta" href="#callback">Получить консультацию</a>
       </section>
     </div>
   </main>
@@ -182,7 +182,7 @@
         '<article class="config-card">' +
         '<p class="config-card__name">' + escapeHtml(product.configName || product.title || '') + '</p>' +
         '<p class="config-card__price">' + escapeHtml(product.configPrice || product.price || '') + '</p>' +
-        '<a class="config-card__link" href="index.html#callback">' + escapeHtml(product.configLink || 'Уточнить') + '</a>' +
+        '<a class="config-card__link" href="#callback">' + escapeHtml(product.configLink || 'Уточнить') + '</a>' +
         '</article>';
       document.getElementById('product-disclaimer').textContent = product.disclaimer || '';
       document.getElementById('product-cta-title').textContent = product.ctaTitle || 'Подобрать оборудование';

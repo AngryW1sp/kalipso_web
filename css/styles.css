@@ -209,8 +209,6 @@ a.btn-primary:hover {
 .nav__link--active {
   color: var(--brand-blue);
   background: rgba(11, 61, 145, 0.08);
-  text-decoration: underline;
-  text-underline-offset: 3px;
 }
 .nav__link:focus-visible {
   outline: none;
@@ -243,7 +241,7 @@ a.btn-primary:hover {
   text-decoration: none;
   font-variant-numeric: tabular-nums;
 }
-.header__phone:hover { color: var(--brand-blue); text-decoration: underline; }
+.header__phone:hover { color: var(--brand-blue); }
 .header__phone:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
@@ -282,16 +280,19 @@ a.btn-primary:hover {
     flex-direction: column;
     align-items: stretch;
     background: var(--surface);
-    border-bottom: 1px solid var(--border);
-    padding: var(--s-4);
+    padding: 0 var(--s-4);
     gap: 0;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
-    box-shadow: var(--shadow-md);
+    border: none;
+    box-shadow: none;
   }
   .nav-toggle:checked ~ .nav {
     max-height: 320px;
+    padding: var(--s-4);
+    border-bottom: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
   }
   .nav__link {
     padding: var(--s-4);
@@ -300,7 +301,6 @@ a.btn-primary:hover {
   .header__note { display: none; }
 }
 @media (max-width: 600px) {
-  .brand__text { display: none; }
   .brand__logo { height: 28px; }
   .header__inner { height: 56px; }
 }

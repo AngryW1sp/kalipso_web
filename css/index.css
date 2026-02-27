@@ -3,21 +3,32 @@
  * Blue + gold accent. Единый ритм секций.
  */
 
-/* ========== Секции: единый ритм ========== */
+/* ========== Секции: единый ритм (80px / 56px) ========== */
 .index-section {
-  padding-block: var(--section-py);
-}
-@media (max-width: 1280px) {
-  .index-section { padding-block: 88px; }
+  padding-block: 80px;
 }
 @media (max-width: 1024px) {
-  .index-section { padding-block: var(--section-py-tablet); }
+  .index-section { padding-block: 64px; }
 }
 @media (max-width: 768px) {
-  .index-section { padding-block: var(--section-py-mobile); }
+  .index-section { padding-block: 56px; }
 }
 @media (max-width: 375px) {
   .index-section { padding-block: 44px; }
+}
+
+/* CTA блок — тот же ритм */
+main .footer-cta.callback {
+  padding-block: 80px;
+}
+@media (max-width: 1024px) {
+  main .footer-cta.callback { padding-block: 64px; }
+}
+@media (max-width: 768px) {
+  main .footer-cta.callback { padding-block: 56px; }
+}
+@media (max-width: 375px) {
+  main .footer-cta.callback { padding-block: 44px; }
 }
 
 .index-section__title {
@@ -40,14 +51,14 @@
 
 /* ========== 1. Герой ========== */
 .hero-main {
-  padding-block: var(--section-py);
+  padding-block: 80px;
   background: var(--bg);
 }
 @media (max-width: 1024px) {
-  .hero-main { padding-block: var(--section-py-tablet); }
+  .hero-main { padding-block: 64px; }
 }
 @media (max-width: 768px) {
-  .hero-main { padding-block: var(--section-py-mobile); }
+  .hero-main { padding-block: 56px; }
 }
 
 .hero-main__inner {
@@ -155,10 +166,13 @@
 }
 .hero-main__secondary:hover {
   background: rgba(11, 61, 145, 0.06);
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.2);
+  text-decoration: none;
 }
 .hero-main__secondary:focus-visible {
   outline: none;
-  box-shadow: var(--focus-ring);
+  box-shadow: var(--focus-ring), 0 0 0 1px rgba(201, 162, 39, 0.15);
 }
 
 .hero-main__trust {
@@ -209,129 +223,79 @@
   object-fit: cover;
 }
 
-/* ========== 2. Выберите сценарий ========== */
-.index-scenarios .cards-grid-4 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--s-6);
-  align-items: stretch;
-}
-@media (max-width: 768px) {
-  .index-scenarios .cards-grid-4 { grid-template-columns: 1fr; }
-}
-
-.index-scenarios .card-soft {
-  display: flex;
-  flex-direction: column;
-  padding: var(--s-6);
-  border-radius: var(--r-lg);
-  background: var(--surface);
-  border: 1px solid var(--border);
-  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-}
-.index-scenarios .card-soft:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: rgba(11, 61, 145, 0.2);
-}
-.index-scenarios .card-soft__title {
-  margin: 0 0 var(--s-2);
-  min-height: unset;
-  font-size: 1.125rem;
-  font-weight: 700;
-  color: var(--text);
-}
-.index-scenarios .card-soft__text {
-  margin: 0;
-  flex: 1;
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  color: var(--muted);
-}
-.index-scenarios .section-block__link {
-  margin-top: auto;
-  padding-top: var(--s-4);
-  font-size: 0.9375rem;
-  font-weight: 600;
-  color: var(--brand-blue) !important;
-  text-decoration: none;
-  transition: color var(--transition), text-decoration var(--transition);
-}
-.index-scenarios .section-block__link:hover {
-  text-decoration: underline;
-  color: var(--brand-blue-700) !important;
-}
-.index-scenarios .section-block__link:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
-}
-
-/* ========== 3. Популярные решения (витрина) ========== */
-.index-pools .pool-grid {
+/* ========== 2. Популярные решения (из POOLS_DATA) ========== */
+.index-pool-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: var(--s-6);
   align-items: stretch;
 }
 @media (max-width: 1280px) {
-  .index-pools .pool-grid { grid-template-columns: repeat(2, 1fr); }
+  .index-pool-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 768px) {
-  .index-pools .pool-grid { grid-template-columns: 1fr; gap: var(--s-5); }
+  .index-pool-grid { grid-template-columns: 1fr; gap: var(--s-5); }
 }
 @media (max-width: 375px) {
-  .index-pools .pool-grid { gap: var(--s-4); }
+  .index-pool-grid { gap: var(--s-4); }
 }
 
-.index-pools .pool-card {
+.index-pool-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
   background: var(--surface);
   border-radius: var(--r-lg);
   overflow: hidden;
   border: 1px solid var(--border);
   transition: transform var(--transition), box-shadow var(--transition);
 }
-.index-pools .pool-grid { align-items: stretch; }
-.index-pools .pool-card:hover {
+.index-pool-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-md);
 }
-.index-pools .pool-card__image {
-  display: block;
-  height: 200px;
+.index-pool-card__media {
   flex-shrink: 0;
+  height: 200px;
   overflow: hidden;
   background: var(--surface-2);
+  position: relative;
 }
-.index-pools .pool-card__image img {
+.index-pool-card__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6, 37, 87, 0.04) 0%, transparent 50%, rgba(6, 37, 87, 0.06) 100%);
+  pointer-events: none;
+}
+.index-pool-card__media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: transform 300ms ease;
 }
-.index-pools .pool-card:hover .pool-card__image img {
+.index-pool-card:hover .index-pool-card__media img {
   transform: scale(1.02);
 }
-.index-pools .pool-card__body {
+.index-pool-card__body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: var(--s-5);
+  padding: var(--s-4) var(--s-5) var(--s-2);
   min-height: 0;
 }
-.index-pools .pool-card__badge {
+.index-pool-card__badge {
   align-self: flex-start;
   margin-bottom: var(--s-2);
   padding: 4px 12px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--gold-accent);
-  background: rgba(201, 162, 39, 0.12);
-  border: 1px solid rgba(201, 162, 39, 0.25);
+  color: #1a1508;
+  background: var(--gold-accent);
+  border: none;
   border-radius: 999px;
 }
-.index-pools .pool-card__title {
+.index-pool-card__title {
   margin: 0 0 var(--s-2);
   font-size: 1.0625rem;
   font-weight: 700;
@@ -342,25 +306,23 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.index-pools .pool-card__specs {
-  margin: 0 0 var(--s-2);
-  font-size: 0.875rem;
+.index-pool-card__for {
+  margin: 0;
+  font-size: 0.8125rem;
   color: var(--muted);
   line-height: 1.4;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.index-pools .pool-card__chips {
+.index-pool-card__meta {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-2);
-  margin: 0 0 var(--s-3);
-  min-height: 32px;
-  align-items: center;
+  padding: 0 var(--s-5) var(--s-3);
 }
-.index-pools .pool-card__chip {
+.index-pool-card__chip {
   padding: 4px 10px;
   font-size: 0.75rem;
   font-weight: 500;
@@ -368,31 +330,39 @@
   background: var(--bg-100);
   border-radius: 999px;
 }
-.index-pools .pool-card__price {
-  margin-top: auto;
-  padding-bottom: var(--s-2);
+.index-pool-card__price {
+  padding: 0 var(--s-5) var(--s-2);
   font-size: 1rem;
   font-weight: 700;
   color: var(--brand-blue);
 }
-.index-pools .pool-card__link {
-  padding-top: var(--s-2);
+.index-pool-card__cta {
+  margin-top: auto;
+  margin-left: var(--s-5);
+  margin-right: var(--s-5);
+  margin-bottom: var(--s-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 var(--s-4);
+  border-radius: var(--r-md);
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--brand-blue) !important;
+  background: var(--brand-blue);
+  color: #fff !important;
   text-decoration: none;
-  transition: color var(--transition);
+  transition: background var(--transition), box-shadow var(--transition);
 }
-.index-pools .pool-card__link:hover {
-  color: var(--brand-blue-700) !important;
-  text-decoration: underline;
+.index-pool-card__cta:hover {
+  background: var(--brand-blue-700);
 }
-.index-pools .pool-card__link:focus-visible {
+.index-pool-card__cta:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
 }
 
-/* ========== 4. Доверие + Процесс (единый блок) ========== */
+/* ========== 3. Доверие + Процесс (единый блок) ========== */
 .index-trust-process {
   background: var(--surface);
   border-top: 1px solid var(--border);
@@ -496,7 +466,7 @@
   color: var(--muted);
 }
 
-/* ========== 5. Галерея — слайдер ========== */
+/* ========== 4. Галерея — слайдер ========== */
 .index-portfolio {
   background: var(--bg);
 }
@@ -514,6 +484,8 @@
 }
 .portfolio-slide {
   margin: 0;
+  display: flex;
+  flex-direction: column;
   border-radius: var(--r-lg);
   overflow: hidden;
   background: var(--surface);
@@ -525,11 +497,18 @@
   aspect-ratio: 4/3;
   object-fit: cover;
 }
-.portfolio-slide figcaption {
+.portfolio-slide__cap {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
   padding: var(--s-3);
   font-size: 0.8125rem;
   color: var(--muted);
   line-height: 1.4;
+}
+.portfolio-slide__line {
+  display: block;
 }
 .portfolio-slider__prev,
 .portfolio-slider__next {
@@ -587,6 +566,8 @@
 .portfolio-pagination .swiper-pagination-bullet-active {
   opacity: 1;
   background: var(--gold-accent);
+  width: 10px;
+  border-radius: 4px;
 }
 
 .index-portfolio-cta {
@@ -610,18 +591,22 @@
 }
 .index-portfolio-cta .btn--secondary:hover {
   background: rgba(11, 61, 145, 0.06);
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.2);
 }
 .index-portfolio-cta .btn--secondary:focus-visible {
   outline: none;
-  box-shadow: var(--focus-ring);
+  box-shadow: var(--focus-ring), 0 0 0 1px rgba(201, 162, 39, 0.15);
 }
 
-/* ========== 6. FAQ (компактный, 2 колонки) ========== */
+/* ========== 5. FAQ (компактный, 2 колонки, 6 вопросов) ========== */
 .index-faq {
   background: var(--surface);
   border-top: 1px solid var(--border);
 }
-.index-faq .index-section__sub { display: none; }
+.index-faq .index-section__sub {
+  margin-bottom: var(--s-4);
+}
 .faq-grid {
   max-width: 900px;
 }
@@ -645,7 +630,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: var(--s-4) 0;
+  padding: var(--s-3) 0;
   font-family: inherit;
   font-size: 0.9375rem;
   font-weight: 600;
@@ -681,7 +666,7 @@
   transition: max-height 180ms ease;
 }
 .faq-content__inner {
-  padding: 0 0 var(--s-4);
+  padding: 0 0 var(--s-3);
   font-size: 0.875rem;
   line-height: 1.6;
   color: var(--muted);

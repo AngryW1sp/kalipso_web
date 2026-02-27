@@ -88,7 +88,7 @@
 
 .catalog-hero__benefit-icon {
   flex-shrink: 0;
-  color: var(--brand-blue);
+  color: var(--gold-accent);
 }
 
 .catalog-hero__benefit-icon svg {
@@ -101,6 +101,10 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--sp-4) var(--sp-6);
+}
+.catalog-hero .btn-outline:hover {
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.2);
 }
 
 .catalog-hero__hint {
@@ -127,6 +131,12 @@
 .catalog-pools-section {
   padding-block: var(--s-8);
 }
+.catalog-pools-section .container {
+  text-align: center;
+}
+.catalog-pools-section .pool-grid--catalog {
+  text-align: left;
+}
 
 .catalog-pools__caption {
   display: block;
@@ -146,6 +156,9 @@
   line-height: 1.2;
   color: var(--ink-900);
   text-align: center;
+  border-bottom: 3px solid var(--gold-accent);
+  display: inline-block;
+  padding-bottom: var(--s-2);
 }
 
 /* Pool cards grid — премиальный product list */
@@ -236,6 +249,7 @@
   font-size: 0.75rem;
   color: var(--text-500);
   margin: 0 0 2px;
+  margin-top: auto;
 }
 
 .pool-grid--catalog .pool-card__price {
@@ -263,7 +277,7 @@
 
 .pool-grid--catalog .pool-card__trust-item svg {
   flex-shrink: 0;
-  color: var(--blue-600);
+  color: var(--gold-accent);
 }
 
 .pool-grid--catalog .pool-card__actions {
@@ -320,12 +334,12 @@
 }
 
 .pool-grid--catalog .pool-card__btn-secondary:hover {
-  text-decoration: underline;
-  text-underline-offset: 2px;
+  color: var(--gold-accent) !important;
+  text-decoration: none;
 }
 .pool-grid--catalog .pool-card__btn-secondary:focus-visible {
   outline: none;
-  box-shadow: var(--focus-ring);
+  box-shadow: var(--focus-ring), 0 0 0 1px rgba(201, 162, 39, 0.15);
   border-radius: var(--r-sm);
 }
 
@@ -382,6 +396,14 @@
   }
 }
 
+/* Catalog section titles — золотое подчёркивание как на главной */
+.catalog-pricing .catalog-section__title,
+.catalog-trust .catalog-section__title {
+  padding-bottom: var(--s-2);
+  border-bottom: 3px solid var(--gold-accent);
+  display: inline-block;
+}
+
 /* Catalog pricing & trust — 2 колонки карточек */
 .catalog-pricing,
 .catalog-trust {
@@ -410,7 +432,7 @@
   flex-shrink: 0;
   width: 24px;
   height: 24px;
-  color: var(--brand-blue);
+  color: var(--gold-accent);
 }
 
 .catalog-card__icon svg {

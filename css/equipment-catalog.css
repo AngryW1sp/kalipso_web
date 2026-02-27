@@ -1,0 +1,362 @@
+/**
+ * KALIPSO — страница каталога оборудования (категория)
+ * Премиальная витрина, единая высота карточек, фильтры
+ */
+
+.equipment-catalog-page {
+  padding: 40px 0 64px;
+  background: var(--bg);
+}
+
+.equipment-catalog-page__breadcrumbs {
+  margin: 0 0 var(--s-4);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.equipment-catalog-page__breadcrumbs a {
+  color: var(--brand-blue);
+}
+.equipment-catalog-page__breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+/* Заголовок категории */
+.equipment-catalog-page__header {
+  margin-bottom: var(--s-6);
+}
+.equipment-catalog-page__title {
+  margin: 0 0 var(--s-2);
+  padding-bottom: var(--s-2);
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 3px solid var(--gold-accent);
+  display: inline-block;
+}
+.equipment-catalog-page__subtitle {
+  margin: var(--s-2) 0 0;
+  font-size: 0.9375rem;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+/* Mini-CTA */
+.equipment-catalog-sticky-cta {
+  margin-bottom: var(--s-5);
+  padding: var(--s-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+.equipment-catalog-sticky-cta__text {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--text);
+}
+.equipment-catalog-sticky-cta .btn {
+  flex-shrink: 0;
+}
+
+/* Layout: фильтры + контент */
+.equipment-catalog-layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--s-6);
+  align-items: start;
+}
+@media (max-width: 900px) {
+  .equipment-catalog-layout {
+    grid-template-columns: 1fr;
+  }
+  .equipment-filters {
+    position: static;
+    max-height: 0;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    transition: max-height 0.25s ease;
+  }
+  .equipment-filters.is-open {
+    max-height: 400px;
+    padding: var(--s-4);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
+    margin-bottom: var(--s-4);
+  }
+  .equipment-filters-toggle {
+    display: flex;
+  }
+}
+.equipment-filters-toggle {
+  display: none;
+  align-items: center;
+  gap: var(--s-2);
+  margin-bottom: var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  color: var(--text);
+  cursor: pointer;
+}
+.equipment-filters-toggle:hover {
+  border-color: var(--brand-blue);
+}
+
+/* Фильтры */
+.equipment-filters {
+  position: sticky;
+  top: calc(var(--header-height, 72px) + 16px);
+  padding: var(--s-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+.equipment-filters__title {
+  margin: 0 0 var(--s-4);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.equipment-filters__group {
+  margin-bottom: var(--s-4);
+}
+.equipment-filters__label {
+  display: block;
+  margin-bottom: var(--s-2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.equipment-filters select {
+  width: 100%;
+  padding: var(--s-2) var(--s-3);
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Панель: найдено + сортировка + чипсы */
+.equipment-catalog-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3) var(--s-5);
+  margin-bottom: var(--s-5);
+}
+.equipment-catalog-count {
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.equipment-catalog-sort {
+  margin-left: auto;
+}
+.equipment-catalog-sort select {
+  padding: var(--s-2) var(--s-3);
+  font-size: 0.875rem;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+  color: var(--text);
+}
+.equipment-catalog-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  width: 100%;
+}
+.equipment-catalog-chip {
+  padding: var(--s-1) var(--s-3);
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: var(--bg-100);
+  border-radius: 999px;
+}
+.equipment-catalog-chip--active {
+  background: var(--brand-blue);
+  color: #fff;
+}
+.equipment-catalog-chip-reset {
+  font-size: 0.8125rem;
+  color: var(--brand-blue);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.equipment-catalog-chip-reset:hover {
+  text-decoration: underline;
+}
+
+/* Сетка карточек */
+.equipment-product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--s-5);
+}
+
+/* Карточка товара — единая высота */
+.equipment-product-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.equipment-product-card:hover {
+  border-color: rgba(11, 61, 145, 0.2);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Изображение — фиксированный размер */
+.equipment-product-card__image {
+  width: 100%;
+  height: 200px;
+  flex-shrink: 0;
+  background: var(--bg-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.equipment-product-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: var(--s-3);
+}
+
+/* Тело карточки */
+.equipment-product-card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--s-4);
+  min-height: 0;
+}
+.equipment-product-card__title {
+  margin: 0 0 var(--s-1);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.7em;
+}
+.equipment-product-card__model {
+  margin: 0 0 var(--s-3);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.equipment-product-card__specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  margin-bottom: var(--s-4);
+}
+.equipment-product-card__spec {
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  color: var(--muted);
+  background: var(--bg-100);
+  border-radius: 999px;
+}
+
+/* Цена — единообразно */
+.equipment-product-card__price-wrap {
+  margin-top: auto;
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--border);
+}
+.equipment-product-card__price {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.equipment-product-card__price .equipment-product-card__currency {
+  font-weight: 600;
+  color: var(--gold-accent);
+  margin-left: 2px;
+}
+.equipment-product-card__price-request {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text);
+}
+.equipment-product-card__price-note {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* CTA зона */
+.equipment-product-card__actions {
+  margin-top: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.equipment-product-card__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0 var(--s-4);
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: var(--brand-blue);
+  color: #fff !important;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  transition: background var(--transition);
+}
+.equipment-product-card__cta:hover {
+  background: var(--brand-blue-700);
+}
+.equipment-product-card__more {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+  text-decoration: none;
+  text-align: center;
+}
+.equipment-product-card__more:hover {
+  text-decoration: underline;
+}
+
+/* CTA внизу категории */
+.equipment-catalog-cta {
+  margin-top: var(--s-8);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+}
+.equipment-catalog-cta .btn-primary {
+  order: 1;
+}
+.equipment-catalog-cta .btn-outline {
+  order: 2;
+}
+.equipment-catalog-cta .btn-outline:hover {
+  border-color: var(--gold-accent);
+  color: var(--gold-accent);
+}

@@ -33,7 +33,7 @@
             <span class="buybox__price" id="pool-price"></span>
           </div>
           <div class="buybox__specs" id="pool-specs-grid"></div>
-          <a href="index.html#callback" class="btn btn-primary buybox__cta">Запросить расчёт</a>
+          <a href="#callback" class="btn btn-primary buybox__cta">Запросить расчёт</a>
           <a href="tel:+74951234567" class="btn btn-outline buybox__secondary">Позвонить</a>
           <p class="buybox__hint">Бесплатно. Перезвоним за 15 минут.</p>
         </aside>
@@ -216,7 +216,7 @@
 
       var specsTable = document.getElementById('pool-specs-table');
       var tableRows = [
-        ['Материал', 'Пищевой полипропилен'],
+        ['Материал', 'Полипропилен'],
         ['Глубина', (pool.depth || '1,5') + ' м'],
         ['Форма', pool.shape === 'round' ? 'Круглая' : 'Прямоугольная']
       ];
@@ -237,12 +237,12 @@
         '<article class="config-card">' +
           '<p class="config-card__name">Чаша бассейна</p>' +
           '<p class="config-card__price">От ' + fmtPrice(basinEst) + '</p>' +
-          '<a class="config-card__link btn btn-outline" href="index.html#callback">Запросить расчёт</a>' +
+          '<a class="config-card__link btn btn-outline" href="#callback">Запросить расчёт</a>' +
         '</article>' +
         '<article class="config-card">' +
           '<p class="config-card__name">Комплект оборудования</p>' +
           '<p class="config-card__price">От ' + fmtPrice(eqEst) + '</p>' +
-          '<a class="config-card__link btn btn-outline" href="index.html#callback">Запросить расчёт</a>' +
+          '<a class="config-card__link btn btn-outline" href="#callback">Запросить расчёт</a>' +
         '</article>';
     })();
   </script>

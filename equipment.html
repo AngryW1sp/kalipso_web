@@ -7,132 +7,123 @@
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/catalog-hero.css" />
+  <link rel="stylesheet" href="css/equipment.css" />
 </head>
 <body>
   <header class="header"></header>
   <script src="js/header.js"></script>
   <main>
-    <!-- 1. Первый экран — правильный фрейм в голове клиента -->
-    <section class="section-simple equipment-hero">
+    <!-- 1. Первый экран -->
+    <section class="equipment-hero">
       <div class="container">
         <h1 class="equipment-hero__title">Оборудование для бассейна — система, а не набор устройств</h1>
-        <p class="equipment-hero__lead">Подбираем фильтрацию, подогрев, автоматику и аттракционы под конкретный бассейн, задачи и бюджет. Без лишних затрат и проблем в эксплуатации.</p>
-        <p class="equipment-hero__warning">Ошибка в подборе оборудования = лишние расходы, сложное обслуживание и проблемы в эксплуатации.</p>
-        <ul class="equipment-hero__markers">
-          <li>Подбор под объём и гидравлику чаши</li>
-          <li>Проверенные бренды и технологии</li>
-          <li>Настройка и пусконаладка</li>
-          <li>Гарантия на оборудование и работы</li>
+        <p class="equipment-hero__lead">Подбираем комплект под объём, гидравлику и сценарий использования. Консультация → подбор → монтаж и пусконаладка.</p>
+        <ul class="equipment-hero__bullets">
+          <li>Подбор под объём и гидравлику</li>
+          <li>Проверенные бренды, гарантия</li>
+          <li>Монтаж и пусконаладка</li>
         </ul>
         <div class="equipment-hero__actions">
-          <a href="index.html#callback" class="header__cta">Подобрать оборудование для моего бассейна</a>
+          <a href="#callback" class="btn btn-primary">Подобрать оборудование</a>
+          <a href="#catalog" class="equipment-hero__secondary">Посмотреть категории</a>
           <p class="equipment-hero__hint">Бесплатно. Подскажем оптимальный комплект.</p>
         </div>
       </div>
     </section>
 
-    <!-- Каталог оборудования: 4 карточки в ряд, по клику — отдельная страница каталога -->
-    <section class="section-simple equipment-catalog">
+    <!-- 2. Каталог категорий -->
+    <section class="equipment-catalog" id="catalog">
       <div class="container">
-        <h2 class="services-section__title">Каталог оборудования</h2>
-        <p class="equipment-catalog__intro">Нажмите на категорию — откроется страница каталога с оборудованием.</p>
+        <h2 class="equipment-section__title">Каталог оборудования</h2>
+        <p class="equipment-catalog__intro">Нажмите на категорию — откроется каталог. Мы подберём комплект под ваш бассейн.</p>
 
-        <div class="equipment-catalog__cards">
-          <a href="equipment-catalog.html?cat=filtration" class="equipment-catalog__card">
-            <span class="equipment-catalog__card-title">Фильтрация</span>
-            <img src="assets/equipment/filter/Фильтрация.jpg" alt="" class="equipment-catalog__card-img" />
+        <div class="equipment-catalog__grid">
+          <a href="equipment-catalog.html?cat=filtration" class="equipment-card">
+            <span class="equipment-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="12"/><line x1="24" y1="8" x2="24" y2="16"/><line x1="24" y1="32" x2="24" y2="40"/><line x1="8" y1="24" x2="16" y2="24"/><line x1="32" y1="24" x2="40" y2="24"/></svg>
+            </span>
+            <h3 class="equipment-card__title">Фильтрация</h3>
+            <p class="equipment-card__desc">Прозрачность воды и защита оборудования</p>
           </a>
-          <a href="equipment-catalog.html?cat=heating" class="equipment-catalog__card">
-            <span class="equipment-catalog__card-title">Подогрев воды</span>
-            <img src="assets/equipment/filter/Фильтрация.jpg" alt="" class="equipment-catalog__card-img" />
+          <a href="equipment-catalog.html?cat=heating" class="equipment-card">
+            <span class="equipment-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M24 8v12l8 4"/><circle cx="24" cy="28" r="10"/><path d="M24 22v6M21 25h6"/></svg>
+            </span>
+            <h3 class="equipment-card__title">Подогрев воды</h3>
+            <p class="equipment-card__desc">Комфортная температура круглый сезон</p>
           </a>
-          <a href="equipment-catalog.html?cat=automation" class="equipment-catalog__card">
-            <span class="equipment-catalog__card-title">Автоматика и дозирование</span>
-            <img src="assets/equipment/filter/Фильтрация.jpg" alt="" class="equipment-catalog__card-img" />
+          <a href="equipment-catalog.html?cat=automation" class="equipment-card">
+            <span class="equipment-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="10"/><path d="M24 18v6l4 4"/><circle cx="24" cy="24" r="2" fill="currentColor"/></svg>
+            </span>
+            <h3 class="equipment-card__title">Автоматика и дозирование</h3>
+            <p class="equipment-card__desc">Управление режимами и качеством воды</p>
           </a>
-          <a href="equipment-catalog.html?cat=attractions" class="equipment-catalog__card">
-            <span class="equipment-catalog__card-title">Аттракционы</span>
-            <img src="assets/equipment/filter/Фильтрация.jpg" alt="" class="equipment-catalog__card-img" />
+          <a href="equipment-catalog.html?cat=attractions" class="equipment-card">
+            <span class="equipment-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 36c0-6 6-12 12-12s12 6 12 12"/><path d="M24 24V12"/><ellipse cx="24" cy="18" rx="4" ry="2"/></svg>
+            </span>
+            <h3 class="equipment-card__title">Аттракционы</h3>
+            <p class="equipment-card__desc">Противоток, гидромассаж, водопад</p>
           </a>
-        </div>
-
-        <div class="equipment-categories__cta" style="margin-top: 32px;">
-          <a href="index.html#callback" class="header__cta">Подобрать оборудование под мой бассейн</a>
         </div>
       </div>
     </section>
 
-    <!-- Интерактивная схема бассейна: показываем, как работает оборудование -->
-    <section class="section-simple" id="schema">
-      <div class="container schema">
-        <div class="caption schema-caption">
-          <h2 class="schema-title">Бассейн — это не только чаша. <span>Важна каждая система.</span></h2>
-          <div class="schema-caption-text">
-            <p>Наведите на элементы схемы, чтобы увидеть, за что отвечает оборудование и как все системы работают вместе.</p>
-            <p>Основные узлы переливного бассейна с фильтрацией, подогревом, дезинфекцией, подсветкой и аттракционами.</p>
-          </div>
+    <!-- 3. Почему важно подбирать комплексно -->
+    <section class="equipment-why">
+      <div class="container">
+        <h2 class="equipment-section__title">Почему важно подбирать комплексно</h2>
+        <div class="equipment-why__grid">
+          <article class="card-soft equipment-why__card">
+            <h3 class="card-soft__title">Гидравлика</h3>
+            <p class="card-soft__text">Оборудование рассчитывается под объём и гидравлику чаши. Ошибка в одном элементе влияет на всю систему.</p>
+          </article>
+          <article class="card-soft equipment-why__card">
+            <h3 class="card-soft__title">Эксплуатация</h3>
+            <p class="card-soft__text">Учитываем сценарий использования. Правильный подбор — проще обслуживание и меньше расходников.</p>
+          </article>
+          <article class="card-soft equipment-why__card">
+            <h3 class="card-soft__title">Надёжность</h3>
+            <p class="card-soft__text">Проверенные бренды, совместимость узлов. Система работает стабильно годами.</p>
+          </article>
+          <article class="card-soft equipment-why__card">
+            <h3 class="card-soft__title">Бюджет владения</h3>
+            <p class="card-soft__text">Дешёвые решения часто дороже в обслуживании. Комплексный подбор — оптимальные затраты.</p>
+          </article>
         </div>
-        <div class="schema-info">
-          <ol class="schema-list">
-            <li><span id="item-schema-1" data-element-id="1">Фильтрация — чистота и прозрачность воды</span></li>
-            <li><span id="item-schema-2" data-element-id="2">Циркуляция — равномерная работа всех элементов</span></li>
-            <li><span id="item-schema-3" data-element-id="3">Водный пылесос — регулярная очистка</span></li>
-            <li><span id="item-schema-4" data-element-id="4">Подводное освещение — безопасность и визуальный эффект</span></li>
-            <li><span id="item-schema-5" data-element-id="5">Подогрев — комфортная температура</span></li>
-            <li><span id="item-schema-6" data-element-id="6">Дезинфекция — стабильное качество воды</span></li>
-            <li><span id="item-schema-7" data-element-id="7">Щит управления — «мозг» всей системы</span></li>
-            <li><span id="item-schema-8" data-element-id="8">Аттракционы — комфорт и функциональность</span></li>
-          </ol>
-          <div class="schema-img img" id="counterflow">
-            <p id="num-schema-1" data-element-id="1"><span>1</span></p>
-            <p id="num-schema-2" data-element-id="2"><span>2</span></p>
-            <p id="num-schema-3" data-element-id="3"><span>3</span></p>
-            <p id="num-schema-4" data-element-id="4"><span>4</span></p>
-            <p id="num-schema-5" data-element-id="5"><span>5</span></p>
-            <p id="num-schema-6" data-element-id="6"><span>6</span></p>
-            <p id="num-schema-7" data-element-id="7"><span>7</span></p>
-            <p id="num-schema-8" data-element-id="8"><span>8</span></p>
-            <img src="assets/images/photo.png" loading="lazy" alt="Схема переливного бассейна" class="schema-photo" />
-            <img src="assets/images/numbers.png" loading="lazy" alt="" class="schema-numbers" aria-hidden="true" />
-            <img id="img-schema-1" data-element-id="1" loading="lazy" src="assets/images/1.png" alt="" aria-hidden="true" />
-            <img id="img-schema-2" data-element-id="2" loading="lazy" src="assets/images/2.png" alt="" aria-hidden="true" />
-            <img id="img-schema-3" data-element-id="3" loading="lazy" src="assets/images/3.png" alt="" aria-hidden="true" />
-            <img id="img-schema-4" data-element-id="4" loading="lazy" src="assets/images/4.png" alt="" aria-hidden="true" />
-            <img id="img-schema-5" data-element-id="5" loading="lazy" src="assets/images/5.png" alt="" aria-hidden="true" />
-            <img id="img-schema-6" data-element-id="6" loading="lazy" src="assets/images/6.png" alt="" aria-hidden="true" />
-            <img id="img-schema-7" data-element-id="7" loading="lazy" src="assets/images/7.png" alt="" aria-hidden="true" />
-            <img id="img-schema-8" data-element-id="8" loading="lazy" src="assets/images/8.png" alt="" aria-hidden="true" />
-          </div>
-        </div>
-        <p class="equipment-schema__note">Мы подбираем и настраиваем систему целиком, а не отдельные элементы.</p>
+        <p class="equipment-why__cta"><a href="#callback" class="btn btn-outline">Получить подбор комплекта</a></p>
       </div>
     </section>
 
-    <!-- 5. Почему не стоит подбирать оборудование самому -->
-    <section class="section-simple">
+    <!-- 4. Почему выбирают KALIPSO -->
+    <section class="equipment-trust">
       <div class="container">
-        <h2 class="catalog-section__title">Почему важно подбирать оборудование комплексно</h2>
-        <ul class="catalog-list">
-          <li>Оборудование рассчитывается под объём и гидравлику</li>
-          <li>Ошибка в одном элементе влияет на всю систему</li>
-          <li>Дешёвые решения часто дороже в обслуживании</li>
-          <li>Важно учитывать сценарий использования бассейна</li>
-        </ul>
-        <p class="catalog-section__note">Мы часто переделываем системы после самостоятельного подбора оборудования.</p>
-      </div>
-    </section>
-
-    <!-- 6. Почему KALIPSO — безопасный выбор -->
-    <section class="section-simple">
-      <div class="container">
-        <h2 class="catalog-section__title">Почему оборудование для бассейна подбирают с KALIPSO</h2>
-        <ul class="catalog-list">
-          <li>Подбор под конкретный бассейн, а не «по каталогу»</li>
-          <li>Работаем с проверенными брендами</li>
-          <li>Настройка и пусконаладка</li>
-          <li>Гарантия на оборудование и монтаж</li>
+        <h2 class="equipment-section__title">Почему выбирают KALIPSO</h2>
+        <ul class="equipment-trust__list">
+          <li>Подбор по объёму и гидравлике, а не «по каталогу»</li>
+          <li>Проверенные бренды + гарантия на оборудование</li>
+          <li>Монтаж и пусконаладка — доводим до рабочего состояния</li>
           <li>Поддержка после запуска</li>
         </ul>
+      </div>
+    </section>
+
+    <!-- 5. Как работает система бассейна -->
+    <section class="equipment-systems">
+      <div class="container">
+        <h2 class="equipment-section__title">Как работает система бассейна</h2>
+        <p class="equipment-systems__intro">Основные узлы: фильтрация, подогрев, дезинфекция, подсветка и аттракционы. Подбираем и настраиваем систему целиком.</p>
+        <ol class="equipment-systems__list">
+          <li>Фильтрация — чистота и прозрачность воды</li>
+          <li>Циркуляция — равномерная работа всех элементов</li>
+          <li>Водный пылесос — регулярная очистка</li>
+          <li>Подводное освещение — безопасность и визуальный эффект</li>
+          <li>Подогрев — комфортная температура</li>
+          <li>Дезинфекция — стабильное качество воды</li>
+          <li>Щит управления — управление режимами</li>
+          <li>Аттракционы — противоток, гидромассаж</li>
+        </ol>
       </div>
     </section>
   </main>

@@ -113,6 +113,10 @@
   width: 100%;
   margin-bottom: var(--s-3);
 }
+.product-page .btn-outline:hover {
+  border-color: var(--gold-accent);
+  box-shadow: 0 0 0 1px rgba(201, 162, 39, 0.2);
+}
 
 .buybox__hint {
   font-size: var(--fs-small);
@@ -123,9 +127,12 @@
 /* Sections */
 .product-section__title {
   margin: 0 0 var(--s-4);
+  padding-bottom: var(--s-2);
   font-size: var(--fs-h2);
   font-weight: 700;
   color: var(--text);
+  border-bottom: 3px solid var(--gold-accent);
+  display: inline-block;
 }
 
 .product-about {
@@ -203,7 +210,7 @@
 
 .includes-item svg {
   flex-shrink: 0;
-  color: var(--blue-600);
+  color: var(--gold-accent);
 }
 
 /* Монтаж и доставка */
@@ -223,12 +230,12 @@
   border: 1px solid rgba(214, 178, 94, 0.2);
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-sm);
-  border-left: 3px solid var(--gold-500);
+  border-left: 3px solid var(--gold-accent);
 }
 
 .delivery-card__icon {
   display: block;
-  color: var(--blue-600);
+  color: var(--gold-accent);
   margin-bottom: var(--s-3);
 }
 
@@ -327,10 +334,12 @@
   color: var(--muted);
   flex-shrink: 0;
   margin-left: var(--s-3);
+  transition: color var(--transition);
 }
 
 details[open] .accordion__trigger::after {
   content: "−";
+  color: var(--gold-accent);
 }
 
 .accordion__content {
