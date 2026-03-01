@@ -1,0 +1,14 @@
+[Unit]
+Description=KALIPSO web server
+After=network.target
+
+[Service]
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/kalipso_web
+Environment="PATH=/var/www/kalipso_web/venv/bin"
+ExecStart=/var/www/kalipso_web/venv/bin/gunicorn server:app -w 1 -k uvicorn.workers.UvicornWorker -b 127.0.0.1:8000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
