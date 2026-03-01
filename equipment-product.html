@@ -8,46 +8,68 @@
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/product.css" />
   <link rel="stylesheet" href="css/catalog-hero.css" />
+  <link rel="stylesheet" href="css/equipment-catalog.css" />
 </head>
 <body>
   <header class="header"></header>
   <script src="js/header.js"></script>
+  <script src="js/url-rewrite.js"></script>
 
   <main class="product-page">
     <div class="container" id="product-content">
       <nav class="product-breadcrumb" id="breadcrumb"></nav>
-      <h1 class="product-page__title" id="product-title"></h1>
-      <p class="product-page__specs" id="product-specs"></p>
-      <div class="product-page__gallery">
-        <div class="product-gallery__main">
-          <img id="product-image" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;" loading="lazy" />
+
+      <div class="product-hero">
+        <div class="product-hero__gallery">
+          <div class="product-gallery__main">
+            <img id="product-image" alt="" loading="lazy" />
+          </div>
         </div>
+        <aside class="product-buybox" id="buybox">
+          <h1 class="product-buybox__title" id="product-title"></h1>
+          <div class="buybox__price-block">
+            <span class="buybox__price" id="product-price"></span>
+            <span class="buybox__status" id="product-status"></span>
+          </div>
+          <a href="#callback" class="btn btn-gold callback__btn buybox__cta" id="product-cta">Перезвонить мне</a>
+          <div class="buybox__specs" id="buybox-specs"></div>
+          <div class="buybox__trust">
+            <p>Гарантия на оборудование</p>
+            <p>Подбор под ваш бассейн</p>
+            <p>Консультация 15 минут</p>
+          </div>
+          <div class="buybox__docs" id="buybox-docs">
+            <p class="buybox__docs-text">Паспорт и инструкция — пришлём по запросу.</p>
+            <a href="#callback" class="btn btn-outline buybox__docs-btn">Запросить документы</a>
+          </div>
+        </aside>
       </div>
 
-      <nav class="product-tabs" id="product-tabs" aria-label="Разделы">
-        <button type="button" class="product-tab product-tab--active" data-tab="description" aria-selected="true">Описание</button>
-        <button type="button" class="product-tab" data-tab="specs" aria-selected="false">Характеристики</button>
-        <button type="button" class="product-tab" data-tab="docs" aria-selected="false">Документация</button>
-      </nav>
-      <div id="product-tab-description" class="product-tab-panel product-tab-panel--active" role="tabpanel" aria-hidden="false">
-        <div id="product-body" class="product-description"></div>
-      </div>
-      <div id="product-tab-specs" class="product-tab-panel" role="tabpanel" aria-hidden="true" hidden>
-        <div id="product-specs-content" class="product-specs-content"></div>
-      </div>
-      <div id="product-tab-docs" class="product-tab-panel" role="tabpanel" aria-hidden="true" hidden>
-        <p class="product-docs-placeholder">Документация пока не добавлена.</p>
-      </div>
-
-      <section class="product-configs">
-        <h2 class="product-configs__title">Стоимость</h2>
-        <div class="config-list" id="product-config"></div>
-        <p class="product-configs__disclaimer" id="product-disclaimer"></p>
+      <section class="product-about" id="product-about">
+        <h2 class="product-section__title">Кратко</h2>
+        <ul class="product-about__list" id="product-bullets"></ul>
       </section>
-      <section class="product-cta">
-        <h2 class="product-cta__title" id="product-cta-title"></h2>
-        <p class="product-cta__sub" id="product-cta-sub"></p>
-        <a class="header__cta" href="#callback">Получить консультацию</a>
+
+      <section class="product-includes" id="product-includes" style="display:none;">
+        <h2 class="product-section__title">Что входит в комплект</h2>
+        <ul class="product-about__list" id="product-includes-list"></ul>
+      </section>
+
+      <section class="product-specs-table" id="product-specs-section">
+        <h2 class="product-section__title">Характеристики</h2>
+        <div class="specs-table-wrap">
+          <table class="specs-table" id="product-specs-table"></table>
+        </div>
+      </section>
+
+      <section class="product-description-detail" id="product-detail">
+        <h2 class="product-section__title">Подробно</h2>
+        <div id="product-body" class="product-description"></div>
+      </section>
+
+      <section class="product-related" id="product-related">
+        <h2 class="product-section__title">Похожие товары</h2>
+        <div class="equipment-product-grid" id="related-grid"></div>
       </section>
     </div>
   </main>
@@ -57,7 +79,7 @@
       <div class="callback__glass">
         <div class="callback__text">
           <h2 class="callback__title">Остались вопросы?</h2>
-          <p class="callback__desc">Оставьте контакты — перезвоним и ответим на вопросы по оборудованию. +7 (495) 123-45-67</p>
+          <p class="callback__desc">Оставьте контакты — перезвоним и ответим на вопросы по оборудованию.</p>
           <p class="callback__hint">Бесплатно. Перезвоним за 15 минут.</p>
         </div>
         <div class="callback__form-wrap">
@@ -103,90 +125,12 @@
   </footer>
   <script src="data/equipment-products.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/lead-form.js"></script>
   <script>
     (function() {
       var API_BASE = window.EQUIPMENT_API_BASE !== undefined ? window.EQUIPMENT_API_BASE : 'http://127.0.0.1:8000';
       var params = new URLSearchParams(window.location.search);
       var id = params.get('id');
-
-      function renderProduct(product, catName) {
-      if (!product) {
-        window.location.replace('equipment.html');
-        return;
-      }
-      var catSlug = product.category;
-      if (!catName) catName = (window.EQUIPMENT_CATEGORIES || {})[catSlug] || catSlug;
-      var catalogUrl = 'equipment-catalog.html?cat=' + encodeURIComponent(catSlug);
-
-      document.title = (product.title || 'Товар') + ' — KALIPSO';
-
-      document.getElementById('breadcrumb').innerHTML =
-        '<a href="index.html">Главная</a> / <a href="equipment.html">Оборудование</a> / <a href="' + catalogUrl + '">' + escapeHtml(catName) + '</a> / ' + escapeHtml(product.title || '');
-      document.getElementById('product-title').textContent = product.title || '';
-      document.getElementById('product-specs').textContent = product.specs || '';
-      document.getElementById('product-image').src = product.image || '';
-      document.getElementById('product-image').alt = product.imageAlt || product.title || '';
-
-      var body = document.getElementById('product-body');
-      function addParagraphs(container, title, paragraphs) {
-        if (!paragraphs || !paragraphs.length) return;
-        var sec = document.createElement('section');
-        sec.className = 'product-description__section';
-        if (title) sec.innerHTML = '<h2 class="product-description__heading">' + escapeHtml(title) + '</h2>';
-        paragraphs.forEach(function(para) {
-          var p = document.createElement('p');
-          p.className = 'product-description__text';
-          p.textContent = para;
-          sec.appendChild(p);
-        });
-        container.appendChild(sec);
-      }
-      function addList(container, title, items) {
-        if (!items || !items.length) return;
-        var sec = document.createElement('section');
-        sec.className = 'product-description__section';
-        if (title) sec.innerHTML = '<h2 class="product-description__heading">' + escapeHtml(title) + '</h2>';
-        var ul = document.createElement('ul');
-        ul.className = 'product-description__list';
-        items.forEach(function(item) {
-          var li = document.createElement('li');
-          var t = (item.title || '').trim();
-          var x = (item.text || '').trim();
-          li.textContent = x ? t + ' — ' + x : t;
-          ul.appendChild(li);
-        });
-        sec.appendChild(ul);
-        container.appendChild(sec);
-      }
-      if (product.blocks && product.blocks.length) {
-        product.blocks.forEach(function(block) {
-          if (block.type === 'about' && block.paragraphs && block.paragraphs.length) {
-            addParagraphs(body, block.title || '', block.paragraphs);
-          } else if (block.type === 'features' && block.items && block.items.length) {
-            addList(body, block.title || '', block.items);
-          }
-        });
-      } else {
-        if (product.description && product.description.length) addParagraphs(body, 'О товаре', product.description);
-        if (product.features && product.features.length) addList(body, 'Особенности', product.features);
-      }
-
-      var specsPanel = document.getElementById('product-specs-content');
-      var specParts = [];
-      if (product.specs) specParts.push('<p class="product-specs-content__line"><strong>Характеристики:</strong> ' + escapeHtml(product.specs) + '</p>');
-      if (product.configName || product.configPrice) specParts.push('<p class="product-specs-content__line"><strong>Комплектация/цена:</strong> ' + escapeHtml(product.configName || product.title || '') + ' — ' + escapeHtml(product.configPrice || product.price || '') + '</p>');
-      if (product.disclaimer) specParts.push('<p class="product-specs-content__disclaimer">' + escapeHtml(product.disclaimer) + '</p>');
-      specsPanel.innerHTML = specParts.length ? specParts.join('') : '<p>Нет данных.</p>';
-
-      document.getElementById('product-config').innerHTML =
-        '<article class="config-card">' +
-        '<p class="config-card__name">' + escapeHtml(product.configName || product.title || '') + '</p>' +
-        '<p class="config-card__price">' + escapeHtml(product.configPrice || product.price || '') + '</p>' +
-        '<a class="config-card__link" href="#callback">' + escapeHtml(product.configLink || 'Уточнить') + '</a>' +
-        '</article>';
-      document.getElementById('product-disclaimer').textContent = product.disclaimer || '';
-      document.getElementById('product-cta-title').textContent = product.ctaTitle || 'Подобрать оборудование';
-      document.getElementById('product-cta-sub').textContent = product.ctaSub || 'Оставьте контакты — перезвоним.';
 
       function escapeHtml(s) {
         if (!s) return '';
@@ -194,38 +138,138 @@
         div.textContent = s;
         return div.innerHTML;
       }
+      function formatPrice(val) {
+        if (!val) return '';
+        var s = String(val).replace(/\s/g, '');
+        return /^\d+$/.test(s) ? s.replace(/\B(?=(\d{3})+(?!\d))/g, ' ') : val;
+      }
+      function parseSpecsTable(product) {
+        if (product.specsTable && product.specsTable.length) return product.specsTable;
+        var rows = [], seen = {};
+        if (product.brand) { rows.push({ label: 'Бренд', value: product.brand }); seen['Бренд'] = 1; }
+        if (product.model) { rows.push({ label: 'Модель', value: product.model }); seen['Модель'] = 1; }
+        if (product.cardSpecs && product.cardSpecs.length) {
+          product.cardSpecs.forEach(function(s) {
+            var m = s.match(/Ø(\d+)\s*мм/);
+            if (m && !seen['Диаметр']) { rows.push({ label: 'Диаметр', value: m[1] + ' мм' }); seen['Диаметр'] = 1; }
+            else if (/Подкл\./i.test(s) && !seen['Подключение']) { rows.push({ label: 'Подключение', value: s.replace(/Подкл\.\s*/i, '').trim() }); seen['Подключение'] = 1; }
+            else if (/м³\/ч/.test(s) && !seen['Производительность']) { rows.push({ label: 'Производительность', value: s }); seen['Производительность'] = 1; }
+            else if (!seen[s]) { rows.push({ label: s, value: '—' }); seen[s] = 1; }
+          });
+        }
+        if (product.specs && rows.length < 6) {
+          product.specs.split('·').forEach(function(part) {
+            var t = part.trim();
+            if (t && !seen[t]) { rows.push({ label: t, value: '—' }); seen[t] = 1; }
+          });
+        }
+        return rows;
+      }
+      function buildRelatedCard(p) {
+        var title = p.shortTitle || p.title || '';
+        var href = 'equipment-product.html?id=' + encodeURIComponent(p.id);
+        var price = p.price && String(p.price).trim() ? formatPrice(p.price) + ' ' + (p.priceCurrency || '₽') : 'Цена по запросу';
+        return '<a href="' + href + '" class="equipment-product-card">' +
+          '<div class="equipment-product-card__image"><img src="' + escapeHtml(p.image || '') + '" alt="' + escapeHtml(p.imageAlt || title) + '" loading="lazy" /></div>' +
+          '<div class="equipment-product-card__body">' +
+            '<h4 class="equipment-product-card__title">' + escapeHtml(title) + '</h4>' +
+            '<div class="equipment-product-card__price-wrap"><div class="equipment-product-card__price">' + escapeHtml(price) + '</div></div>' +
+          '</div></a>';
       }
 
-      document.getElementById('product-tabs').addEventListener('click', function(e) {
-        var t = e.target.getAttribute('data-tab');
-        if (!t) return;
-        document.querySelectorAll('.product-tab').forEach(function(btn) {
-          btn.classList.toggle('product-tab--active', btn.getAttribute('data-tab') === t);
-          btn.setAttribute('aria-selected', btn.getAttribute('data-tab') === t ? 'true' : 'false');
-        });
-        document.querySelectorAll('.product-tab-panel').forEach(function(panel) {
-          var isActive = panel.id === 'product-tab-' + t;
-          panel.classList.toggle('product-tab-panel--active', isActive);
-          panel.hidden = !isActive;
-          panel.setAttribute('aria-hidden', !isActive);
-        });
-      });
+      function renderProduct(product, catName) {
+        if (!product) { window.location.replace(window.location.protocol === 'file:' ? 'equipment.html' : '/equipment'); return; }
+        var catSlug = product.category;
+        if (!catName) catName = (window.EQUIPMENT_CATEGORIES || {})[catSlug] || catSlug;
+        var catalogUrl = (window.location.protocol === 'file:' ? 'equipment-catalog.html' : '/equipment/catalog') + '?cat=' + encodeURIComponent(catSlug);
 
-      if (id && API_BASE && typeof fetch === 'function') {
-        fetch(API_BASE + '/api/equipment/' + encodeURIComponent(id)).then(function(r) {
-          if (!r.ok) throw new Error();
-          return r.json();
-        }).then(function(product) {
-          renderProduct(product, product.categoryName);
-        }).catch(function() {
-          var products = window.EQUIPMENT_PRODUCTS || [];
-          var product = products.filter(function(p) { return p.id === id; })[0];
-          renderProduct(product);
-        });
-      } else {
+        document.title = (product.title || 'Товар') + ' — KALIPSO';
+        document.getElementById('breadcrumb').innerHTML =
+          '<a href="index.html">Главная</a> / <a href="equipment.html">Оборудование</a> / <a href="' + catalogUrl + '">' + escapeHtml(catName) + '</a> / ' + escapeHtml(product.title || '');
+
+        document.getElementById('product-title').textContent = product.title || '';
+        document.getElementById('product-image').src = product.image || '';
+        document.getElementById('product-image').alt = product.imageAlt || product.title || '';
+
+        var hasPrice = product.price && String(product.price).trim();
+        var priceEl = document.getElementById('product-price');
+        priceEl.textContent = hasPrice ? formatPrice(product.price) + ' ' + (product.priceCurrency || '₽') : 'Цена по запросу';
+
+        var status = product.status || 'уточняем';
+        document.getElementById('product-status').textContent = 'Статус: ' + status;
+
+        document.getElementById('product-cta').textContent = 'Перезвонить мне';
+
+        var specs = parseSpecsTable(product);
+        var buyboxSpecs = document.getElementById('buybox-specs');
+        if (specs.length) {
+          buyboxSpecs.innerHTML = specs.slice(0, 5).map(function(r) {
+            return '<span class="buybox__spec"><strong>' + escapeHtml(r.label) + '</strong> ' + escapeHtml(r.value) + '</span>';
+          }).join('');
+          buyboxSpecs.style.display = '';
+        } else buyboxSpecs.style.display = 'none';
+
+        var table = document.getElementById('product-specs-table');
+        if (specs.length) {
+          table.innerHTML = specs.map(function(r) {
+            return '<tr class="specs-table__row"><td class="specs-table__label">' + escapeHtml(r.label) + '</td><td class="specs-table__value">' + escapeHtml(r.value) + '</td></tr>';
+          }).join('');
+          document.getElementById('product-specs-section').style.display = '';
+        } else document.getElementById('product-specs-section').style.display = 'none';
+
+        var bullets = product.shortBullets || (product.features && product.features.map(function(f) { return f.title + (f.text ? ' — ' + f.text : ''); })) || [];
+        var bulletsEl = document.getElementById('product-bullets');
+        if (bullets.length) {
+          bulletsEl.innerHTML = bullets.map(function(b) { return '<li>' + escapeHtml(b) + '</li>'; }).join('');
+          document.getElementById('product-about').style.display = '';
+        } else document.getElementById('product-about').style.display = 'none';
+
+        var includes = product.includes || (product.blocks && product.blocks.filter(function(b) { return b.type === 'features'; }).flatMap(function(b) { return (b.items || []).map(function(i) { return i.title + (i.text ? ' — ' + i.text : ''); }); })) || [];
+        var includesEl = document.getElementById('product-includes-list');
+        if (includes.length) {
+          includesEl.innerHTML = includes.map(function(i) { return '<li>' + escapeHtml(i) + '</li>'; }).join('');
+          document.getElementById('product-includes').style.display = '';
+        }
+
+        var body = document.getElementById('product-body');
+        body.innerHTML = '';
+        function addParagraphs(container, title, paragraphs) {
+          if (!paragraphs || !paragraphs.length) return;
+          var sec = document.createElement('section');
+          sec.className = 'product-description__section';
+          if (title) sec.innerHTML = '<h3 class="product-description__heading">' + escapeHtml(title) + '</h3>';
+          paragraphs.forEach(function(para) {
+            var p = document.createElement('p');
+            p.className = 'product-description__text';
+            p.textContent = para;
+            sec.appendChild(p);
+          });
+          container.appendChild(sec);
+        }
+        if (product.blocks && product.blocks.length) {
+          product.blocks.forEach(function(block) {
+            if (block.type === 'about' && block.paragraphs && block.paragraphs.length) addParagraphs(body, block.title || '', block.paragraphs);
+          });
+        } else if (product.description && product.description.length) addParagraphs(body, '', product.description);
+        document.getElementById('product-detail').style.display = body.children.length ? '' : 'none';
+
         var products = window.EQUIPMENT_PRODUCTS || [];
-        var product = id ? products.filter(function(p) { return p.id === id; })[0] : null;
-        renderProduct(product);
+        var related = products.filter(function(p) { return p.category === catSlug && p.id !== product.id; }).slice(0, 4);
+        var relatedGrid = document.getElementById('related-grid');
+        if (related.length) {
+          relatedGrid.innerHTML = related.map(buildRelatedCard).join('');
+          document.getElementById('product-related').style.display = '';
+        } else document.getElementById('product-related').style.display = 'none';
+      }
+
+      var products = window.EQUIPMENT_PRODUCTS || [];
+      var p = id ? products.filter(function(x) { return x.id === id; })[0] : null;
+      if (p) {
+        renderProduct(p);
+      } else if (id && API_BASE && typeof fetch === 'function') {
+        fetch(API_BASE + '/api/equipment/' + encodeURIComponent(id)).then(function(r) { return r.ok ? r.json() : Promise.reject(); }).then(function(product) { renderProduct(product, product.categoryName); }).catch(function() { window.location.replace(window.location.protocol === 'file:' ? 'equipment.html' : '/equipment'); });
+      } else {
+        renderProduct(null);
       }
     })();
   </script>

@@ -12,6 +12,7 @@
 <body>
   <header class="header"></header>
   <script src="js/header.js"></script>
+  <script src="js/url-rewrite.js"></script>
   <main>
     <section class="section-simple equipment-catalog-page">
       <div class="container">
@@ -21,6 +22,10 @@
         <div class="equipment-catalog-page__header">
           <h1 class="equipment-catalog-page__title" id="category-title">Фильтрация</h1>
           <p class="equipment-catalog-page__subtitle" id="category-subtitle">Фильтры и установки. Подбор по объёму и гидравлике.</p>
+        </div>
+
+        <div class="equipment-catalog-intro" id="catalog-intro">
+          <p class="equipment-catalog-intro__text">Как выбрать: подбор по объёму чаши и гидравлике трассы. Что влияет на цену: диаметр, материал корпуса, наличие насоса. Уточним бесплатно: совместимость с вашей схемой и актуальные сроки поставки.</p>
         </div>
 
         <div class="equipment-catalog-sticky-cta">
@@ -55,18 +60,6 @@
                 <option value="">Все</option>
               </select>
             </div>
-            <div class="equipment-filters__group">
-              <label class="equipment-filters__label" for="filter-type">Тип</label>
-              <select id="filter-type" class="equipment-filters__select">
-                <option value="">Все</option>
-              </select>
-            </div>
-            <div class="equipment-filters__group">
-              <label class="equipment-filters__label" for="filter-price">Цена</label>
-              <select id="filter-price" class="equipment-filters__select">
-                <option value="">Все</option>
-              </select>
-            </div>
           </aside>
 
           <div class="equipment-catalog-main">
@@ -78,9 +71,9 @@
               <div class="equipment-catalog-sort">
                 <select id="sort-select">
                   <option value="popular">Популярные</option>
-                  <option value="price-asc">Дешевле</option>
-                  <option value="price-desc">Дороже</option>
-                  <option value="perf">По производительности</option>
+                  <option value="price-asc">По цене: дешевле</option>
+                  <option value="price-desc">По цене: дороже</option>
+                  <option value="brand">По бренду</option>
                 </select>
               </div>
               <div class="equipment-catalog-chips" id="chips-row">
@@ -109,8 +102,8 @@
             </div>
 
             <div class="equipment-catalog-cta">
-              <a href="#callback" class="btn btn-primary">Подобрать оборудование под мой бассейн</a>
-              <a href="equipment.html" class="btn btn-outline">Все категории оборудования</a>
+              <a href="equipment.html" class="btn btn-outline">Все категории</a>
+              <a href="#callback" class="btn btn-primary">Подобрать комплект</a>
             </div>
           </div>
         </div>
@@ -169,6 +162,7 @@
   </footer>
   <script src="data/equipment-products.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/lead-form.js"></script>
   <script>
     (function() {
       var API_BASE = window.EQUIPMENT_API_BASE !== undefined ? window.EQUIPMENT_API_BASE : 'http://127.0.0.1:8000';
@@ -203,6 +197,7 @@
         var title = p.shortTitle || p.title || '';
         var model = p.model || '';
         var specs = p.cardSpecs || [];
+        var brand = p.brand || '';
         var img = p.image || '';
         var imgAlt = p.imageAlt || title;
         var href = 'equipment-product.html?id=' + encodeURIComponent(p.id);
@@ -210,9 +205,10 @@
         var currency = p.priceCurrency || '₽';
         var priceNum = hasPrice ? formatPrice(p.price) : '';
         var priceNote = p.priceNote || '';
-        var specsHtml = specs.length ? '<div class="equipment-product-card__specs">' + specs.map(function(s) {
-          return '<span class="equipment-product-card__spec">' + esc(s) + '</span>';
-        }).join('') + '</div>' : '';
+        var chips = [];
+        if (brand) chips.push('<span class="equipment-product-card__spec equipment-product-card__spec--brand">' + esc(brand) + '</span>');
+        specs.forEach(function(s) { chips.push('<span class="equipment-product-card__spec">' + esc(s) + '</span>'); });
+        var specsHtml = chips.length ? '<div class="equipment-product-card__specs">' + chips.join('') + '</div>' : '';
         var priceHtml;
         if (hasPrice) {
           priceHtml = '<div class="equipment-product-card__price">' + priceNum + '<span class="equipment-product-card__currency">' + esc(currency) + '</span></div>';
@@ -250,12 +246,7 @@
       function matchesFilters(p, filters, parsed) {
         for (var k in filters) {
           if (!filters[k]) continue;
-          var fv = filters[k];
-          var pv = getFilterVal(p, k, parsed);
-          if (k === 'price') {
-            if (fv === 'yes' && !pv) return false;
-            if (fv === 'no' && pv) return false;
-          } else if (pv !== fv) return false;
+          if (getFilterVal(p, k, parsed) !== filters[k]) return false;
         }
         return true;
       }
@@ -280,6 +271,12 @@
             var pb = parseInt(parsedMap[b.id] && parsedMap[b.id].perf, 10) || 0;
             return pb - pa;
           });
+        } else if (sortBy === 'brand') {
+          arr.sort(function(a, b) {
+            var aa = (a.brand || '').toLowerCase();
+            var bb = (b.brand || '').toLowerCase();
+            return aa.localeCompare(bb);
+          });
         }
         return arr;
       }
@@ -290,9 +287,7 @@
           brand: document.getElementById('filter-brand') && document.getElementById('filter-brand').value || '',
           diameter: document.getElementById('filter-diameter') && document.getElementById('filter-diameter').value || '',
           connection: document.getElementById('filter-connection') && document.getElementById('filter-connection').value || '',
-          perf: document.getElementById('filter-perf') && document.getElementById('filter-perf').value || '',
-          type: document.getElementById('filter-type') && document.getElementById('filter-type').value || '',
-          price: document.getElementById('filter-price') && document.getElementById('filter-price').value || ''
+          perf: document.getElementById('filter-perf') && document.getElementById('filter-perf').value || ''
         };
         var sortBy = document.getElementById('sort-select') && document.getElementById('sort-select').value || 'popular';
         var products = window.EQUIPMENT_PRODUCTS || [];
@@ -322,15 +317,11 @@
           var active = Object.keys(filters).filter(function(k) { return filters[k]; });
           chipsRow.querySelectorAll('.equipment-catalog-chip').forEach(function(n) { n.remove(); });
           if (resetBtn) resetBtn.style.display = active.length ? 'inline' : 'none';
-          var labels = { brand: 'Бренд', diameter: 'Ø', connection: 'Подкл.', perf: 'Пр-сть', type: 'Тип', price: 'Цена' };
-          var typeLabels = { 'filter': 'Фильтр', 'filter-unit': 'Установка', 'with-pump': 'С насосом', 'without-pump': 'Без насоса' };
-          var priceLabels = { yes: 'С ценой', no: 'По запросу' };
+          var labels = { brand: 'Бренд', diameter: 'Ø', connection: 'Подкл.', perf: 'Пр-сть' };
           active.forEach(function(k) {
             var chip = document.createElement('span');
             chip.className = 'equipment-catalog-chip equipment-catalog-chip--active';
             var val = filters[k];
-            if (k === 'type') val = typeLabels[val] || val;
-            if (k === 'price') val = priceLabels[val] || val;
             chip.textContent = labels[k] + ': ' + val;
             chipsRow.appendChild(chip);
           });
@@ -341,14 +332,13 @@
         var list = products.filter(function(p) { return p.category === cat; });
         var parsedMap = {};
         list.forEach(function(p) { parsedMap[p.id] = parseProductFilters(p); });
-        var brands = {}, diameters = {}, connections = {}, perfs = {}, types = {};
+        var brands = {}, diameters = {}, connections = {}, perfs = {};
         list.forEach(function(p) {
           var p0 = parsedMap[p.id];
           if (p.brand) brands[p.brand] = 1;
           if (p0.diameter) diameters[p0.diameter] = 1;
           if (p0.connection) connections[p0.connection] = 1;
           if (p0.perf) perfs[p0.perf] = 1;
-          types[p0.type] = 1;
         });
         function fillSel(id, opts, labels) {
           var sel = document.getElementById(id);
@@ -362,13 +352,10 @@
             sel.appendChild(o);
           });
         }
-        var typeLabels = { 'filter': 'Фильтр', 'filter-unit': 'Фильтровальная установка', 'with-pump': 'С насосом', 'without-pump': 'Без насоса' };
         fillSel('filter-brand', brands);
         fillSel('filter-diameter', diameters);
         fillSel('filter-connection', connections);
         fillSel('filter-perf', perfs);
-        fillSel('filter-type', types, typeLabels);
-        fillSel('filter-price', { yes: 'С ценой', no: 'По запросу' }, { yes: 'С ценой', no: 'По запросу' });
       }
 
       function runWith(categories, products) {
@@ -388,6 +375,9 @@
         if (breadcrumbEl) breadcrumbEl.textContent = title;
         if (titleEl) titleEl.textContent = title;
         if (subEl) subEl.textContent = subTitles[cat] || 'Оборудование для бассейнов.';
+        var introTexts = { filtration: 'Как выбрать: подбор по объёму чаши и гидравлике трассы. Что влияет на цену: диаметр, материал корпуса, наличие насоса. Уточним бесплатно: совместимость с вашей схемой и актуальные сроки поставки.', heating: 'Как выбрать: мощность под объём и режим нагрева. Уточним бесплатно: теплообменник или электронагреватель, сроки.', automation: 'Как выбрать: под схему обвязки и задачи. Уточним бесплатно: совместимость и настройку.', attractions: 'Как выбрать: под объём чаши и сценарий. Уточним бесплатно: установку и совместимость.' };
+        var introEl = document.getElementById('catalog-intro');
+        if (introEl) { var t = introEl.querySelector('.equipment-catalog-intro__text'); if (t) t.textContent = introTexts[cat] || introTexts.filtration; }
         var stickyTexts = { filtration: 'Не уверены? Подберём фильтрацию под объём чаши за 15 минут.', heating: 'Подберём подогрев под объём и режим бассейна.', automation: 'Подберём автоматику и дозирование под вашу схему.', attractions: 'Подберём аттракционы под сценарий и бюджет.' };
         var stickyEl = document.getElementById('sticky-cta-text');
         if (stickyEl) stickyEl.textContent = stickyTexts[cat] || 'Не уверены? Подберём оборудование под объём чаши за 15 минут.';
@@ -397,7 +387,7 @@
         fillFilterOptions(cat, products);
         render();
 
-        ['filter-brand','filter-diameter','filter-connection','filter-perf','filter-type','filter-price','sort-select'].forEach(function(id) {
+        ['filter-brand','filter-diameter','filter-connection','filter-perf','sort-select'].forEach(function(id) {
           var el = document.getElementById(id);
           if (el) el.addEventListener('change', render);
         });
@@ -412,7 +402,7 @@
         var resetBtn = document.getElementById('chips-reset');
         if (resetBtn) {
           resetBtn.addEventListener('click', function() {
-            ['filter-brand','filter-diameter','filter-connection','filter-perf','filter-type','filter-price'].forEach(function(id) {
+            ['filter-brand','filter-diameter','filter-connection','filter-perf'].forEach(function(id) {
               var el = document.getElementById(id);
               if (el) el.value = '';
             });

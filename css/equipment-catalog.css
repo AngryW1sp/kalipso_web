@@ -40,6 +40,21 @@
   max-width: 560px;
 }
 
+/* Вводный блок */
+.equipment-catalog-intro {
+  margin-bottom: var(--s-5);
+  padding: var(--s-4);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+}
+.equipment-catalog-intro__text {
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
 /* Mini-CTA */
 .equipment-catalog-sticky-cta {
   margin-bottom: var(--s-5);
@@ -348,13 +363,15 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   gap: var(--s-3);
 }
-.equipment-catalog-cta .btn-primary {
+.equipment-catalog-cta .btn-outline {
   order: 1;
 }
-.equipment-catalog-cta .btn-outline {
+.equipment-catalog-cta .btn-primary {
   order: 2;
+  margin-left: auto;
 }
 .equipment-catalog-cta .btn-outline:hover {
   border-color: var(--gold-accent);
