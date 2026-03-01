@@ -29,7 +29,7 @@
     '<div class="header__right">' +
     '<span class="header__cities">Москва · МО</span>' +
     '<div class="header__contact">' +
-    '<a class="header__phone" href="tel:+74951234567">+7 (495) 123-45-67</a>' +
+    '<a class="header__phone" href="tel:+79281329988">+7 928 132-99-88</a>' +
     '<span class="header__note">Перезвоним за 15 мин</span></div></div></div></div>';
 
   headerEl.innerHTML = html;
