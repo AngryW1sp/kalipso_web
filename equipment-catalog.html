@@ -4,15 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Каталог оборудования — KALIPSO</title>
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/catalog-hero.css" />
-  <link rel="stylesheet" href="css/equipment-catalog.css" />
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/catalog-hero.css" />
+  <link rel="stylesheet" href="/css/equipment-catalog.css" />
 </head>
 <body>
   <header class="header"></header>
-  <script src="js/header.js"></script>
-  <script src="js/url-rewrite.js"></script>
+  <script src="/js/header.js"></script>
+  <script src="/js/url-rewrite.js"></script>
   <main>
     <section class="section-simple equipment-catalog-page">
       <div class="container">
@@ -160,12 +160,12 @@
       </div>
     </div>
   </footer>
-  <script src="data/equipment-products.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/lead-form.js"></script>
+  <script src="/data/equipment-products.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/lead-form.js"></script>
   <script>
     (function() {
-      var API_BASE = window.EQUIPMENT_API_BASE !== undefined ? window.EQUIPMENT_API_BASE : 'http://127.0.0.1:8000';
+      var API_BASE = window.EQUIPMENT_API_BASE !== undefined ? window.EQUIPMENT_API_BASE : (window.location.protocol === 'file:' ? 'http://127.0.0.1:8000' : '');
       var catKeys = ['filtration', 'heating', 'automation', 'attractions'];
       var subTitles = window.EQUIPMENT_CATEGORY_SUBTITLES || {};
 
@@ -193,14 +193,15 @@
         return { diameter: d, connection: c, perf: perf, type: type };
       }
 
+      function assetUrl(u) { return !u ? '' : (u.startsWith('/') || u.startsWith('http')) ? u : '/' + u.replace(/^\/?/, ''); }
       function buildCard(p) {
         var title = p.shortTitle || p.title || '';
         var model = p.model || '';
         var specs = p.cardSpecs || [];
         var brand = p.brand || '';
-        var img = p.image || '';
+        var img = assetUrl(p.image) || '';
         var imgAlt = p.imageAlt || title;
-        var href = 'equipment-product.html?id=' + encodeURIComponent(p.id);
+        var href = (window.location.protocol === 'file:' ? 'equipment-product.html' : '/equipment/product') + '?id=' + encodeURIComponent(p.id);
         var hasPrice = p.price && String(p.price).trim();
         var currency = p.priceCurrency || '₽';
         var priceNum = hasPrice ? formatPrice(p.price) : '';
@@ -364,7 +365,7 @@
         var params = new URLSearchParams(window.location.search);
         var cat = (params.get('cat') || 'filtration').toLowerCase();
         if (!categories[cat]) {
-          window.location.replace('equipment.html');
+          window.location.replace(window.location.protocol === 'file:' ? 'equipment.html' : '/equipment');
           return;
         }
         var title = categories[cat];

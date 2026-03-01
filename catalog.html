@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Каталог бассейнов — KALIPSO</title>
   <meta name="description" content="Каталог бассейнов разных размеров и форм. Цены, характеристики, доставка." />
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/catalog-hero.css" />
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/catalog-hero.css" />
 </head>
 <body>
   <header class="header"></header>
-  <script src="js/header.js"></script>
-  <script src="js/url-rewrite.js"></script>
+  <script src="/js/header.js"></script>
+  <script src="/js/url-rewrite.js"></script>
 
   <main>
     <!-- 1. Hero — первый экран каталога -->
@@ -59,7 +59,7 @@
           </div>
         </div>
         <div class="catalog-hero__visual">
-          <img src="assets/pools/IMG_20220714_231241_122.jpg" alt="Бассейн KALIPSO" loading="eager" class="catalog-hero__image" onerror="this.src='assets/images/IMG_20220810_101450_262.jpg'" />
+          <img src="/assets/pools/IMG_20220714_231241_122.jpg" alt="Бассейн KALIPSO" loading="eager" class="catalog-hero__image" onerror="this.src='/assets/images/IMG_20220810_101450_262.jpg'" />
         </div>
       </div>
     </section>
@@ -163,12 +163,13 @@
     </div>
   </section>
 
-  <script src="data/pools-data.js"></script>
+  <script src="/data/pools-data.js"></script>
   <script>
     (function() {
       var pools = window.POOLS_DATA || [];
       var grid = document.getElementById('pool-catalog-grid');
-      var fallbackImg = 'assets/images/IMG_20220810_101450_262.jpg';
+      var fallbackImg = '/assets/images/IMG_20220810_101450_262.jpg';
+      function assetUrl(u) { return !u ? '' : (u.startsWith('/') || u.startsWith('http')) ? u : '/' + u.replace(/^\/?/, ''); }
       function fmtPrice(n) {
         return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
       }
@@ -186,9 +187,11 @@
           return '<span class="pool-card__pill">' + escapeHtml(s) + '</span>';
         }).join('');
         var priceStr = fmtPrice(p.priceFrom);
+        var imgSrc = assetUrl(p.image || fallbackImg);
+        var poolHref = (window.location.protocol === 'file:' ? 'pool-product.html' : '/pool/product') + '?id=' + encodeURIComponent(p.id);
         article.innerHTML =
-          '<a href="pool-product.html?id=' + encodeURIComponent(p.id) + '" class="pool-card__image">' +
-            '<img src="' + (p.image || fallbackImg).replace(/"/g, '&quot;') + '" alt="' + escapeHtml(p.title) + '" loading="lazy" onerror="this.src=\'' + fallbackImg + '\'" />' +
+          '<a href="' + poolHref + '" class="pool-card__image">' +
+            '<img src="' + imgSrc.replace(/"/g, '&quot;') + '" alt="' + escapeHtml(p.title) + '" loading="lazy" onerror="this.src=\'' + fallbackImg + '\'" />' +
           '</a>' +
           '<div class="pool-card__body">' +
             '<h3 class="pool-card__title">' + escapeHtml(p.title) + '</h3>' +
@@ -201,7 +204,7 @@
             '</div>' +
             '<div class="pool-card__actions">' +
               '<a class="btn btn-primary pool-card__btn-primary" href="#callback">Запросить расчёт</a>' +
-              '<a class="pool-card__btn-secondary" href="pool-product.html?id=' + encodeURIComponent(p.id) + '">Подробнее</a>' +
+              '<a class="pool-card__btn-secondary" href="' + poolHref + '">Подробнее</a>' +
             '</div>' +
           '</div>';
         grid.appendChild(article);
@@ -237,6 +240,6 @@
       </div>
     </div>
   </footer>
-  <script src="js/lead-form.js"></script>
+  <script src="/js/lead-form.js"></script>
 </body>
 </html>

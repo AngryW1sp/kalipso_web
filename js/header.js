@@ -12,9 +12,10 @@
   } : { home: '/', catalog: '/catalog', equipment: '/equipment',
     services: '/services', about: '/about', contacts: '/contacts' };
 
+  var logoUrl = window.location.protocol === 'file:' ? 'assets/images/logo.png' : '/assets/images/logo.png';
   var html = '<div class="container"><div class="header__inner">' +
     '<a class="brand" href="' + u.home + '" aria-label="KALIPSO">' +
-    '<img src="assets/images/logo.png" alt="KALIPSO — проектирование и строительство бассейнов" class="brand__logo" />' +
+    '<img src="' + logoUrl + '" alt="KALIPSO — проектирование и строительство бассейнов" class="brand__logo" />' +
     '<span class="brand__text">KALIPSO</span></a>' +
     '<input type="checkbox" id="nav-toggle" class="nav-toggle" hidden aria-hidden="true" />' +
     '<label for="nav-toggle" class="header__burger" aria-label="Меню"><span></span><span></span><span></span></label>' +

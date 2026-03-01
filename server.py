@@ -10,7 +10,7 @@ import urllib.request
 import urllib.error
 
 from starlette.applications import Starlette
-from starlette.responses import JSONResponse, FileResponse, Response
+from starlette.responses import JSONResponse, FileResponse, Response, RedirectResponse
 from starlette.routing import Route, Mount
 from starlette.staticfiles import StaticFiles
 from starlette.middleware import Middleware
@@ -136,11 +136,49 @@ async def favicon(request):
     return Response(status_code=204)
 
 
+REDIRECTS = {
+    "/equipment/": "/equipment",
+    "/equipment/equipment.html": "/equipment",
+    "/equipment/equipment-catalog.html": "/equipment/catalog",
+    "/equipment/equipment-product.html": "/equipment/product",
+    "/catalog/catalog.html": "/catalog",
+    "/catalog/pool-product.html": "/pool/product",
+    "/pool/catalog.html": "/catalog",
+    "/pool/catalog": "/catalog",
+    "/pool/pool-product.html": "/pool/product",
+    "/pool/product-3x6.html": "/pool/3x6",
+    "/services/services.html": "/services",
+    "/about/about.html": "/about",
+    "/contacts/contacts.html": "/contacts",
+    "/index.html": "/",
+    "/home/home.html": "/home",
+}
+
+
+class RedirectWrongPathsMiddleware:
+    def __init__(self, app):
+        self.app = app
+
+    async def __call__(self, scope, receive, send):
+        if scope["type"] == "http":
+            path = scope.get("path", "") or "/"
+            if path in REDIRECTS:
+                qs = scope.get("query_string", b"").decode()
+                url = REDIRECTS[path] + ("?" + qs if qs else "")
+                response = RedirectResponse(url, status_code=301)
+                await response(scope, receive, send)
+                return
+        await self.app(scope, receive, send)
+
+
 clean_routes = [Route(path, _page(f)) for path, f in CLEAN_URLS.items() if path != "/"]
 
 app = Starlette(
     debug=False,
-    middleware=[Middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"])],
+    middleware=[
+        Middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"]),
+        Middleware(RedirectWrongPathsMiddleware),
+    ],
     routes=[
         Route("/api/send-lead", send_lead, methods=["POST"]),
         Route("/favicon.ico", favicon),

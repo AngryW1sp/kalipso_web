@@ -4,16 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Оборудование — KALIPSO</title>
-  <link rel="stylesheet" href="css/variables.css" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/product.css" />
-  <link rel="stylesheet" href="css/catalog-hero.css" />
-  <link rel="stylesheet" href="css/equipment-catalog.css" />
+  <link rel="stylesheet" href="/css/variables.css" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/product.css" />
+  <link rel="stylesheet" href="/css/catalog-hero.css" />
+  <link rel="stylesheet" href="/css/equipment-catalog.css" />
 </head>
 <body>
   <header class="header"></header>
-  <script src="js/header.js"></script>
-  <script src="js/url-rewrite.js"></script>
+  <script src="/js/header.js"></script>
+  <script src="/js/url-rewrite.js"></script>
 
   <main class="product-page">
     <div class="container" id="product-content">
@@ -123,9 +123,9 @@
       </div>
     </div>
   </footer>
-  <script src="data/equipment-products.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/lead-form.js"></script>
+  <script src="/data/equipment-products.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/lead-form.js"></script>
   <script>
     (function() {
       var API_BASE = window.EQUIPMENT_API_BASE !== undefined ? window.EQUIPMENT_API_BASE : 'http://127.0.0.1:8000';
@@ -165,12 +165,13 @@
         }
         return rows;
       }
+      function assetUrl(u) { return !u ? '' : (u.startsWith('/') || u.startsWith('http')) ? u : '/' + u.replace(/^\/?/, ''); }
       function buildRelatedCard(p) {
         var title = p.shortTitle || p.title || '';
-        var href = 'equipment-product.html?id=' + encodeURIComponent(p.id);
+        var href = (window.location.protocol === 'file:' ? 'equipment-product.html' : '/equipment/product') + '?id=' + encodeURIComponent(p.id);
         var price = p.price && String(p.price).trim() ? formatPrice(p.price) + ' ' + (p.priceCurrency || '₽') : 'Цена по запросу';
         return '<a href="' + href + '" class="equipment-product-card">' +
-          '<div class="equipment-product-card__image"><img src="' + escapeHtml(p.image || '') + '" alt="' + escapeHtml(p.imageAlt || title) + '" loading="lazy" /></div>' +
+          '<div class="equipment-product-card__image"><img src="' + escapeHtml(assetUrl(p.image)) + '" alt="' + escapeHtml(p.imageAlt || title) + '" loading="lazy" /></div>' +
           '<div class="equipment-product-card__body">' +
             '<h4 class="equipment-product-card__title">' + escapeHtml(title) + '</h4>' +
             '<div class="equipment-product-card__price-wrap"><div class="equipment-product-card__price">' + escapeHtml(price) + '</div></div>' +
@@ -188,7 +189,7 @@
           '<a href="index.html">Главная</a> / <a href="equipment.html">Оборудование</a> / <a href="' + catalogUrl + '">' + escapeHtml(catName) + '</a> / ' + escapeHtml(product.title || '');
 
         document.getElementById('product-title').textContent = product.title || '';
-        document.getElementById('product-image').src = product.image || '';
+        document.getElementById('product-image').src = assetUrl(product.image) || '';
         document.getElementById('product-image').alt = product.imageAlt || product.title || '';
 
         var hasPrice = product.price && String(product.price).trim();
