@@ -133,6 +133,9 @@ def _page(filename):
 
 
 async def favicon(request):
+    path = BASE_DIR / "assets" / "images" / "logo.png"
+    if path.exists():
+        return FileResponse(path, media_type="image/png")
     return Response(status_code=204)
 
 
